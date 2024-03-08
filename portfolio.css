@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
+
+:root {
+    --primaryBlack: #1E1E1E;
+    --primaryWhite: #F9F7F7;
+    --accentColor: #134a1c40;
+    --h1-size: 14.00vw;
+    --h2-size: 2.5em;
+    --p-size: 1.125em;
+    --bodyTextSize: 1em;
+    --bodyTextFont: "Montserrat", sans-serif;
+    --hFont: 'GT Super Txt Trial', sans-serif;
+    --hFontItalic: 'GT Super Txt Trial', sans-serif;
+
+
+}
+
+
+/* algemeen  */
+
+body {
+    background-color: var(--primaryBlack);
+    color: var(--primaryWhite);
+    /* padding-inline: 1.5em; */
+    padding: 0;
+    margin: 0;
+
+
+}
+
+h1 {
+    font-size: var(--h1-size);
+    font-family: var(--hFont);
+    font-weight: 300;
+
+}
+
+h2 {
+    font-size: var(--h2-size);
+    font-family: var(--hFont);
+    font-weight: 300;
+
+}
+
+p {
+    font-size: var(--p-size);
+    font-family: var(--bodyTextFont);
+
+}
+
+hr {
+    width: 90vw;
+
+}
+
+article {
+    margin-inline: 2em;
+}
+
+figure {
+    margin: 0em;
+    padding: 0em;
+    position: relative;
+    
+}
+
+/* // buttons  */
+
+.buttons {
+    display: flex;
+    margin-top: 2em;
+    justify-content: center;
+    height: 1.8em;
+    padding-inline: 0em;
+
+
+}
+
+.buttons section {
+    position: relative;
+    background-color: var(--primaryWhite);
+    border-radius: 0.8em;
+
+    display: flex;
+    align-content: center;
+    margin-inline: 0;
+    padding-inline: 0.8em;
+}
+
+/* .left {
+    color: red;
+} */
+
+
+/* width:30vw; */
+
+.buttons button {
+    /* padding-inline: 2em; */
+    /* padding-block: 0.6em; */
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    width: 5.5em;
+    color: #1E1E1E;
+
+
+}
+
+#animationButton {
+    position: absolute;
+    left: 0em;
+    top: 0em;
+    background-color: var(--accentColor);
+    width: 6em;
+    height: 1.8em;
+    border-radius: 1em;
+    transition: 1s;
+
+
+
+
+}
+
+/*  zorgt dat je het ene gedeelte niet ziet door de button */
+
+.work {
+    visibility: visible;
+}
+.work h2 {
+    margin-inline: 0.8em;
+}
+
+/* eerste section  */
+
+.work section:nth-of-type(1)  {
+    display: flex;
+    flex-direction: column;
+    margin: 1.51em
+}
+.work section:nth-of-type(1) figure img {
+    max-width: 85vw;
+    max-height: 100vh;
+    padding-block: 1em;
+    transition: ease-in-out 0.3s;
+
+}
+
+
+
+/* twee section */
+
+/* algemene grid */
+
+.work section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(20, 0.15fr);
+    /* grid-column-gap: 0px;
+    grid-row-gap: 0px; */
+    /* background-color: blueviolet; */
+}
+.work section:nth-of-type(2) figure img {
+    /* scale: 0.5; */
+    max-width: 100%;
+    width: 100%;
+    max-height: 100%;
+    transition: ease-in-out 0.3s;
+}
+
+
+/* grid indeling */
+
+.work section:nth-of-type(2) figure:nth-of-type(1) {
+    grid-area: 1 / 1 / 5 / 7;
+    /* max-width:  70vw;
+    width:  70vw; */
+    object-fit: cover;
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(2) {
+    grid-area: 6 / 5 / 10 / 14;
+    /* max-width:  30vw;
+    width:  30vw; */
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(3) {
+    grid-area: 8 / 1 / 12 / 4;
+    /* max-width:  45vw;
+    width:  45vw; */
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(4) {
+    grid-area: 11 / 6 / 14 / 10;
+    /* max-width: 25vw;
+    width: 25vw; */
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(5) {
+    grid-area: 13 / 1 / 20 / 5;
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(6) {
+    grid-area: 16 / 6 / 21 / 10;
+}
+
+/* scale: ; */
+/* max-width: 80vw;
+
+    width: 80vw
+} */
+/* section:nth-of-type(3) {
+  
+} */
+
+
+/* hovers voor Work */
+.work figure img:hover {
+    /* background-color: #1e1e1e06; */
+    opacity: 0.5;
+
+}
+
+.hoverText {
+    color: white;
+    visibility: hidden;
+
+}
+
+.hoverText:hover {
+
+    visibility: visible;
+
+}
+
+/* pagina gedeelte van JOBS */
+
+.jobs {
+    visibility: visible;
+}
