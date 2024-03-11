@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+
 app
   .use(express.urlencoded({extended: true})) 
   .use(express.static('static'))             
@@ -12,6 +13,7 @@ app
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
+    .get('/log-in', signIn)
     .post('/create-account', addUser)
     .listen(8511)
 
@@ -37,6 +39,8 @@ client.connect()
     console.log(`For uri - ${uri}`)
   })
 
+const db = client.db(process.env.DB_NAME)
+const collection = db.collection(process.env.DB_COLLECTION)
 
 // ROUTE FUNCTIES
 
@@ -48,7 +52,6 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-
 function addUser(req, res){
 	
 	res.render('account.ejs', { 
@@ -59,10 +62,41 @@ function addUser(req, res){
 	}
 
 
+// CHECKEN OF DE INLOG GEGEVENS KLOPPEN
+
+async function signIn(req,res){
+
+  try{
+const userInput = await collection.findOne({email:req.body.email})
+
+  if(userInput.password === req.body.password){
+    res.render('home.html')
+  }
+  else{
+    res.send('Wrong password')
+ }}
+ catch{
+  res.send('Wrong details')
+ } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
-const db = client.db(process.env.DB_NAME)
-const collection = db.collection(process.env.DB_COLLECTION)
+
 
 async function addUser(req, res){
     result = await collection.insertOne({

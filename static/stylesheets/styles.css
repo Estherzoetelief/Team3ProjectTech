@@ -28,8 +28,6 @@
     --hFontItalic: 'GT Super Txt Trial', sans-serif;
 }
 
-
-
 /* ALGEMEEN */
 
 .registreren, .inloggen{
@@ -38,12 +36,10 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    background-image: url(img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
+    background-image: url(/static/img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
     background-size: cover;
     font-family: var(--bodyTextFont);
 }
-
-
 
 
 /* ACHTERGROND */
@@ -58,8 +54,8 @@ div:first-of-type{
 }
 
 .inloggen article{
-    width: 30em;
-    height: 35em;
+    width: clamp(25em, 35vw, 45vw);
+    height: 65vh;
     background-color: rgb(29, 29, 29, 0.2);
     color: #FFFFFF;
     border-radius: 1em;
@@ -85,7 +81,7 @@ div:first-of-type{
 
 .inloggen article section:first-of-type h1 {
     margin: 0.2em 0em 0.2em 0em;
-    font-size: 2.5em;
+    font-size: clamp(2em, 2.5em, 4vw);
 }
 
 .inloggen article section:first-of-type p {
@@ -341,7 +337,7 @@ body{
     padding: 1.5rem;
 }
 
-p{
+.desktopOriginal p{
     font-size: var(--p-size);
     font-family: var(--bodyTextFont);
     color: var(--primaryWhite);
@@ -525,6 +521,10 @@ p{
     .desktopOriginalNav > div:nth-of-type(3) > div > div{
         visibility: hidden;
     }
+
+
+
+/* ----SIGN UP PAGE -----*/
   }
 
 
