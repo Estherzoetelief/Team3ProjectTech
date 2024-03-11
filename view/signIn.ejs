@@ -18,15 +18,15 @@
         <section>
             <h2>START YOUR JOURNEY</h2>
             <h1>Sign In to Spark</h1>
-            <p>Don't have an account? <a href="./signUp.html">Sign up</a></p>
+            <p>Don't have an account? <a href="/register">Sign up</a></p>
         </section>
 
         <section>
-            <form action="log-in" method="get">
+            <form action="/log-in" method="post">
 
                 <label for="email">E-Mail</label>
         
-                <input type="email" name="emailadres" id="email"  placeholder="youremail@gmail.com" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
+                <input type="email" name="email" id="email"  placeholder="youremail@gmail.com" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
                
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="********" required>

@@ -13,9 +13,17 @@ app
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
-    .get('/log-in', signIn)
+
+    .post('/log-in', signIn)
     .post('/create-account', addUser)
+
+
     .listen(8511)
+
+
+
+
+
 
 
 // VERBINDING MET DE DATABASE
@@ -42,6 +50,14 @@ client.connect()
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
 
+
+
+
+
+
+
+
+
 // ROUTE FUNCTIES
 
 function showRegisterPage(req, res){
@@ -62,23 +78,33 @@ function addUser(req, res){
 	}
 
 
+
+
+
+
+
 // CHECKEN OF DE INLOG GEGEVENS KLOPPEN
 
-async function signIn(req,res){
+async function signIn(req, res) {
+  try {
+    const userInput = await collection.findOne({email: req.body.email });
 
-  try{
-const userInput = await collection.findOne({email:req.body.email})
-
-  if(userInput.password === req.body.password){
-    res.render('home.html')
+    if (userInput && userInput.password === req.body.password ) {
+      res.render("home.ejs", {
+        name: userInput.name,
+        username: userInput.username,
+        email: req.body.email,
+        password: req.body.password
+    })
+    } else {
+      console.log("Invalid username or password")
+    }
+  } catch (error) {
+    console.error(error);
+    res.send('Error during login');
   }
-  else{
-    res.send('Wrong password')
- }}
- catch{
-  res.send('Wrong details')
- } 
 }
+
 
 
 
@@ -96,8 +122,6 @@ const userInput = await collection.findOne({email:req.body.email})
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
-
-
 async function addUser(req, res){
     result = await collection.insertOne({
         name: req.body.name,
@@ -107,7 +131,7 @@ async function addUser(req, res){
     })
 
     console.log(`Added with _id: ${result.insertedID}`)
-    res.render("added.ejs", {
+    res.render("home.ejs", {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
