@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulier</title>
-    <link href="signup.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/style.css">
 </head>
-<body>
-    <main>
-        <div class="container">
-            <h2>Login</h2>
-            <form class="form">
-                <label for="username">Username:</label>
-                <input name="username" type="text" id="username" required>
 
-                <label for="password">Password:</label>
-                <input name="password" type="password" id="password" required>
+<body class="registreren">
 
-                <label for="e-mail"> E-mail</label>
-                <input name="e-mail" type="email" id="e-mail"  placeholder="Typ hier uw e-mail" >
+    <div></div>
 
-                <label for="Level"> level</label>
-                <input name="level" type="number" id="level" placeholder="Level number">
+    <article>
 
-                <button type="submit">Login</button>
+        <section>
+            <h1>Create Account</h1>
+            <p>Already have an account? <a href="../view/inloggen.html">Sign In.</a></p>
+        </section>
+
+        <section>
+            <form action="/create-account" method="post">
+                <fieldset>
+                    <label for="name">Name and surname</label>
+                    <label for="username">Username</label>
+                    <input type="text" name="name" id="name" placeholder="Your Name">
+                    <input type="text" name="username" id="username" placeholder="Enter Username">
+                </fieldset>
+                <fieldset>
+                    <label for="email">E-Mail</label>
+                    <input type="email" name="email" id="email" placeholder="youremail@gmail.com">
+                </fieldset>
+                <fieldset>
+                    <label for="password">Password</label>
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" name="password" id="password" placeholder="*********">
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="*********">
+                    <img src="../static/img/lock.svg" alt="">
+                    <img src="../static/img/lock.svg" alt="">
+                </fieldset>
+                <fieldset>
+                    <input type="submit" value="SIGN UP">
+                </fieldset>
             </form>
-        </div>
+        </section>
 
 
 
-    </main>
-    <script src="account_aanmaken.js"></script>
+    </article>
+
+
 </body>
+
 </html>
