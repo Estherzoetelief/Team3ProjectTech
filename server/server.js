@@ -10,7 +10,8 @@ app
   .set('views', 'view')   
 
 app
-    .get('/registreren', showRegistrerenForm)
+    .get('/register-page', showRegisterPage)
+    .get('/signIn-page', showSignInPage)
     .post('/create-account', addUser)
     .listen(8511)
 
@@ -37,12 +38,16 @@ client.connect()
   })
 
 
-
 // ROUTE FUNCTIES
 
-function showRegistrerenForm(req, res){
-    res.render('registreren.ejs')
+function showRegisterPage(req, res){
+    res.render('signUp.ejs')
 }
+
+function showSignInPage(req, res){
+    res.render('signIp.ejs')
+}
+
 
 function addAccount(req, res){
 	
