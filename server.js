@@ -10,8 +10,8 @@ app
   .set('views', 'view')   
 
 app
-    .get('/register-page', showRegisterPage)
-    .get('/signIn-page', showSignInPage)
+    .get('/register', showRegisterPage)
+    .get('/sign-in', showSignInPage)
     .post('/create-account', addUser)
     .listen(8511)
 
@@ -49,7 +49,7 @@ function showSignInPage(req, res){
 }
 
 
-function addAccount(req, res){
+function addUser(req, res){
 	
 	res.render('account.ejs', { 
         naam: req.body.naam,
@@ -57,6 +57,9 @@ function addAccount(req, res){
         geboortedatum: req.body.geboortedatum
     });
 	}
+
+
+// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
