@@ -1,292 +1,277 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* lettertype */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
 
-:root {
-    --primaryBlack: #1E1E1E;
-    --primaryWhite: #F9F7F7;
-    --accentColor: #1700A5;
-    --h1-size: 14.00vw;
-    --h2-size: 3em;
-    --p-size: 1.4em;
+@font-face {
+    font-family: h1font;
+    src: url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
+}
+
+/* variabelen */
+
+:root{
+    --primaryblack:#1E1E1E;
+    --primarywhite: #F9F7F7;
+    --h1-size: 15.00vw;
+    --h2-size: 2.5em;
+    --p-size: 1.125em;
     --bodyTextSize: 1em;
     --bodyTextFont: "Montserrat", sans-serif;
-    --hFont: 'GT Super Ds Trial', sans-serif;
-    --hFontItalic: 'GT Super Ds Trial', sans-serif;
+    --hFont: 'GT Super Txt Trial', sans-serif;
+    --hFontItalic: 'GT Super Txt Trial', sans-serif;
 }
 
 
 
+/* ALGEMEEN */
 
-body{
-    margin: 0;
-    padding: 0;
-    background-color: #1700A5;
-}
-
-.desktopOriginalNav{
+.registreren, .inloggen{
+    height: 100vh;
     width: 100vw;
-    height: 130px;
-
-    /* padding: 20px 50px 20px 50px; */
-    /* background-color: var(--primaryBlack); */
-
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     align-items: center;
-
-    margin: 0;
-    position: fixed;
+    justify-content: center;
+    background-image: url(img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
+    background-size: cover;
+    font-family: var(--bodyTextFont);
 }
 
-.desktopOriginalNav > div{
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
 
-    /* transform: translateX(150%); */
-    /* background-color: yellow; */
-}
 
-.desktopOriginalNav > div:nth-last-of-type(2){
+
+/* ACHTERGROND */
+
+div:first-of-type{
     position: absolute;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: rgb(29, 29, 29, 0.75);
 }
 
-.desktopOriginalNav > div:first-of-type > div{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+.inloggen article{
+    width: 30em;
+    height: 35em;
+    background-color: rgb(29, 29, 29, 0.2);
+    color: #FFFFFF;
+    border-radius: 1em;
+    z-index: 5;
+    justify-content: center;
+    display: grid;
+    margin-top: 4em;
+}
+
+.inloggen article section {
+    width: 20em;
+}
+
+
+/* EERSTE SECTION */
+
+.inloggen article section:first-of-type h2 {
+ font-size: small;
+ font-weight: 100;
+ opacity: 0.7;
  
 }
 
-.desktopOriginalNav > div:first-of-type > div > p{
-    padding: 1.5rem;
+.inloggen article section:first-of-type h1 {
+    margin: 0.2em 0em 0.2em 0em;
+    font-size: 2.5em;
 }
 
-p{
-    font-size: var(--p-size);
-    font-family: var(--bodyTextFont);
-    color: var(--primaryWhite);
-    width: fit-content;
+.inloggen article section:first-of-type p {
+    color: #A3A3A3;
+    font-weight: 200;
+    opacity: 1;
 }
 
-.logo_span{
-    font-size: var(--h2-size);
-    color: var(--primaryWhite);
-    font-family: "GT Super Ds Trial", sans-serif;
-    letter-spacing: .1rem;
-
-    mix-blend-mode: difference;
+.inloggen article section:first-of-type{
+    margin-top: 4em;
+    height: 1em;
 }
 
-
-#underline_nav{
-    position: absolute;
-    margin-left: 1.45em;
-    margin-top: 5em;
-    width: 6em;
-    opacity: 0;
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    /* visibility: hidden; */
+.inloggen article section:first-of-type a, .registreren a{
+    color: #8774FF;
+    text-decoration: none;
 }
 
-.desktopOriginalNav > div:nth-of-type(3){
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-right: 1rem;
+.inloggen article section:first-of-type a:hover, .registreren a:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 
-.desktopOriginalNav > div:nth-of-type(3) img{
-    padding: 1em;
+/* -------FORMULIER-------*/
+
+.inloggen form{
+ display: grid;
 }
 
-.desktopOriginalNav > div:nth-of-type(3) > img:first-of-type{
-    width: 30px;
-    height: 28px;
-}
-.desktopOriginalNav > div:nth-of-type(3) > img:nth-of-type(2){
-    width: 22px;
-    height: 38px;
-}
-
-.desktopOriginalNav > div:nth-of-type(3) > div{
-    display: flex;
-    flex-direction: row;
-    max-width: 20vw;
-    align-items: center;
+.inloggen input[type=password], input[type=email], .registreren input[type=password], .registreren input[type=text]{
+ background-color: var(--primaryblack);
+ height: 2.5em;
+ border: none;
+ margin-bottom: 2em;
+ border-radius: 0.3em;
+ padding-inline: 1em;
+ color: var(--primarywhite);
 }
 
-.desktopOriginalNav > div:nth-of-type(3) > div > img:first-of-type{
-    padding-right: 10px;
+.inloggen input[type=password]{
+    padding-top: 0.5em;
 }
 
-.desktopOriginalNav > div:nth-of-type(3) > div > div{
-    display: flex;
-    flex-direction: column;
-    
-}
-
-.desktopOriginalNav > div:nth-of-type(3) > div > div > p:nth-of-type(2){
-    font-size: 10px;
-    margin: 0;
-}
-
-.desktopOriginalNav > div:nth-of-type(3) > div > div > p:nth-of-type(1){
-    margin: 0;
-    font-size: 14px;
-}
-
-.desktopOriginalNav > div:nth-of-type(3) > div > div{
-    margin: 0;
-    font-size: 14px;
-    visibility: visible;
-    padding-right: 1rem;
+.inloggen input[type=email]{
+    padding-block: 0.25em;
 }
 
 
-.sparkle {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    /* border-radius: 50%; */
-/* background-color: rgba(255, 170, 59, 0.826);  */
-    background-image: url(https://static.thenounproject.com/png/4613402-200.png);
-    background-size: cover;
-    pointer-events: none;
-    z-index: 9999;
-    animation: sparkleAnim 1s linear infinite;
+
+
+/* icoontjes in de input labels */
+
+
+
+
+
+/* label */
+.inloggen label, .registreren label{
+    font-size: 0.9em;
+    color: #D2D2D2;
+    margin-bottom: 0.4em;
+
 }
 
-@keyframes sparkleAnim {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(1); opacity: 0; }
+.inloggen input[type=password]::placeholder, .inloggen input[type=email]::placeholder, .registreren input::placeholder{
+    color: #504F4F;
+}
+
+/* submit knop van het formulier */
+
+.inloggen input[type=submit], .registreren input[type=submit]{
+    background-color: var(--primarywhite);
+    height: 3.8em;
+    border-radius: 0.8em;
+    border: none;
+    font-weight: 600;
+    color: var(--primaryblack);
+    letter-spacing: 0.15em;
 }
 
 
- /* .lowerNav{
-    visibility: visible;
-    position: fixed;
-    bottom: 0; */
-    /* background-color: yellow; */
+/* focus state van de input velden */
 
-    /* width: 100vw;
-    height: 120px; */
+.inloggen input:focus, .registreren input:focus{
+    outline: none;
+}
 
-    /* padding: 20px 50px 20px 50px; */
-    /* background-color: var(--primaryBlack); */
+/* muis animatie op hover */
 
-    /* display: flex;
+
+
+/* ___________________________ */
+/* -------REGISTREREN--------- */
+/* ___________________________ */
+
+.registreren article{
+    background-color: rgb(29, 29, 29, 0.2);
+    width: 52vw;
+    height: 65vh;
     justify-content: center;
-    align-items: center;
-
-    margin: 0;
-}  */
-
-/* .lowerNav > div {
-    width: 60vw;
-    height: 100%;
-    max-height: 80px;
-
-    display: flex;
-    justify-content: space-evenly;
-
-} */
-
-
-@media (width <= 850px) {
-    /* .lowerNav{
-        display: none;
-
-    } */
-
-    .desktopOriginalNav > div:nth-last-of-type(2){
-        position: absolute;
-        opacity: 0;
-        transform: translateX(50px);
-        transition: all 3s cubic-bezier(0.215, 0.610, 0.355, 1);
-    }
-
-    .desktopOriginalNav > div{
-        
-        margin-left: 0rem;
-        position: fixed;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        /* background-color: yellow; */
-        transition: all 3s cubic-bezier(0.215, 0.610, 0.355, 1);
-    }
-    
-
-    .desktopOriginalNav > div:nth-of-type(3){
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        align-items: center;
-        margin-right: 1rem;
-        position: fixed;
-        bottom: 0;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        width: 60vw;
-    }
-    
-    .desktopOriginalNav > div:nth-of-type(3) img{
-        padding: 1em;
-    }
-    
-    .desktopOriginalNav > div:nth-of-type(3) > img:first-of-type{
-        width: 30px;
-        height: 28px;
-    }
-    .desktopOriginalNav > div:nth-of-type(3) > img:nth-of-type(2){
-        width: 22px;
-        height: 38px;
-    }
-
-    .desktopOriginalNav > div:nth-of-type(3) > div > div{
-        visibility: hidden;
-    }
-  }
+    display: grid;
+    color: var(--primarywhite);
+    border-radius: 1em;
+}
 
 
 
+/* FORMULIER */
+
+.registreren form{
+    width: 37.5vw;
+    margin-top: 2em;
+}
+ 
+.registreren input[type=email]{
+    width: 60%;
+}
+
+.registreren input[type=password]{
+    padding-top: 0.35em;
+}
+
+/* eerste kopje met tekst */
+
+.registreren article section:first-of-type h1{
+    margin: 2em 0em 0.1em 0em;
+    font-size: 2.3em;
+    font-weight: 00;
+
+}
+.registreren article section:first-of-type p{
+    color: #A3A3A3;
+    font-weight: 100;
+    margin-bottom: -5em;
+}
 
 
+/* formulieren positioneren met grid */
 
-  @media (width >= 1400px) {
-    /* hier komt het deel van het profiel naampje */
-  }
-
-
-
-/* 
-snippetes van internet */
-
-
-/* hover underline op single P */
-
-/* .hover-underline-animation {
-    display: flex;
-    color: #0087ca;
+.registreren fieldset{
+    border: none;
+    display: grid;
+    grid-column-gap: 2em;
+    padding: 0em;
     position: relative;
-  }
+}
 
-.hover-underline-animation::after {
-    content: '';
+.registreren fieldset:nth-of-type(1){
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2em;
+}
+
+.registreren fieldset:nth-of-type(3){
+    grid-template-columns: 1fr 1fr;
+}
+
+/* submit knop */
+
+.registreren input[type=submit]{
+    width: 50%;
+    height: 3.5em;
+    justify-self: center;
+    margin-top: 1.5em;
+}
+
+
+/* icons positioneren in de inputlabels */
+
+.registreren fieldset:nth-of-type(3) img:nth-of-type(2){
     position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #0087ca;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
+    top: -0.5em;
+    right: 0;
+    opacity: 0.3;
+    scale: 0.175;
+}
 
-  .hover-underline-animation:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  } */
+.registreren fieldset:nth-of-type(3) img:nth-of-type(1){
+    position: absolute;
+    top: -0.5em;
+    left: 13em;
+    opacity: 0.3;
+    scale: 0.175;
+}
+
+
+
+
+
