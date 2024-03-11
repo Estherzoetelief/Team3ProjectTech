@@ -1,5 +1,6 @@
 require('dotenv').config() 
 
+const path = require('path')
 const express = require('express')
 const app = express()
 
@@ -45,7 +46,7 @@ function showRegisterPage(req, res){
 }
 
 function showSignInPage(req, res){
-    res.render('signUp.ejs')
+    res.render('signIn.ejs')
 }
 
 
