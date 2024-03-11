@@ -59,9 +59,14 @@ article {
 }
 
 figure {
+    /* display: block; */
     margin: 0em;
     padding: 0em;
-    position: relative;
+ position: relative; 
+    /* align-items: center;
+    justify-items: center;
+    justify-content: center; */ */
+
     
 }
 
@@ -215,26 +220,105 @@ figure {
 
 
 /* hovers voor Work */
+
 .work figure img:hover {
     /* background-color: #1e1e1e06; */
     opacity: 0.5;
+    filter: blur(1px);
 
 }
 
-.hoverText {
-    color: white;
-    visibility: hidden;
 
-}
-
-.hoverText:hover {
-
-    visibility: visible;
-
-}
 
 /* pagina gedeelte van JOBS */
 
 .jobs {
     visibility: visible;
 }
+
+
+/* 
+hover met tekst buttons  */
+
+
+    /* background-color: green; */
+    /* position: absolute;
+   bottom: 0;
+   right: 0;
+     */
+/*
+ */
+
+
+/* section .hide{
+    margin: 0em;
+    padding: 0em;
+    transform: translateX(-50%);
+    margin-left: 50%;
+    opacity: ;
+    margin: 0em;
+    padding: 0em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left 0;
+   z-index: 10;
+    /* visibility: hidden; */
+  } */
+
+/* 
+
+
+ 
+  
+   
+}
+
+figure section button:nth-of-type(5) {
+   border-color: red;
+} */
+
+section figure .hide {
+    position: relative;
+
+}
+
+section figure .hide h2 {
+    font-family: var(--hFont);
+    font-size: 0.7em;
+
+}
+
+section figure .hide button {
+    width: 1em;
+    height: 1em;
+    border-radius: 2em;
+    border: none;
+    background-color: darkgreen;
+
+}
+
+section figure .hide div p {
+    font-family: var(--bodyTextFont);
+font-size: 0.5em;
+
+}
+
+
+
+ 
+  /* figure img:hover + .hide {
+    display: block;
+  
+  }
+
+  .unhide + .hide {
+    display: block;
+  } */
+
+  #hideButton {
+    visibility: hidden;
+  }
+
+
+  
