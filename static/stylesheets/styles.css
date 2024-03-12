@@ -15,18 +15,25 @@
 }
 
 /* variabelen */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
 
-:root{
-    --primaryblack:#1E1E1E;
-    --primarywhite: #F9F7F7;
-    --h1-size: 15.00vw;
+:root {
+    --primaryBlack: #1E1E1E;
+    --primaryWhite: #F9F7F7;
+    --accentColor: #134a1c1d;
+    --h1-size: 14.00vw;
     --h2-size: 2.5em;
     --p-size: 1.125em;
     --bodyTextSize: 1em;
     --bodyTextFont: "Montserrat", sans-serif;
     --hFont: 'GT Super Txt Trial', sans-serif;
     --hFontItalic: 'GT Super Txt Trial', sans-serif;
+
+
 }
+
+
 
 
 
@@ -48,7 +55,7 @@
 
 /* ACHTERGROND */
 
-div:first-of-type{
+.inloggen div:first-of-type{
     position: absolute;
     top: 0;
     width: 100vw;
@@ -567,3 +574,350 @@ snippetes van internet */
     transform: scaleX(1);
     transform-origin: bottom left;
   } */
+
+
+
+/* algemeen  */
+
+body.portfolioPagina {
+    background-color: var(--primaryBlack);
+    color: var(--primaryWhite);
+    /* padding-inline: 1.5em; */
+    padding: 0;
+    margin: 0;
+
+
+}
+
+.portfolioPagina h1 {
+    font-size: var(--h1-size);
+    font-family: var(--hFont);
+    font-weight: 300;
+    margin-block: 0.4em;
+
+}
+
+.portfolioPagina h2 {
+    font-size: var(--h2-size);
+    font-family: var(--hFont);
+    font-weight: 300;
+
+    
+
+}
+
+.portfolioPagina p {
+    font-size: var(--p-size);
+    font-family: var(--bodyTextFont);
+
+}
+
+.portfolioPagina hr {
+    width: 90vw;
+
+}
+
+.portfolioPagina article {
+    margin-inline: 2em;
+}
+
+.portfolioPagina>article:nth-of-type(1) h2 {
+
+    padding-bottom: 1em;
+}
+.portfolioPagina figure {
+   
+    margin: 0em;
+    padding: 0em;
+ position: relative; 
+ object-fit: cover;
+    
+}
+/* // buttons  */
+
+.buttonsToggle {
+    display: flex;
+    margin-top: 2em;
+    justify-content: center;
+    height: 1.8em;
+    padding-inline: 0em;
+    margin: 2.4em;
+
+
+}
+
+.buttonsToggle section {
+    position: relative;
+    background-color: var(--primaryWhite);
+    border-radius: 0.8em;
+
+    display: flex;
+    align-content: center;
+    margin-inline: 0;
+    padding-inline: 0.8em;
+}
+
+/* .left {
+    color: red;
+} */
+
+
+/* width:30vw; */
+
+.buttonsToggle button {
+    /* padding-inline: 2em; */
+    /* padding-block: 0.6em; */
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    width: 5.5em;
+    color: #1E1E1E;
+
+
+}
+
+#animationButton {
+    position: absolute;
+    left: 0em;
+    top: 0em;
+background-color: rgba(0, 128, 0, 0.161);
+    width: 6em;
+    height: 1.8em;
+    border-radius: 1em;
+    transition: 1s;
+
+
+
+
+
+}
+
+/*  zorgt dat je het ene gedeelte niet ziet door de button */
+
+.work {
+    visibility: visible;
+}
+.work h2 {
+    margin-inline: 0.8em;
+}
+
+/* eerste section  */
+
+.work>section:nth-of-type(1)  {
+    display: flex;
+    flex-direction: column;
+    margin: 1.51em
+}
+.work section:nth-of-type(1) figure img {
+    max-width: 85vw;
+    max-height: 100vh;
+    padding-block: 1em;
+    transition: ease-in-out 0.3s;
+    transition-delay: 1s;
+    opacity: 1;
+    max-width: 100%;
+    width: 100%;
+
+}
+
+
+
+/* twee section */
+
+/* algemene grid */
+
+.work section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(20, 0.15fr);
+    /* grid-column-gap: 0px;
+    grid-row-gap: 0px; */
+    /* background-color: blueviolet; */
+}
+.work section:nth-of-type(2) figure img {
+    /* scale: 0.5; */
+    max-width: 100%;
+    width: 100%;
+    max-height: 100%;
+    transition: ease-in-out 0.3s;
+  
+    
+}
+
+
+/* grid indeling */
+
+.work section:nth-of-type(2) figure:nth-of-type(1) {
+    grid-area: 1 / 1 / 5 / 7;
+    /* max-width:  70vw;
+    width:  70vw; */
+    object-fit: cover;
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(2) {
+    grid-area: 6 / 5 / 10 / 14;
+    /* max-width:  30vw;
+    width:  30vw; */
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(3) {
+    grid-area: 8 / 1 / 12 / 4;
+    /* max-width:  45vw;
+    width:  45vw; */
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(4) {
+    grid-area: 11 / 6 / 14 / 10;
+    /* max-width: 25vw;
+    width: 25vw; */
+}
+
+.work section:nth-of-type(2) figure:nth-of-type(5) {
+    grid-area: 13 / 1 / 17 / 5;
+}
+
+
+
+
+
+    
+
+.work section:nth-of-type(2) figure:nth-of-type(6) {
+    grid-area: 16 / 6 / 21 / 10;
+}
+
+
+
+/* hovers voor Work */
+
+.work figure:hover img {
+   
+    opacity: 0.5;
+    /* filter: blur(0.5px);
+    transition: ease-in-out 0.3s;
+    transform: translateY(0); */
+    transition-delay: 1s;
+}
+
+figure:hover .hide {
+    opacity: 1;
+    transform: translateY(0);
+    /* transition-delay: 1s; */
+  
+    
+}
+
+
+
+/* pagina gedeelte van JOBS */
+
+.jobs {
+
+    display: none;
+
+}
+
+
+/* 
+hover met tekst buttons  */
+
+
+section figure .hide {
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(0.9em);
+    transition: 0.3s ease-in-out;
+    bottom: 2em;
+    right: 2em;
+    margin: 0;
+
+}
+
+section figure .hide h2 {
+    font-family: var(--hFont);
+    font-size: 0.7em;
+    position: absolute;
+    bottom: 2em; 
+    left: 50%;
+    transform: translateX(-65%);
+    white-space: nowrap;
+
+}
+
+section figure .hide button {
+    width: 1em;
+    height: 1em;
+    border-radius: 2em;
+    border: none;
+    background-color: whitesmoke;
+    cursor: pointer;
+
+}
+
+.work section > figure > section:nth-of-type(2) p {
+    font-family: var(--bodyTextFont);
+font-size: 0.6em;
+position: absolute;
+
+}
+
+.work section > figure > section:nth-of-type(2) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+
+
+  .work section > figure > section:nth-of-type(2){
+    display:block;
+  }
+
+  /* }
+
+  .char1 {
+    transform: rotate(6deg);
+  }
+  
+  .char2 {
+    transform: rotate(12deg);
+  }
+  
+  .char3 {
+    transform: rotate(18deg);
+  }
+  
+  .char4 {
+    transform: rotate(24deg);
+  }
+  
+  .char5 {
+    transform: rotate(30deg);
+  }
+  
+  .char6 {
+    transform: rotate(36deg);
+  }
+  
+  .char7 {
+    transform: rotate(42deg);
+  }
+  
+  .char8 {
+    transform: rotate(48deg);
+  }
+  
+  .char9 {
+    transform: rotate(54deg);
+  }
+  
+  .char10 {
+    transform: rotate(60deg);
+  }
+*/
+
+  @media (width <= 850px) {
+    
+  }
