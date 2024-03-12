@@ -3,17 +3,23 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+
 app
   .use(express.urlencoded({extended: true})) 
-  .use(express.static('static'))             
+  .use(express.static('static'))            
   .set('view engine', 'ejs')      
   .set('views', 'view')   
 
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
+
+    .post('/log-in', signIn)
     .post('/create-account', addUser)
+
+
     .listen(8511)
+
 
 
 // VERBINDING MET DE DATABASE
@@ -37,6 +43,16 @@ client.connect()
     console.log(`For uri - ${uri}`)
   })
 
+const db = client.db(process.env.DB_NAME)
+const collection = db.collection(process.env.DB_COLLECTION)
+
+
+
+
+
+
+
+
 
 // ROUTE FUNCTIES
 
@@ -48,7 +64,6 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-
 function addUser(req, res){
 	
 	res.render('account.ejs', { 
@@ -59,10 +74,49 @@ function addUser(req, res){
 	}
 
 
-// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
-const db = client.db(process.env.DB_NAME)
-const collection = db.collection(process.env.DB_COLLECTION)
+
+
+
+
+// CHECKEN OF DE INLOG GEGEVENS KLOPPEN
+
+async function signIn(req, res) {
+  try {
+    const userInput = await collection.findOne({email: req.body.email });
+
+    if (userInput && userInput.password === req.body.password ) {
+      res.render("home.ejs", {
+        name: userInput.name,
+        username: userInput.username,
+        email: req.body.email,
+        password: req.body.password
+    })
+    } else {
+      console.log("Invalid username or password")
+    }
+  } catch (error) {
+    console.error(error);
+    res.send('Error during login');
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
 async function addUser(req, res){
     result = await collection.insertOne({
@@ -73,7 +127,7 @@ async function addUser(req, res){
     })
 
     console.log(`Added with _id: ${result.insertedID}`)
-    res.render("added.ejs", {
+    res.render("home.ejs", {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,

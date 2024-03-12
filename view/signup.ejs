@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="../static/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
 
 <body class="registreren">
@@ -16,12 +16,12 @@
     <article>
 
         <section>
-            <h1>Create New Account</h1>
+            <h1>Create Account</h1>
             <p>Already have an account? <a href="/sign-in">Sign In.</a></p>
         </section>
 
         <section>
-            <form action="/" method="post">
+            <form action="/create-account" method="post">
                 <fieldset>
                     <label for="name">Name and surname</label>
                     <label for="username">Username</label>
@@ -37,10 +37,11 @@
                     <label for="confirm_password">Confirm Password</label>
                     <input type="password" name="password" id="password" placeholder="*********">
                     <input type="password" name="confirm_password" id="confirm_password" placeholder="*********">
+                    <p id="confirm-text"></p>
                     <img src="../static/img/lock.svg" alt="">
                     <img src="../static/img/lock.svg" alt="">
                 </fieldset>
-                <fieldset>
+                <fieldset> 
                     <input type="submit" value="SIGN UP">
                 </fieldset>
             </form>
@@ -50,7 +51,7 @@
 
     </article>
 
-
+<script src="../static/scripts/script.js"></script>
 </body>
 
 </html>
