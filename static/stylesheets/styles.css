@@ -16,7 +16,8 @@
 
 /* variabelen */
 
-:root{
+/* oude root */
+/* :root{
     --primaryblack:#1E1E1E;
     --primarywhite: #F9F7F7;
     --h1-size: 15.00vw;
@@ -26,7 +27,23 @@
     --bodyTextFont: "Montserrat", sans-serif;
     --hFont: 'GT Super Txt Trial', sans-serif;
     --hFontItalic: 'GT Super Txt Trial', sans-serif;
+} */
+
+
+/* vernieuwde root - onder voorbehoud */
+:root {
+    --primaryBlack: #1E1E1E;
+    --primaryWhite: #F9F7F7;
+    --accentColor: #1700A5;
+    --h1-size: 14.00vw;
+    --h2-size: 3em;
+    --p-size: 1.4em;
+    --bodyTextSize: 1em;
+    --bodyTextFont: "Montserrat", sans-serif;
+    --hFont: 'GT Super Ds Trial', sans-serif;
+    --hFontItalic: 'GT Super Ds Trial', sans-serif;
 }
+
 
 
 
@@ -47,6 +64,9 @@
 
 
 /* ACHTERGROND */
+
+/* niels deze moet beginnen met een class voor de inlog/account pagina, 
+want nu gaat hij alle divs pakken ook op andere pagina's. */
 
 div:first-of-type{
     position: absolute;
@@ -273,39 +293,13 @@ div:first-of-type{
 
 
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
-
-:root {
-    --primaryBlack: #1E1E1E;
-    --primaryWhite: #F9F7F7;
-    --accentColor: #1700A5;
-    --h1-size: 14.00vw;
-    --h2-size: 3em;
-    --p-size: 1.4em;
-    --bodyTextSize: 1em;
-    --bodyTextFont: "Montserrat", sans-serif;
-    --hFont: 'GT Super Ds Trial', sans-serif;
-    --hFontItalic: 'GT Super Ds Trial', sans-serif;
-}
-
-
-
-
-body{
-    margin: 0;
-    padding: 0;
-    background-color: #1700A5;
-}
+/* -------------
+CSS Voor Navbar
+------------- */
 
 .desktopOriginalNav{
     width: 100vw;
     height: 130px;
-
-    /* padding: 20px 50px 20px 50px; */
-    /* background-color: var(--primaryBlack); */
 
     display: flex;
     justify-content: space-between;
@@ -319,9 +313,6 @@ body{
     display: flex;
     flex-direction: column;
     margin-left: 1rem;
-
-    /* transform: translateX(150%); */
-    /* background-color: yellow; */
 }
 
 .desktopOriginalNav > div:nth-last-of-type(2){
@@ -341,7 +332,7 @@ body{
     padding: 1.5rem;
 }
 
-p{
+.desktopOriginalNav p{
     font-size: var(--p-size);
     font-family: var(--bodyTextFont);
     color: var(--primaryWhite);
@@ -427,8 +418,6 @@ p{
     position: absolute;
     width: 20px;
     height: 20px;
-    /* border-radius: 50%; */
-/* background-color: rgba(255, 170, 59, 0.826);  */
     background-image: url(https://static.thenounproject.com/png/4613402-200.png);
     background-size: cover;
     pointer-events: none;
@@ -441,42 +430,7 @@ p{
     100% { transform: scale(1); opacity: 0; }
 }
 
-
- /* .lowerNav{
-    visibility: visible;
-    position: fixed;
-    bottom: 0; */
-    /* background-color: yellow; */
-
-    /* width: 100vw;
-    height: 120px; */
-
-    /* padding: 20px 50px 20px 50px; */
-    /* background-color: var(--primaryBlack); */
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin: 0;
-}  */
-
-/* .lowerNav > div {
-    width: 60vw;
-    height: 100%;
-    max-height: 80px;
-
-    display: flex;
-    justify-content: space-evenly;
-
-} */
-
-
 @media (width <= 850px) {
-    /* .lowerNav{
-        display: none;
-
-    } */
 
     .desktopOriginalNav > div:nth-last-of-type(2){
         position: absolute;
@@ -535,35 +489,3 @@ p{
   @media (width >= 1400px) {
     /* hier komt het deel van het profiel naampje */
   }
-
-
-
-/* 
-snippetes van internet */
-
-
-/* hover underline op single P */
-
-/* .hover-underline-animation {
-    display: flex;
-    color: #0087ca;
-    position: relative;
-  }
-
-.hover-underline-animation::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #0087ca;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-
-  .hover-underline-animation:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  } */
