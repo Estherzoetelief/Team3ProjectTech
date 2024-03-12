@@ -64,17 +64,6 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-function addUser(req, res){
-	
-	res.render('account.ejs', { 
-        naam: req.body.naam,
-        wachtwoord: req.body.wachtwoord,
-        geboortedatum: req.body.geboortedatum
-    });
-	}
-
-
-
 
 
 
