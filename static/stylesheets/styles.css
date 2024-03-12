@@ -36,7 +36,7 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    background-image: url(/static/img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
+    background-image: url(/img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
     background-size: cover;
     font-family: var(--bodyTextFont);
 }
@@ -44,7 +44,7 @@
 
 /* ACHTERGROND */
 
-div:first-of-type{
+.inloggen div:first-of-type, .registreren div:first-of-type{
     position: absolute;
     top: 0;
     width: 100vw;

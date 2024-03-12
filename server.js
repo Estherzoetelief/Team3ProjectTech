@@ -6,7 +6,7 @@ const app = express()
 
 app
   .use(express.urlencoded({extended: true})) 
-  .use(express.static('static'))             
+  .use(express.static('static'))            
   .set('view engine', 'ejs')      
   .set('views', 'view')   
 
@@ -19,10 +19,6 @@ app
 
 
     .listen(8511)
-
-
-
-
 
 
 
