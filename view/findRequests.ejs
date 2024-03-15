@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THe Moviesite </title>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body> 
+    <ul>
+        <% requests.forEach(request => { %>
+            <li>
+                <p>Category: <%= request.category %></p>
+                <p>Description: <%= request.description %></p>
+                <p>Budget: <%= request.budget %></p>
+                <img src="/img/<%= request.image %>">
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

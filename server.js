@@ -3,6 +3,9 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+const multer = require('multer')
+const upload = multer({dest: 'static/upload/'})
+
 
 app
   .use(express.urlencoded({extended: true})) 
@@ -17,8 +20,15 @@ app
     .post('/log-in', signIn)
     .post('/create-account', addUser)
 
+    .get('/request', showRequestPage)
+    .post('/send-request',upload.single('images') ,addRequest)
+
+    .get('/find-requests', showRequests)
 
     .listen(8511)
+
+  
+
 
 
 
@@ -45,6 +55,7 @@ client.connect()
 
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
+const collection2 = db.collection(process.env.DB_COLLECTION2)
 
 
 
@@ -64,6 +75,9 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
+function showRequestPage(req, res){
+  res.render('request.ejs')
+}
 
 
 
@@ -99,12 +113,6 @@ async function signIn(req, res) {
 
 
 
-
-
-
-
-
-
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
 async function addUser(req, res){
@@ -122,4 +130,35 @@ async function addUser(req, res){
         email: req.body.email,
         password: req.body.password
     })
+}
+
+
+
+
+
+
+// REQUEST TOEVOEGEN AAN DE DATABASE
+
+async function addRequest(req, res){
+  result = await collection2.insertOne({
+    category: req.body.category,
+    description: req.body.description,
+    budget: req.body.budget,
+    image: req.file.filename
+  })
+}
+
+
+
+// REQUEST TONEN OP DE FIND REQUEST PAGE
+
+async function showRequests(req,res) {
+  
+  const requestList = await collection2.find({}).toArray()
+  requestList.forEach(request => {
+    console.log(request);  
+});
+
+res.render('findRequests.ejs', {requests: requestList})
+
 }

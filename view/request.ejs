@@ -1,6 +1,30 @@
-<form action="">
+<form action="/send-request" method="post" enctype="multipart/form-data">
 
 <fieldset>
-
+<label for="app-design">App Design</label>
+<input type="radio" name="category" id="app-design" value="App Design">
+<label for="brand-style">Brand Style</label>
+<input type="radio" name="category" id="brand-style" value="Brand Style">
+<label for="marketing">Marketing</label>
+<input type="radio" name="category" id="marketing" value="Marketing">
 </fieldset>
+
+<fieldset>
+<input type="text" name="description" id="description-field">
+</fieldset>
+
+<fieldset>
+<select name="budget" id="budget-dd">
+    <option value="">--Select your budget--</option>
+    <option value="Under €55">Under €55</option>
+    <option value="€55 - €100">€55 - €100 </option>
+    <option value="€100 & above">€100 & above</option>
+</select>
+</fieldset>
+
+<fieldset>
+    <input type="file" name="images" accept="image/*">
+</fieldset>
+
+<input type="submit" value="Submit request">
 </form>
