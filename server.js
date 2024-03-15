@@ -82,7 +82,7 @@ async function signIn(req, res) {
         password: req.body.password
     })
     } else {
-      console.log("Invalid username or password")
+      alert("Invalid username or password")
     }
   } catch (error) {
     console.error(error);

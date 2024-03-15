@@ -16,3 +16,18 @@ if(confirmPassword.length != 0){
 }
 
 window.setInterval(confirmPassword, 100)
+
+function checkInlog(){
+    const email = document.getElementById("email").value
+    const password = document.getElementById("password").value
+    const logInButton = document.getElementById("logInButton")
+ 
+    if(email.length != 0 && password.length != 0){
+        logInButton.style.opacity = "100%"
+    }
+    else{
+        logInButton.style.opacity = "75%"
+    }
+}
+
+window.setInterval(checkInlog, 100)
