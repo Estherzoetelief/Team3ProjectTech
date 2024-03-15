@@ -54,10 +54,25 @@ figurePortfolio.forEach((figure, index) => {
 
 })
 
-
 // function tekstPortfolioZichtbaar() {
 //     tekstPortfolio.style.display = 'block'
 //     console.log("gelukkt")
     
 // }
 // $("figure .hide h2").lettering();
+
+document.addEventListener('DOMContentLoaded', () => {
+fetch('/images')
+    .then(response => response.json())
+    .then(images => {
+        images.forEach(image => {
+            const figure = document.createElement('figure');
+            const imgElement = document.createElement('img');
+            imgElement.src = 'uploads/' + image;
+            imgElement.alt = 'Image';
+            figure.appendChild(imgElement);
+            document.body.appendChild(figure); // Voeg de figure toe aan het document
+        });
+    })
+    .catch(error => console.error('Error fetching images:', error));
+});

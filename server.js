@@ -103,7 +103,7 @@ async function addUser(req, res){
 
 
 
-
+// Code voor opslaaan fotos in webserver.
 
 // fs kan gebruikt worden in combinatie met Multer om de configuratie voor het 
 // opslaan van afbeeldingen op de server aan te passen. Het kan handig zijn 
@@ -156,3 +156,32 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), function
    
 
 // app.listen(port,() => console.log(`Server running on port ${port}!`))
+
+
+const path = require('path');
+const fs = require('fs');
+
+app.use(express.static('public'));
+
+app.get('/images', (req, res) => {
+    const imageDir = path.join(__dirname, 'uploads');
+    fs.readdir(imageDir, (err, files) => {
+        if (err) {
+            console.error('Error reading directory:', err);
+            res.status(500).send('Error reading directory');
+            return;
+        }
+
+        const images = files.filter(file => file.endsWith('.png') || file.endsWith('.jpg'));
+        res.json(images);
+    });
+});
+
+// app.listen(port, () => {
+//     console.log(`Server listening at http://localhost:${port}`);
+// });
+
+
+
+// code om te proberen images te laten zien op pagina na opslaan in database.
+const collection = db.collection(process.env.DB_COLLECTION)
