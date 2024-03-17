@@ -35,6 +35,7 @@ app
 // VERBINDING MET DE DATABASE
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
+const { title } = require('process')
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 const client = new MongoClient(uri, {
     serverApi: {
@@ -142,10 +143,17 @@ async function addUser(req, res){
 async function addRequest(req, res){
   result = await collection2.insertOne({
     category: req.body.category,
+    project_title: req.body.project-title,
     description: req.body.description,
     budget: req.body.budget,
-    image: req.file.filename
+    duration: req.body.duration,
+    deadline: req.body.deadline,
+    images: req.file.filename
   })
+
+  const requestList = await collection2.find({}).toArray()
+  res.render('findRequests.ejs', {requests: requestList})
+
 }
 
 
@@ -155,10 +163,6 @@ async function addRequest(req, res){
 async function showRequests(req,res) {
   
   const requestList = await collection2.find({}).toArray()
-  requestList.forEach(request => {
-    console.log(request);  
-});
-
 res.render('findRequests.ejs', {requests: requestList})
 
 }

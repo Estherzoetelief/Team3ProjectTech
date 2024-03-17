@@ -5,26 +5,50 @@
 <input type="radio" name="category" id="app-design" value="App Design">
 <label for="brand-style">Brand Style</label>
 <input type="radio" name="category" id="brand-style" value="Brand Style">
+<label for="product-gaming">Product & Gaming</label>
+<input type="radio" name="category" id="product-gaming" value="Product & Gaming">
 <label for="marketing">Marketing</label>
 <input type="radio" name="category" id="marketing" value="Marketing">
+<label for="logo-design">Logo Design</label>
+<input type="radio" name="category" id="logo-design" value="Logo Design">
+<label for="website-to-app">Website to App</label>
+<input type="radio" name="category" id="website-to-app" value="Website to App">
+<label for="product-design">Product Design</label>
+<input type="radio" name="category" id="product-design" value="Product Design">
+<label for="ux-design">UX Design</label>
+<input type="radio" name="category" id="ux-design" value="UX Design">
+<label for="front-dev">Front-end Development</label>
+<input type="radio" name="category" id="front-dev" value="Front-end Development">
+<label for="back-dev">Back-end Development</label>
+<input type="radio" name="category" id="back-dev" value="Back-end Development">
 </fieldset>
 
 <fieldset>
-<input type="text" name="description" id="description-field">
+<input type="text" name="project-title" id="project-title" placeholder="Project Title">
+<input type="text" name="description" id="description-field" placeholder="Description">
 </fieldset>
 
 <fieldset>
 <select name="budget" id="budget-dd">
-    <option value="">--Select your budget--</option>
+    <option value="">Budget</option>
     <option value="Under €55">Under €55</option>
     <option value="€55 - €100">€55 - €100 </option>
     <option value="€100 & above">€100 & above</option>
 </select>
+<select name="duration" id="duration-dd">
+    <option value="">Duration</option>
+    <option value="1-7 days">1-7 days</option>
+    <option value="2-4 weeks">2-4 weeks</option>
+    <option value="1-2 months">1-2 months </option>
+    <option value="3-4 months">3-4 months </option>
+    <option value="5-6 months">5-6 months </option>
+    <option value="6+ months">6+ months </option>
+</select>
+<input type="date" name="deadline" id="deadline">
 </fieldset>
 
 <fieldset>
     <input type="file" name="images" accept="image/*">
+    <input type="submit" value="Submit request">
 </fieldset>
-
-<input type="submit" value="Submit request">
 </form>
