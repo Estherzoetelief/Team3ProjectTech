@@ -1,17 +1,21 @@
-console.log("test")
-
 function confirmPassword(){
     const password = document.getElementById("password").value
-    const confirmPassword = document.getElementById("confirm-password").value
-    const confirmText = document.getElementById("confirm-text")
+    const confirmPassword = document.getElementById("confirm_password").value
+    const inputField = document.getElementById("confirm_password")
+    // const confirmText = document.getElementById("confirm-text")
 
-    if(password !== confirmPassword){
-        confirmText.textContent = "Passwords don't match"
+if(confirmPassword.length != 0){
+        if(password == confirmPassword){
+     console.log("match")
+       inputField.style.border = "green 1px solid"
     } else {
-        confirmText.textContent = "Passwords match"
-    }
-
+        console.log("no match")
+        inputField.style.border = "red 1px solid"
+    } 
+} 
 }
+
+
 
 
 // Lisa deel request & create

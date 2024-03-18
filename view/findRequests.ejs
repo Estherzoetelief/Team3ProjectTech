@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Requests</title>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+<body> 
+    <ul>
+        <% requests.forEach(request => { %>
+            <li>
+                <h2> Project Title: <%= request.project_title %> </h2>
+                <p>Category: <%= request.category %></p>
+                <p>Description: <%= request.description %></p>
+                <p>Duration: <%= request.duration %></p>
+                <p>Deadline: <%= request.deadline %></p>
+                <p>Budget: <%= request.budget %></p>
+                <img src="upload/<%= request.image %>">
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
