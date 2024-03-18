@@ -112,76 +112,73 @@ async function addUser(req, res){
 // met Multer verdere verwerking nodig hebben, zoals het verplaatsen of 
 // verwijderen van bestanden, dan kan fs daarbij van pas komen.
 
-const multer = require('multer')
+// const multer = require('multer')
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-})
-const upload = multer({ storage: storage })
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, './uploads')
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.originalname)
+//     }
+// })
+// const upload = multer({ storage: storage })
 
 /*
 app.use('/a',express.static('/b'));
 Above line would serve all files/folders inside of the 'b' directory
 And make them accessible through http://localhost:3000/a.
 */
-app.use(express.static(__dirname + '/public'));
-app.use('/uploads', express.static('uploads'));
+// app.use(express.static(__dirname + '/public'));
+// app.use('/uploads', express.static('uploads'));
 
-app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
-  // req.file is the `profile-file` file
-  // req.body will hold the text fields, if there were any
-  console.log(JSON.stringify(req.file))
-  var response = '<a href="/">Home</a><br>'
-  response += "Files uploaded successfully.<br>"
-  response += `<img src="${req.file.path}" /><br>`
-  return res.send(response)
-})
+// app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
+//   // req.file is the `profile-file` file
+//   // req.body will hold the text fields, if there were any
+//   console.log(JSON.stringify(req.file))
+//   var response = '<a href="/">Home</a><br>'
+//   response += "Files uploaded successfully.<br>"
+//   response += `<img src="${req.file.path}" /><br>`
+//   return res.send(response)
+// })
 
-app.post('/profile-upload-multiple', upload.array('profile-files', 12), function (req, res, next) {
-    // req.files is array of `profile-files` files
-    // req.body will contain the text fields, if there were any
-    var response = '<a href="/">Home</a><br>'
-    response += "Files uploaded successfully.<br>"
-    for(var i=0;i<req.files.length;i++){
-        response += `<img src="${req.files[i].path}" /><br>`
-    }
+// app.post('/profile-upload-multiple', upload.array('profile-files', 12), function (req, res, next) {
+//     // req.files is array of `profile-files` files
+//     // req.body will contain the text fields, if there were any
+//     var response = '<a href="/">Home</a><br>'
+//     response += "Files uploaded successfully.<br>"
+//     for(var i=0;i<req.files.length;i++){
+//         response += `<img src="${req.files[i].path}" /><br>`
+//     }
     
-    return res.send(response)
-})
+//     return res.send(response)
+// })
    
 
 // app.listen(port,() => console.log(`Server running on port ${port}!`))
 
 
-const path = require('path');
-const fs = require('fs');
+// const path = require('path');
+// const fs = require('fs');
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
-app.get('/images', (req, res) => {
-    const imageDir = path.join(__dirname, 'uploads');
-    fs.readdir(imageDir, (err, files) => {
-        if (err) {
-            console.error('Error reading directory:', err);
-            res.status(500).send('Error reading directory');
-            return;
-        }
+// app.get('/images', (req, res) => {
+//     const imageDir = path.join(__dirname, 'uploads');
+//     fs.readdir(imageDir, (err, files) => {
+//         if (err) {
+//             console.error('Error reading directory:', err);
+//             res.status(500).send('Error reading directory');
+//             return;
+//         }
 
-        const images = files.filter(file => file.endsWith('.png') || file.endsWith('.jpg'));
-        res.json(images);
-    });
-});
+//         const images = files.filter(file => file.endsWith('.png') || file.endsWith('.jpg'));
+//         res.json(images);
+//     });
+// });
 
 // app.listen(port, () => {
 //     console.log(`Server listening at http://localhost:${port}`);
 // });
 
 
-
-// code om te proberen images te laten zien op pagina na opslaan in database.
-const collection = db.collection(process.env.DB_COLLECTION)
