@@ -10,8 +10,11 @@
     <ul>
         <% requests.forEach(request => { %>
             <li>
+                <h2> Project Title: <%= request.project_title %> </h2>
                 <p>Category: <%= request.category %></p>
                 <p>Description: <%= request.description %></p>
+                <p>Duration: <%= request.duration %></p>
+                <p>Deadline: <%= request.deadline %></p>
                 <p>Budget: <%= request.budget %></p>
                 <img src="upload/<%= request.image %>">
             </li>
