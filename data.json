@@ -1,0 +1,52 @@
+[
+    {
+      "images": [
+      "./imagesrequests/requestimg19.jpeg", 
+      "./imagesrequests/requestimg20.jpeg",
+      "./imagesrequests/requestimg21.jpeg",
+      "./imagesrequests/requestimg22.jpeg",
+      "./imagesrequests/requestimg23.jpeg",
+      "./imagesrequests/requestimg24.jpeg"
+  ],
+      "title": "Graphic Design Posterss",
+      "duration" : "2-3 days",
+      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
+      "max_amount": "€780",
+      "date": "15/04/24",
+      "person": "Zaar Brouwer",
+      "categorie": "logo-design"
+    },
+
+    {
+      "images": [
+          "./imagesrequests/requestimg13.jpeg", 
+          "./imagesrequests/requestimg14.jpeg",
+          "./imagesrequests/requestimg15.jpeg",
+          "./imagesrequests/requestimg16.jpeg",
+          "./imagesrequests/requestimg17.jpeg",
+          "./imagesrequests/requestimg18.jpeg"
+      ],
+      "title": "Company Logo",
+      "description": "We'd love to enhance our website with captivating CSS animations. Our website is the face of our brand, and we believe animations can bring it to life. We're seeking animations that are sleek, modern, and add a touch of interactivity without overwhelming the user experience. Smooth transitions, subtle hover effects, and creative loading animations would greatly enhance user engagement. We value creativity and innovation, so feel free to explore unique ideas that align with our brand identity. Let's collaborate to create a visually stunning website that leaves a lasting impression on our visitors.",
+      "max_amount": "€890",
+      "date": "2024/03/16",
+      "person": "Jane Smith",
+      "categorie": "css"
+    },
+
+    {
+      "images": [
+          "./imagesrequests/requestimg1.jpg", 
+          "./imagesrequests/requestimg2.jpg",
+          "./imagesrequests/requestimg3.jpeg",
+          "./imagesrequests/requestimg4.jpg",
+          "./imagesrequests/requestimg5.jpg",
+          "./imagesrequests/requestimg6.jpg"
+      ],
+      "title": "Looking for a webdeveloper",
+      "description": "Plan a team lunch for project celebration",
+      "max_amount": 300,
+      "date": "2024/0318",
+      "person": "David Johnson"
+    }
+]
