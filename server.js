@@ -3,6 +3,9 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+const multer = require('multer')
+const upload = multer({dest: 'static/upload/'})
+
 
 app
   .use(express.urlencoded({extended: true})) 
@@ -17,14 +20,22 @@ app
     .post('/log-in', signIn)
     .post('/create-account', addUser)
 
+    .get('/request', showRequestPage)
+    .post('/send-request',upload.single('images') ,addRequest)
+
+    .get('/find-requests', showRequests)
 
     .listen(8511)
+
+  
+
 
 
 
 // VERBINDING MET DE DATABASE
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
+const { title } = require('process')
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 const client = new MongoClient(uri, {
     serverApi: {
@@ -45,6 +56,7 @@ client.connect()
 
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
+const collection2 = db.collection(process.env.DB_COLLECTION2)
 
 
 
@@ -64,17 +76,9 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-function addUser(req, res){
-	
-	res.render('account.ejs', { 
-        naam: req.body.naam,
-        wachtwoord: req.body.wachtwoord,
-        geboortedatum: req.body.geboortedatum
-    });
-	}
-
-
-
+function showRequestPage(req, res){
+  res.render('request.ejs')
+}
 
 
 
@@ -93,19 +97,13 @@ async function signIn(req, res) {
         password: req.body.password
     })
     } else {
-      console.log("Invalid username or password")
+      alert("Invalid username or password")
     }
   } catch (error) {
     console.error(error);
     res.send('Error during login');
   }
 }
-
-
-
-
-
-
 
 
 
@@ -133,4 +131,38 @@ async function addUser(req, res){
         email: req.body.email,
         password: req.body.password
     })
+}
+
+
+
+
+
+
+// REQUEST TOEVOEGEN AAN DE DATABASE
+
+async function addRequest(req, res){
+  result = await collection2.insertOne({
+    category: req.body.category,
+    project_title: req.body.project-title,
+    description: req.body.description,
+    budget: req.body.budget,
+    duration: req.body.duration,
+    deadline: req.body.deadline,
+    images: req.file.filename
+  })
+
+  const requestList = await collection2.find({}).toArray()
+  res.render('findRequests.ejs', {requests: requestList})
+
+}
+
+
+
+// REQUEST TONEN OP DE FIND REQUEST PAGE
+
+async function showRequests(req,res) {
+  
+  const requestList = await collection2.find({}).toArray()
+res.render('findRequests.ejs', {requests: requestList})
+
 }

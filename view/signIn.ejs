@@ -23,20 +23,16 @@
 
         <section>
             <form action="/log-in" method="post">
-
                 <label for="email">E-Mail</label>
-        
                 <input type="email" name="email" id="email"  placeholder="youremail@gmail.com" pattern="/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/" required>
-               
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="********" required>
-
-                <input type="submit" value="SIGN IN">
+                <input type="submit" id="logInButton" value="SIGN IN">
             </form>
         </section>
     </article>
 
-    <script src="../static/scripts/script.js"></script>
+    <script src="/scripts/script.js"></script>
 </body>
 
 </html>
