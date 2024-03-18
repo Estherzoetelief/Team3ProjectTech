@@ -150,16 +150,23 @@
     </form>
     </div> -->
     <div class="upload_container">
-    <form method="POST" action="/profile-upload-multiple" enctype="multipart/form-data">
+     <form method="POST" action="/upload" enctype="multipart/form-data" id="uploadForm">
         <div>
             <label>Upload multiple profile picture</label>
-            <input type="file" name="profile-files" required multiple  />
+            <input type="file" name="uploaded_file" required multiple accept="multipart/form-data"/>
         </div>
         <div>
-            <input type="submit" value="Upload" />
+            <input type="submit" value="Upload"/>
         </div>
-    </form>
+     </form>
+     <div id="successPopup" style="display: none;">
+        <p>Files successfully uploaded!</p>
+     </div>
     </div>
+
+<!-- 
+        <input type="file" name="file">
+        <input type="submit" value="Upload File"> -->
 
 </body>
 <footer></footer>

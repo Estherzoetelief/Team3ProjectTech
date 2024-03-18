@@ -119,3 +119,27 @@ function createSparkle(e) {
         sparkle.remove();
     }, 1000);
 }
+
+
+// code voor succes popup multer upload
+document.addEventListener('DOMContentLoaded', function () {
+    const uploadForm = document.getElementById('uploadForm');
+    const successPopup = document.getElementById('successPopup');
+
+    uploadForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(uploadForm);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                successPopup.style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error uploading file:', error));
+    });
+});

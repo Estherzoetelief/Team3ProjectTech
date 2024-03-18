@@ -182,3 +182,38 @@ And make them accessible through http://localhost:3000/a.
 // });
 
 
+// const multer = require ('multer')
+// const upload = multer({dest: 'static/uploads/'})
+
+// express ()
+//   .post('/add-upload', upload.multiple('upload_Item'), add)
+
+//   function add (req, res) {
+//     console.log(req.file.filename)
+//   }
+
+const multer = require('multer');
+
+// Defines storage for uploaded files
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Destination folder for uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null,Date.now() + file.originalname); // Renames the file to include the timestamp
+  },
+});
+
+// In dit specifieke voorbeeld wordt de cb-functie aangeroepen met null als eerste argument 
+// (wat aangeeft dat er geen fout is opgetreden) en de relatieve map "uploads/" als tweede argument, 
+// wat aangeeft dat de geüploade bestanden moeten worden opgeslagen in de map met de naam "uploads".
+
+
+// Initializes Multer with the storage configuration
+const upload = multer({ storage: storage });
+
+app.post('/upload', upload.single('uploaded_file'), (req, res) => {
+  // req.file contains the uploaded file details
+  // req.body contains other form data if any
+  res.status(200).send('File uploaded successfully');
+});
