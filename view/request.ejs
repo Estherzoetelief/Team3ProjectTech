@@ -1,26 +1,37 @@
-<form action="/send-request" method="post" enctype="multipart/form-data">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="create-request">
+    <form action="/send-request" method="post" enctype="multipart/form-data">
 
 <fieldset>
-<label for="app-design">App Design</label>
 <input type="radio" name="category" id="app-design" value="App Design">
-<label for="brand-style">Brand Style</label>
+<label for="app-design">App Design</label>
 <input type="radio" name="category" id="brand-style" value="Brand Style">
-<label for="product-gaming">Product & Gaming</label>
+<label for="brand-style">Brand Style</label>
 <input type="radio" name="category" id="product-gaming" value="Product & Gaming">
-<label for="marketing">Marketing</label>
+<label for="product-gaming">Product & Gaming</label>
 <input type="radio" name="category" id="marketing" value="Marketing">
-<label for="logo-design">Logo Design</label>
+<label for="marketing">Marketing</label>
 <input type="radio" name="category" id="logo-design" value="Logo Design">
-<label for="website-to-app">Website to App</label>
+<label for="logo-design">Logo Design</label>
 <input type="radio" name="category" id="website-to-app" value="Website to App">
-<label for="product-design">Product Design</label>
+<label for="website-to-app">Website to App</label>
 <input type="radio" name="category" id="product-design" value="Product Design">
-<label for="ux-design">UX Design</label>
+<label for="product-design">Product Design</label>
 <input type="radio" name="category" id="ux-design" value="UX Design">
-<label for="front-dev">Front-end Development</label>
+<label for="ux-design">UX Design</label>
 <input type="radio" name="category" id="front-dev" value="Front-end Development">
-<label for="back-dev">Back-end Development</label>
+<label for="front-dev">Front-end Development</label>
 <input type="radio" name="category" id="back-dev" value="Back-end Development">
+<label for="back-dev">Back-end Development</label>
+
 </fieldset>
 
 <fieldset>
@@ -52,3 +63,7 @@
     <input type="submit" value="Submit request">
 </fieldset>
 </form>
+</body>
+</html>
+
+

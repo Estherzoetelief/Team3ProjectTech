@@ -239,6 +239,9 @@
     grid-template-columns: 1fr 1fr;
 }
 
+/* wachtwoord requirements */
+
+
 /* submit knop */
 
 .registreren input[type=submit]{
@@ -567,3 +570,65 @@ snippetes van internet */
     transform: scaleX(1);
     transform-origin: bottom left;
   } */
+
+
+
+
+
+
+  /* ----new page-----  */
+  /* CREATE REQUEST PAGE */
+
+  .create-request{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    display: grid;
+    place-items: center;
+    /* overflow-x: hidden; */
+  }
+
+.create-request form{
+    display: flex;
+}
+
+  .create-request fieldset{
+    /* border: none; */
+    width: 100vw;
+  }
+
+ 
+
+
+
+  /* eerste fieldset = catergorie kiezen */
+
+  .create-request fieldset:nth-of-type(1){
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3em;
+  }
+
+.create-request fieldset:nth-of-type(1) input[type=radio]{
+    position: fixed;
+opacity: 0;
+pointer-events: none;
+}
+
+.create-request fieldset:nth-of-type(1) label{
+    background-color: rgb(121, 121, 121, 0.8);
+    height: 2.5em;
+    padding: 0.5em 2em 0.5em 2em;
+    border-radius: 100vw;
+    display: grid;
+    place-items: center;
+    font-family: var(--bodyTextFont);
+    color: var(--primaryWhite);
+} 
+
+.create-request input[type=radio]:checked + label{
+    font-weight: 600;
+  }
+
+
+
