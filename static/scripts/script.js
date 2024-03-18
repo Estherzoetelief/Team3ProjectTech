@@ -114,38 +114,38 @@ function confirmPassword(){
 
 // // drop down menu's 
 
-// const dropdowns = document.querySelectorAll('.dropdown');
+const dropdowns = document.querySelectorAll('.dropdown');
 
-// dropdowns.forEach(function (dropdown) {
-//     const select = dropdown.querySelector('.select');
-//     const arrowDropdown = dropdown.querySelector('.caret');
-//     const menu = dropdown.querySelector('.menu');
-//     const options = dropdown.querySelectorAll('.menu li');
-//     const selected = dropdown.querySelector('.selected');
+dropdowns.forEach(function (dropdown) {
+    const select = dropdown.querySelector('.select');
+    const arrowDropdown = dropdown.querySelector('.caret');
+    const menu = dropdown.querySelector('.menu');
+    const options = dropdown.querySelectorAll('.menu li');
+    const selected = dropdown.querySelector('.selected');
 
-//     select.addEventListener('click', function () {
-//         select.classList.toggle('selected-clicked');
-//         arrowDropdown.classList.toggle('rotate-caret');
-//         menu.classList.toggle('menu-open');
-//     });
+    select.addEventListener('click', function () {
+        select.classList.toggle('selected-clicked');
+        arrowDropdown.classList.toggle('rotate-caret');
+        menu.classList.toggle('menu-open');
+    });
 
-//     options.forEach(function (option) {
-//         option.addEventListener('click', function () {
-//             selected.innerHTML = option.innerHTML;
-//             select.classList.remove('selected-clicked');
-//             arrowDropdown.classList.remove('rotate-caret');
-//             menu.classList.remove('menu-open');
+    options.forEach(function (option) {
+        option.addEventListener('click', function () {
+            selected.innerHTML = option.innerHTML;
+            select.classList.remove('selected-clicked');
+            arrowDropdown.classList.remove('rotate-caret');
+            menu.classList.remove('menu-open');
 
-//             options.forEach(function (opt) {
-//                 opt.classList.remove('active-dropdown');
-//             });
+            options.forEach(function (opt) {
+                opt.classList.remove('active-dropdown');
+            });
 
-//             option.classList.add('active-dropdown');
-//         });
-//     });
-// });
+            option.classList.add('active-dropdown');
+        });
+    });
+});
 
-const jsonFile = "./data.json";
+const jsonFile = "../data.json";
 const requestsContainer = document.querySelector('.all-requests')
 
 fetch(jsonFile).then(respone=>{

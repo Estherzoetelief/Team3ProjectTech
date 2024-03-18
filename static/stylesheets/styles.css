@@ -577,12 +577,11 @@ Hier start request & create page css
 -------------------------- */
 
 
-/* 
+
 body {
     background-color: var(--primaryBlack);
     height: 100vh;
-} */
-
+}
 
 
 /* 
@@ -616,9 +615,6 @@ body {
 .rightbtn {
     color: white;
 } */
-
-
-
 
 
 /* reqeusts cards */
@@ -736,7 +732,6 @@ body {
 
     .requests section div a {
         left: 18em;
-        bottom: 3.2em;
     }
 
    
@@ -829,6 +824,7 @@ body {
     text-decoration: none;
     color: var(--primaryBlack);
     font-weight: 600;
+    top: 1em;
     position: relative;
 
 }
@@ -884,18 +880,18 @@ body {
 
 
 /* Drop-down filters */
- .dropdown {
+.requests .dropdown {
     margin-right: 1em;
     position: relative;
     
 }
 
 
-.dropdown * {
+.requests .dropdown * {
     box-sizing: border-box;
 }
 
- .select {
+.requests .select {
     background-color: #363636;
     color: var(--primaryWhite);
     display: flex;
@@ -917,12 +913,12 @@ body {
     
 }
 
-.select:hover {
+.requests .select:hover {
     background-color: rgb(84, 142, 193);
 }
 
 
-.caret {
+.requests .caret {
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
@@ -935,7 +931,7 @@ body {
     transform: rotate(180deg);
 }
 
- .menu {
+.requests .menu {
     list-style: none;
     padding: 0.2em 0.1em;
     background: rgb(53, 53, 53);
@@ -956,11 +952,11 @@ body {
     font-weight: 500;
 }
 
- .menu:hover {
+.requests .menu:hover {
     background-color: #363636;
 }
 
- .menu li {
+.requests .menu li {
     padding: 0.7em 0.5em;
     margin: 0.3em 0;
     border-radius: 0.5em;
@@ -971,12 +967,12 @@ body {
     
 }
 
- .menu li:hover {
+.requests .menu li:hover {
  background: #1f1f1f;
 
 }
 
-.menu li:before, &:after {
+.requests .menu li:before, &:after {
     position: absolute;
     content: '';
     border-bottom: 3px solid rgb(0, 99, 228);
@@ -996,7 +992,7 @@ body {
 
 
 
-.dropdown-menus-container {
+.requests  .dropdown-menus-container {
     display: flex;
     margin-bottom: 1em;
     width: 94vw;
@@ -1024,7 +1020,7 @@ body {
 
 
 
-/* create a request page START
+create a request page START
 
 /* body */
 .createrequest {
@@ -1075,16 +1071,16 @@ body {
 .createrequest .filter-btn {
     margin: 0.4em 0.4em;
     padding: 0.5em 1.3em;
-    /* background-color: #1700A5; */
+    background-color: #1700A5;
     position: relative;
     background-color: rgba(255, 255, 255, 0.486);
     position: relative;
     transition: 10s;
-} */
+}  
 
 
 
-/* 2de sectie */
+/* 2de sectie  */
 swiper-container:nth-of-type(2) {
     display: flex;
     flex-direction: column;
@@ -1160,23 +1156,3 @@ swiper-slide :nth-of-type(2) input {
     font-family: var(--bodyTextFont);
 
 }
-
-/* 3de sectie */
-.createrequest .dropdown-menus-container {
-    background-color: #0d36ff;
-}
-
-
-swiper-container {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
