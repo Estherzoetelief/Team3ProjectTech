@@ -1,161 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulier</title>
-    <link rel="stylesheet" href="../static/stylesheets/styles.css">
+    <title>Document</title>
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/stylesheets/styles.css">
 </head>
+<body class="create-request">
+<form action="/send-request" method="post" enctype="multipart/form-data">
 
-<body class="createrequest">
-    <main>
-        <nav>
+<div class="progressbar">
+    <div class="progress" id="progress"></div>
+    <div class="progress-step active-progress"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+</div>
 
-        </nav>
-        <div class="slidebar">
-    
-        <!-- <button type="button" class="filter-btn" id="all">All</button>
-        <button type="button" class="filter-btn" id="logo-design">Logo Design</button>
-        <button type="button" class="filter-btn" id="illustration">Illustration</button>
-        <button type="button" class="filter-btn" id="web-development">Web Development</button>
-        <button type="button" class="filter-btn" id="graphic-design">Graphic Design</button>
-        <button type="button" class="filter-btn" id="web-development">Game Art</button>
-        <button type="button" class="filter-btn" id="web-development">Product & Design</button>
-        <button type="button" class="filter-btn" id="web-development">App Design</button>
-        <button type="button" class="filter-btn" id="web-development">Marketing</button>
-        <button type="button" class="filter-btn" id="web-development">Website app</button>
-        <button type="button" class="filter-btn" id="web-development">Product Design</button>
-        <button type="button" class="filter-btn" id="web-development">Brand Style</button>
-        <button type="button" class="filter-btn" id="web-development">UX Design</button>
-        <button type="button" class="filter-btn" id="web-development">CSS</button>
-        <button type="button" class="filter-btn" id="web-development">Video Editing</button>
-        <button type="button" class="filter-btn" id="web-development">Data Entry</button>
-        <button type="button" class="filter-btn" id="web-development">Background Removal</button>
-        <button type="button" class="filter-btn" id="web-development">Adobe Apps</button>
-        <button type="button" class="filter-btn" id="web-development">Figma</button>
-        </section>   -->
+<fieldset class="fieldset active">
+<h2>In which category are you looking for a professional?</h2>
+<div class="radio-btns-container">
+<input type="radio" name="category" id="app-design" value="App Design">
+<label for="app-design">App Design</label>
+<input type="radio" name="category" id="brand-style" value="Brand Style">
+<label for="brand-style">Brand Style</label>
+<input type="radio" name="category" id="product-gaming" value="Product & Gaming">
+<label for="product-gaming">Product & Gaming</label>
+<input type="radio" name="category" id="marketing" value="Marketing">
+<label for="marketing">Marketing</label>
+<input type="radio" name="category" id="logo-design" value="Logo Design">
+<label for="logo-design">Logo Design</label>
+<input type="radio" name="category" id="website-to-app" value="Website to App">
+<label for="website-to-app">Website to App</label>
+<input type="radio" name="category" id="product-design" value="Product Design">
+<label for="product-design">Product Design</label>
+<input type="radio" name="category" id="ux-design" value="UX Design">
+<label for="ux-design">UX Design</label>
+<input type="radio" name="category" id="front-dev" value="Front-end Development">
+<label for="front-dev">Front-end Development</label>
+<input type="radio" name="category" id="back-dev" value="Back-end Development">
+<label for="back-dev">Back-end Development</label>
+</div>
+<div class="btn-container" >
 
+    <a href="" class="btn btn-next">=></a>
+</div>
+</fieldset>
 
-        <!-- <section>
-            <h1>Provide some context for description
-                of your request</h1>
-                <form>
-                <input type="text" name="textinput" placeholder="hello" id="">
-                <button type="submit">Send</button>
-                <a href="">Lisa Mandemakers</a>
-                <p>0/5.000</p>
-                <form>
-        </section> -->
+<fieldset   >
+    <h2>Provide some context for description
+        of your request</h2>
+<input type="text" name="project-title" id="project-title" placeholder="Project Title">
+<input type="text" name="description" id="description-field" placeholder="Description">
+<div class="btn-container"   >
+    <a href="" class="btn btn-prev"><=</a>
+    <a href="" class="btn btn-next">=></a>
+</div>
+</fieldset>
+<fieldset>
+    <h2>Select filters to search more specifically</h2>
+    <div class="drop-down-input">
+<select name="budget" id="budget-dd">
+    <option value="">Budget</option>
+    <option value="Under €55">Under €55</option>
+    <option value="€55 - €100">€55 - €100 </option>
+    <option value="€100 & above">€100 & above</option>
+</select>
+<select name="duration" id="duration-dd">
+    <option value="">Duration</option>
+    <option value="1-7 days">1-7 days</option>
+    <option value="2-4 weeks">2-4 weeks</option>
+    <option value="1-2 months">1-2 months </option>
+    <option value="3-4 months">3-4 months </option>
+    <option value="5-6 months">5-6 months </option>
+    <option value="6+ months">6+ months </option>
+</select>
+<input type="date" name="deadline" id="deadline">
+</div>
+<div class="btn-container" > 
+    <a href="" class="btn btn-prev"><=</a>
+    <a href="" class="btn btn-next">=></a>
+</div>
+</fieldset>
 
-        <!-- <section>
-            <div class="dropdown-menus-container">
-        <div class="dropdown">
-            <div class="select">
-                <span class="selected">Time</span>
-                <div class="caret"></div>
-            </div>
-            <ul class="menu">
-                <li class="filter-dropdown" id="1-hour">1 hour</li>
-                <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
-                <li class="filter-dropdown" id="1-day">1 day</li>
-                <li class="filter-dropdown" id="1-5-days">1/5 days</li>
-                <li class="filter-dropdown" id="5-days-more">5 days or more</li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <div class="select">
-                <span class="selected">Time</span>
-                <div class="caret"></div>
-            </div>
-            <ul class="menu">
-                <li class="filter-dropdown" id="1-hour">1 hour</li>
-                <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
-                <li class="filter-dropdown" id="1-day">1 day</li>
-                <li class="filter-dropdown" id="1-5-days">1/5 days</li>
-                <li class="filter-dropdown" id="5-days-more">5 days or more</li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <div class="select">
-                <span class="selected">Time</span>
-                <div class="caret"></div>
-            </div>
-            <ul class="menu">
-                <li class="filter-dropdown" id="1-hour">1 hour</li>
-                <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
-                <li class="filter-dropdown" id="1-day">1 day</li>
-                <li class="filter-dropdown" id="1-5-days">1/5 days</li>
-                <li class="filter-dropdown" id="5-days-more">5 days or more</li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <div class="select">
-                <span class="selected">Time</span>
-                <div class="caret"></div>
-            </div>
-            <ul class="menu">
-                <li class="filter-dropdown" id="1-hour">1 hour</li>
-                <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
-                <li class="filter-dropdown" id="1-day">1 day</li>
-                <li class="filter-dropdown" id="1-5-days">1/5 days</li>
-                <li class="filter-dropdown" id="5-days-more">5 days or more</li>
-            </ul>
-        </div> -->
-        </div>
-
-
-        <swiper-container class="mySwiper" keyboard="true" space-between="30" pagination="true" pagination-clickable="true"
-        navigation="true">
-        <swiper-slide>        <section>
-            <h1>In which category are you looking for a professional?</h1>
-            <button type="button" class="filter-btn" id="all">All</button>
-            <button type="button" class="filter-btn" id="logo-design">Logo Design</button>
-            <button type="button" class="filter-btn" id="illustration">Illustration</button>
-            <button type="button" class="filter-btn" id="web-development">Web Development</button>
-            <button type="button" class="filter-btn" id="graphic-design">Graphic Design</button>
-            <button type="button" class="filter-btn" id="web-development">Game Art</button>
-            <button type="button" class="filter-btn" id="web-development">Product & Design</button>
-            <button type="button" class="filter-btn" id="web-development">App Design</button>
-            <button type="button" class="filter-btn" id="web-development">Marketing</button>
-            <button type="button" class="filter-btn" id="web-development">Website app</button>
-            <button type="button" class="filter-btn" id="web-development">Product Design</button>
-            <button type="button" class="filter-btn" id="web-development">Brand Style</button>
-            <button type="button" class="filter-btn" id="web-development">UX Design</button>
-            <button type="button" class="filter-btn" id="web-development">CSS</button>
-            <button type="button" class="filter-btn" id="web-development">Video Editing</button>
-            <button type="button" class="filter-btn" id="web-development">Data Entry</button>
-            <button type="button" class="filter-btn" id="web-development">Background Removal</button>
-            <button type="button" class="filter-btn" id="web-development">Adobe Apps</button>
-            <button type="button" class="filter-btn" id="web-development">Figma</button>
-            </section>  </swiper-slide>
-        <swiper-slide>       <section>
-            <h1>Provide some context for description
-                of your request</h1>
-                <form>
-                <input type="text" name="textinput" placeholder="hello" id="">
-                <button type="submit">Send</button>
-                <a href="">Lisa Mandemakers</a>
-                <p>0/5.000</p>
-                <form>
-        </section></swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        <swiper-slide>Slide 4</swiper-slide>
-        <swiper-slide>Slide 5</swiper-slide>
-        <swiper-slide>Slide 6</swiper-slide>
-        <swiper-slide>Slide 7</swiper-slide>
-        <swiper-slide>Slide 8</swiper-slide>
-        <swiper-slide>Slide 9</swiper-slide>
-      </swiper-container>
-
-
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    <script src="../static/scripts/script.js"></script>
+<fieldset>
+    <h2>Upload files</h2>
+    <div class="file-input">
+    <input type="file"  name="images" accept="image/*">
+    </div>
+    <div class="btn-container" >
+        <a href="" class="btn btn-prev"><=</a>
+        <input type="submit" value="Submit Request">
+    </div>
+</fieldset>
+</form>
+<script src="../static/scripts/script.js"></script>
 </body>
-
 </html>
+
+

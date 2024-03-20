@@ -118,36 +118,36 @@ if(confirmPassword.length != 0){
 
 // // drop down menu's 
 
-const dropdowns = document.querySelectorAll('.dropdown');
+// const dropdowns = document.querySelectorAll('.dropdown');
 
-dropdowns.forEach(function (dropdown) {
-    const select = dropdown.querySelector('.select');
-    const arrowDropdown = dropdown.querySelector('.caret');
-    const menu = dropdown.querySelector('.menu');
-    const options = dropdown.querySelectorAll('.menu li');
-    const selected = dropdown.querySelector('.selected');
+// dropdowns.forEach(function (dropdown) {
+//     const select = dropdown.querySelector('.select');
+//     const arrowDropdown = dropdown.querySelector('.caret');
+//     const menu = dropdown.querySelector('.menu');
+//     const options = dropdown.querySelectorAll('.menu li');
+//     const selected = dropdown.querySelector('.selected');
 
-    select.addEventListener('click', function () {
-        select.classList.toggle('selected-clicked');
-        arrowDropdown.classList.toggle('rotate-caret');
-        menu.classList.toggle('menu-open');
-    });
+//     select.addEventListener('click', function () {
+//         select.classList.toggle('selected-clicked');
+//         arrowDropdown.classList.toggle('rotate-caret');
+//         menu.classList.toggle('menu-open');
+//     });
 
-    options.forEach(function (option) {
-        option.addEventListener('click', function () {
-            selected.innerHTML = option.innerHTML;
-            select.classList.remove('selected-clicked');
-            arrowDropdown.classList.remove('rotate-caret');
-            menu.classList.remove('menu-open');
+//     options.forEach(function (option) {
+//         option.addEventListener('click', function () {
+//             selected.innerHTML = option.innerHTML;
+//             select.classList.remove('selected-clicked');
+//             arrowDropdown.classList.remove('rotate-caret');
+//             menu.classList.remove('menu-open');
 
-            options.forEach(function (opt) {
-                opt.classList.remove('active-dropdown');
-            });
+//             options.forEach(function (opt) {
+//                 opt.classList.remove('active-dropdown');
+//             });
 
-            option.classList.add('active-dropdown');
-        });
-    });
-});
+//             option.classList.add('active-dropdown');
+//         });
+//     });
+// });
 
 const jsonFile = "../data.json";
 const requestsContainer = document.querySelector('.all-requests')
@@ -247,9 +247,59 @@ allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
 // })
 
 
+const prevBtns = document.querySelectorAll('.btn-prev');
+const nextBtns = document.querySelectorAll(('.btn-next'));
+const progress = document.getElementById('progress');
+const formSteps = document.querySelectorAll('fieldset');
+const progressSteps = document.querySelectorAll('.progress-step')
+
+let formStepsNum = 0;
+
+nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        event.preventDefault();
+        formStepsNum++;
+        updateFormSteps();
+        console.log(nextBtns);
+        updateProgressbar();
+  
+    });
+});
+
+prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        event.preventDefault();
+        formStepsNum--;
+        updateFormSteps();
+        console.log(nextBtns);
+        updateProgressbar();
+  
+    });
+});
+
+console.log(formSteps)
+
+function updateFormSteps(){
+    formSteps.forEach(formStep => {
+        formStep.classList.contains('active')&&
+        formStep.classList.remove('active')
+    })
+    formSteps[formStepsNum].classList.add('active');
+};
 
 
 
+function updateProgressbar(){
+    progressSteps.forEach((progressStep, idx) =>{
+        if (idx < formStepsNum + 1){
+            progressStep.classList.add('active-progress');
+        } else {
+            progressStep.classList.remove('active-progress');
+        }
+    })
 
+    const progressActive = document.querySelectorAll('.progress-step.active-progress')
+    progress.style.width = (progressActive.length -1) / (progressSteps.length -1) * 100 + '%'
+}
 
     

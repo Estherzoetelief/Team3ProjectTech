@@ -6,8 +6,8 @@
 
 /* lettertype */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); */
+/* @import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial'); */
 
 @font-face {
     font-family: h1font;
@@ -273,9 +273,9 @@
 
 
 
-
+/* 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
+@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial'); */
 
 :root {
     --primaryBlack: #1E1E1E;
@@ -881,7 +881,6 @@ body {
 }
 
 
-
 /* Drop-down filters */
 .requests .dropdown {
     margin-right: 1em;
@@ -1021,141 +1020,335 @@ body {
 }
 
 
+/* create a request page START */
 
 
-create a request page START
+/* 1e fieldset: categorie choice */
 
-/* body */
-.createrequest {
-    background-image: url(/imagesrequests/backgroundimg1.webp);
+.create-request {
+    background-image: url(../img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     margin: 0;
 }
 
-.createrequest::after {
+.create-request::before {
     content: "";
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-    height: 100%;
-    width: 100%;
     top: 0;
     left: 0;
-    z-index: 0;
-}
-
-.createrequest h1 {
-    color: var(--primaryWhite);
-    font-style: italic;
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    text-align: center;
-    margin-bottom: 0.5em;;
-
-     
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.60); /* Semi-transparante zwarte overlay */
+    z-index: 1; /* Zorg ervoor dat de overlay bovenop de achtergrond wordt weergegeven */
+    pointer-events: none;
 }
 
 
-.createrequest section:first-of-type{
-    display: flex;
+.create-request fieldset:first-of-type{
     flex-wrap: wrap;
     width: 85vw;
-    background-color: #1700A5;
-    margin: auto;
     justify-content: center;
     max-width: 70em;
-    position: relative;
-    z-index: 1;
+    border: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+
 
 }
 
-.createrequest .filter-btn {
+.create-request .radio-btns-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 2;
+}
+
+.create-request h2 {
+    color: white;
+    font-weight: 200;
+    flex-basis: 100%;
+    text-align: center;
+}
+
+.create-request .btn-next, .create-request .btn-prev {
+    color: rgb(0, 0, 0);
+    font-weight: 200;
+    text-decoration: none;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 2;
+    padding: 1em 1em;
+    background-color: #565656;
+    border: 1px solid var(--primaryWhite);
+}
+
+.create-request fieldset .btn-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px; /* Optioneel: extra ruimte onder de knoppen toevoegen */
+}
+
+
+
+
+.create-request fieldset:first-of-type input {
+    display: none;
+    z-index: 2;
+}
+
+.create-request fieldset:first-of-type label {
+    background-color: #36363674;
+    border-radius: 3em;
+    margin-right: 1em;
+    color: var(--primaryWhite);
+    padding: 1em 2em;
+    font-family: var(--bodyTextFont);
+    font-weight: 300;
+    cursor: pointer;
+    border: 0.5px rgb(161, 161, 161) solid;
+    display: inline-block;
+    white-space: nowrap;
     margin: 0.4em 0.4em;
     padding: 0.5em 1.3em;
-    background-color: #1700A5;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.486);
-    position: relative;
-    transition: 10s;
-}  
-
-
-
-/* 2de sectie  */
-swiper-container:nth-of-type(2) {
-    display: flex;
-    flex-direction: column;
-    height: 20em;
-    width: 80vw;
-    background-color: #858caf;
-    margin: auto;
-    margin-top: 5em;
-    position: relative;
-    z-index: 1; 
-}
-
-swiper-slide :nth-of-type(2) h1 {
-    font-size: 2em;
-}
-
-swiper-slide :nth-of-type(2) input {
-    background-color:  rgba(255, 255, 255, 0.486);
-    position: relative;
-    z-index: 1;
-    border-radius: 2em;
-    font-family: var(--bodyTextFont);
-    border: none;
-    vertical-align: top;   
-    flex: 1;
-    margin-bottom: 1em;
+    transition: 0.3s;
+    z-index: 2;
     
 }
 
-.createrequest section:nth-of-type(2) form{
-    position: relative;
-    z-index: 1;
+.create-request fieldset:first-of-type label:hover {
+    background-color: #2b2b2b;
+    box-shadow: 0 0 0.5em 0.1em #bcb1fd4a;
+    
+}
+
+.create-request fieldset:first-of-type input[type="radio"]:checked + label {
+    transition: 0.5s;
+    box-shadow: 0 0 0.5em 0.1em #BCB1FD;
+}
+
+
+
+/* 2e fieldset: text-input: titel & description*/
+.create-request fieldset:nth-of-type(2){
+    /* background-color: #645b9e; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    z-index: 2;
+    width: 10em;
+    /* background-color: #1700A5; */
+    width: 40vw;
+
+}
+
+.create-request fieldset:nth-of-type(2) input {
+    background-color: rgba(211, 211, 211, 0.578);
+    font-family: var(--bodyTextFont);
+    border: none; 
+    margin-bottom: 1em;
+    color:#363636;
+    font-weight: 500;
+    padding-left: 2.5em;
+    border-radius: 12px;
+    padding-top: 1.5em;
+  
+
+
+}
+
+.create-request fieldset:nth-of-type(2) input:nth-of-type(1) {
+    width: 70vw;
+    padding-bottom: 1.5em;
+
+
+}
+
+
+.create-request fieldset:nth-of-type(2) input:nth-of-type(2) {
+    width: 70vw;
+    padding-bottom: 15em;
+   
+    
+}   
+
+
+/* 3e fieldset: text-input: dropdowns */ 
+
+.create-request fieldset:nth-of-type(3) {
+    justify-content: center ;
+    border: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.drop-down-input {
+
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.create-request fieldset:nth-of-type(3) select, input {
+    background-color: #363636;
+    color: var(--primaryWhite);
+    border: 0.8px #aaaaaa solid;
+    border-radius: 0.5em;
+    padding: 1em 1.5em;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: var(--bodyTextFont);
+    font-weight: 500;
+    font-size: 0.8em;
+    margin: 1em 1em;
+
+}
+
+.create-request fieldset:nth-of-type(3) option {
+    background-color: #8774FF;
+}
+
+/* 4e fieldset: text-input: dropdowns */ 
+.create-request fieldset:nth-of-type(4) {
+    justify-content: center ;
+    border: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.create-request fieldset:nth-of-type(4) input:nth-of-type(1){
+    background-color: #8774FF;
+    
+}
+
+
+.create-request fieldset:nth-of-type(4) input:nth-of-type(2){
+    background-color: #8774FF;
+    height: 4em;
+}
+
+.create-request form {
+    /* background-color: #1700A5; */
+    display: flex;
+    justify-content: center ;
+    align-items: center;
     flex-direction: column;
     height: 100%;
 }
 
-.createrequest section:nth-of-type(2) button {
+
+
+.create-request fieldset {
+
+    display: none;
+    transform-origin: top;
+    animation: animate 0.5s;
+}
+
+@keyframes animate {
+    from{
+        /* transform: scale(1,0); */
+        opacity: 0;
+    }
+    to{
+        /* transform: scale(1,1); */
+        opacity: 1;
+    }
+}
+
+.create-request fieldset.active {
+    display: flex;
+}
+
+
+/* progress bar */
+.create-request .progressbar {
+    position: fixed;
+    top: 4em;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+    width: 50vw;
+    counter-reset: step;
+    z-index: 2;
+  
+}
+
+.create-request .progressbar::before, .progress{
+    content: "";
     position: absolute;
-    top: 1.5em;
-    right: 1.5em;
-    background: none;
-    color: #0d36ff;
+    top: 50%;
+
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff;
+   
+}
+
+.create-request .progress {
+    background-color: #fdfdff;
+    width: 0%;
+    box-shadow: 0 0 0.5em 0.1em #BCB1FD;
+    z-index: 2;
+}
+
+
+
+.create-request .progress-step {
+    width: 2em;
+    height: 2em;
+    background-color: #565656;
+    border: 1px solid var(--primaryWhite);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
     font-family: var(--bodyTextFont);
-    font-weight: 700;
-    border: none;
-    z-index: 1;
-    font-size: var(--bodyTextSize);
-}
-
-.createrequest section:nth-of-type(2) button:hover{
-    color: #1700A5;
-}
-
-.createrequest section:nth-of-type(2) a {
-    position: absolute;
-    z-index: 1;
-    top: 1em;
-    left: 1.5em;
     color: var(--primaryWhite);
-    font-family: var(--bodyTextFont);
-    font-weight: 500;
-    text-decoration: none;
+    font-size: smaller;
+}
+
+.create-request .progress-step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+
+.create-request .progress-step.active-progress{
+    background-color: #ffffff;
+    color: var(--primaryBlack);
+    transition: 1s ease-in-out;
+    box-shadow: 0 0 0.5em 0.1em #BCB1FD;
+}
+
+.create-request fieldset a {
+    background-color: #D2D2D2;
 
 }
 
-.createrequest section:nth-of-type(2) p {
-    position: absolute;
-    z-index: 1;
-    bottom: 1em;
-    right: 1.5em;
-    color: aliceblue;
-    font-family: var(--bodyTextFont);
+
+/* mediaquery voor juiste positie progress bar */
+@media screen and (min-width: 768px) { 
+    .create-request .progressbar {
+        position: fixed;
+        top:  10em;
+
+        .create-request .drop-down-input {
+            flex-direction: row;
+        }
+   
+    }
+
+
 
 }
