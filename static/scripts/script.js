@@ -1,5 +1,7 @@
 
 
+// // kijken of de wachtwoorden overeenkomen
+
 function confirmPassword(){
     const password = document.getElementById("password").value
     const confirmPassword = document.getElementById("confirm_password").value
@@ -18,105 +20,20 @@ if(confirmPassword.length != 0){
 
 setInterval(confirmPassword, 100)
 
+// // kijken of het wachtwoord voldoet aan de requirements
+function checkPassword() {
+    const password = document.getElementById("password").value;
+    const passwordSymbol = document.getElementById("password-symbol");
+    const regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
+    if (regularExpression.test(password)){
+        passwordSymbol.textContent = "✓";
+    } else {
+        passwordSymbol.textContent = "✕";
+    }
+}
 
-
-// Lisa deel request & create
-
-
-// const form = document.querySelector('.form')
-
-// form.addEventListener('submit', event => {
-//     event.preventDefault();
-
-//     const formData = new FormData(form);
-//     const data = Object.fromEntries(formData)
-
-//     console.log(data);
-
-//     fetch('http://localhost:3000/person', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(data)
-//     }).then (res => res.json())
-    
-
-
-
-    // let btn = document.querySelector('.btn')
-    // let rightBtn = document.querySelector('.rightbtn')
-
-    // function leftClick() {
-    //     btn.style.left = '0'
-    //     console.log('hi')
-    //     rightBtn.style.color = 'white';
-    // }
-
-    // function rightClick() {
-    //     btn.style.left  = '162px';
-    //     rightBtn.style.color = 'black';
-    // }
- 
-
-// Filter buttons
-
-// const allFilterItems = document.querySelectorAll('.filter-item');
-// const allFilterBtns = document.querySelectorAll('.filter-btn');
-
-// allFilterBtns.forEach((btn) => {
-//     btn.addEventListener('click', () => {
-//     showFilteredContent(btn);
-//     });
-// });
-
-// function showFilteredContent(btn){
-//     allFilterItems.forEach((item)=> {
-//         if(item.classList.contains(btn.id)){
-//             resetActiveBtn();
-//             item.style.display = "flex";
-//             btn.classList.add('active-btn');
-//         } else {
-//             item.style.display = "none";
-//         }
-
-//     });
-// }
-
-// function resetActiveBtn(){
-//     allFilterBtns.forEach((btn) => {
-//         btn.classList.remove('active-btn');
-//     }
-//     )
-// }
-    
-// const allFilterDropdowns = document.querySelectorAll('.filter-dropdown');
-
-// allFilterDropdowns.forEach((dropdownchoice) => {
-//     dropdownchoice.addEventListener('click', () => {
-//     showFilteredContent(dropdownchoice);
-//     });
-// });
-
-// function showFilteredContent(dropdownchoice){
-//     allFilterItems.forEach((item)=> {
-//         if(item.classList.contains(dropdownchoice.id)){
-//             resetActiveDropdown();
-//             item.style.display = "flex";
-//             dropdownchoice.classList.add('active-btn');
-//         } else {
-//             item.style.display = "none";
-//         }
-
-//     });
-// }
-
-// function resetActiveDropdown() {
-//     allFilterDropdowns.forEach((dropdownchoice) => {
-//         dropdownchoice.classList.remove('active-btn'); // Corrected class name
-//     });
-// }
+document.getElementById("password").addEventListener("input", checkPassword);
 
 
 // // drop down menu's 
