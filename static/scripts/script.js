@@ -20,135 +20,6 @@ if(confirmPassword.length != 0){
 
 // Lisa deel request & create
 
-
-// const form = document.querySelector('.form')
-
-// form.addEventListener('submit', event => {
-//     event.preventDefault();
-
-//     const formData = new FormData(form);
-//     const data = Object.fromEntries(formData)
-
-//     console.log(data);
-
-//     fetch('http://localhost:3000/person', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(data)
-//     }).then (res => res.json())
-    
-
-
-
-    // let btn = document.querySelector('.btn')
-    // let rightBtn = document.querySelector('.rightbtn')
-
-    // function leftClick() {
-    //     btn.style.left = '0'
-    //     console.log('hi')
-    //     rightBtn.style.color = 'white';
-    // }
-
-    // function rightClick() {
-    //     btn.style.left  = '162px';
-    //     rightBtn.style.color = 'black';
-    // }
- 
-
-// Filter buttons
-
-// const allFilterItems = document.querySelectorAll('.filter-item');
-// const allFilterBtns = document.querySelectorAll('.filter-btn');
-
-// allFilterBtns.forEach((btn) => {
-//     btn.addEventListener('click', () => {
-//     showFilteredContent(btn);
-//     });
-// });
-
-// function showFilteredContent(btn){
-//     allFilterItems.forEach((item)=> {
-//         if(item.classList.contains(btn.id)){
-//             resetActiveBtn();
-//             item.style.display = "flex";
-//             btn.classList.add('active-btn');
-//         } else {
-//             item.style.display = "none";
-//         }
-
-//     });
-// }
-
-// function resetActiveBtn(){
-//     allFilterBtns.forEach((btn) => {
-//         btn.classList.remove('active-btn');
-//     }
-//     )
-// }
-    
-// const allFilterDropdowns = document.querySelectorAll('.filter-dropdown');
-
-// allFilterDropdowns.forEach((dropdownchoice) => {
-//     dropdownchoice.addEventListener('click', () => {
-//     showFilteredContent(dropdownchoice);
-//     });
-// });
-
-// function showFilteredContent(dropdownchoice){
-//     allFilterItems.forEach((item)=> {
-//         if(item.classList.contains(dropdownchoice.id)){
-//             resetActiveDropdown();
-//             item.style.display = "flex";
-//             dropdownchoice.classList.add('active-btn');
-//         } else {
-//             item.style.display = "none";
-//         }
-
-//     });
-// }
-
-// function resetActiveDropdown() {
-//     allFilterDropdowns.forEach((dropdownchoice) => {
-//         dropdownchoice.classList.remove('active-btn'); // Corrected class name
-//     });
-// }
-
-
-// // drop down menu's 
-
-// const dropdowns = document.querySelectorAll('.dropdown');
-
-// dropdowns.forEach(function (dropdown) {
-//     const select = dropdown.querySelector('.select');
-//     const arrowDropdown = dropdown.querySelector('.caret');
-//     const menu = dropdown.querySelector('.menu');
-//     const options = dropdown.querySelectorAll('.menu li');
-//     const selected = dropdown.querySelector('.selected');
-
-//     select.addEventListener('click', function () {
-//         select.classList.toggle('selected-clicked');
-//         arrowDropdown.classList.toggle('rotate-caret');
-//         menu.classList.toggle('menu-open');
-//     });
-
-//     options.forEach(function (option) {
-//         option.addEventListener('click', function () {
-//             selected.innerHTML = option.innerHTML;
-//             select.classList.remove('selected-clicked');
-//             arrowDropdown.classList.remove('rotate-caret');
-//             menu.classList.remove('menu-open');
-
-//             options.forEach(function (opt) {
-//                 opt.classList.remove('active-dropdown');
-//             });
-
-//             option.classList.add('active-dropdown');
-//         });
-//     });
-// });
-
 const jsonFile = "../data.json";
 const requestsContainer = document.querySelector('.all-requests')
 
@@ -209,97 +80,66 @@ allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
 
 
 
-
-
-
-
-
-
-
-// fetch(jsonFile).then(respone=>{
-//     return respone.json();
-// }).then(data=>{
-//     data.map(requestCard => {
-//         const {images, title, description, max_amount, date, person} = requestCard;
-//         requestsContainer.innerHTML += `
-//         <section class="filter-item" data-name:"logo-design" >
-//             <div class="imglayout">
-//                 <img src="${images[0]}" alt="">
-//                 <img src="${images[1]}" alt="">
-//                 <img src="${images[2]}" alt="">
-//                 <img src="${images[3]}" alt="">
-//                 <img src="${images[4]}" alt="">
-//                 <img src="${images[5]}" alt="">
-//             </div>
-//             <div >
-//                 <h2>${title}</h2>
-//                 <div class="scroll-text">
-//                     <p>${description}</p>
-//                 </div>
-//                 <p>3-5 days</p>
-//                 <p>${max_amount}</p>
-//                 <p>${date}</p>
-//                 <p>${person}</p>
-//                 <a href="">Match</a>
-//             </div>
-//         </section>`;
-//     })
-// })
-
-
 const prevBtns = document.querySelectorAll('.btn-prev');
-const nextBtns = document.querySelectorAll(('.btn-next'));
+const nextBtns = document.querySelectorAll('.btn-next');
 const progress = document.getElementById('progress');
 const formSteps = document.querySelectorAll('fieldset');
-const progressSteps = document.querySelectorAll('.progress-step')
+const progressSteps = document.querySelectorAll('.progress-step');
 
+// current form step
 let formStepsNum = 0;
 
+// Next btn function
 nextBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         event.preventDefault();
         formStepsNum++;
         updateFormSteps();
-        console.log(nextBtns);
         updateProgressbar();
-  
+        console.log(formStepsNum)
     });
 });
 
+// Previous btn function
 prevBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         event.preventDefault();
         formStepsNum--;
         updateFormSteps();
-        console.log(nextBtns);
         updateProgressbar();
-  
+        console.log(formStepsNum)
     });
 });
 
-console.log(formSteps)
+// Progress buttons function
+progressSteps.forEach((step, idx) => {
+    step.addEventListener('click', () => {
+        formStepsNum = idx;
+        updateFormSteps();
+        updateProgressbar();
+        console.log(formStepsNum)
+    });
+});
 
-function updateFormSteps(){
+// Updating the form steps
+function updateFormSteps() {
     formSteps.forEach(formStep => {
-        formStep.classList.contains('active')&&
-        formStep.classList.remove('active')
-    })
+        formStep.classList.contains('active') && formStep.classList.remove('active');
+    });
     formSteps[formStepsNum].classList.add('active');
-};
+}
 
-
-
-function updateProgressbar(){
-    progressSteps.forEach((progressStep, idx) =>{
-        if (idx < formStepsNum + 1){
+// function for updating progress bar
+function updateProgressbar() {
+    progressSteps.forEach((progressStep, idx) => {
+        if (idx < formStepsNum + 1) {
             progressStep.classList.add('active-progress');
         } else {
             progressStep.classList.remove('active-progress');
         }
-    })
+    });
 
-    const progressActive = document.querySelectorAll('.progress-step.active-progress')
-    progress.style.width = (progressActive.length -1) / (progressSteps.length -1) * 100 + '%'
+// function for updating progress bar line through the middle
+    const progressActive = document.querySelectorAll('.progress-step.active-progress');
+    progress.style.width = (progressActive.length - 1) / (progressSteps.length - 1) * 100 + '%';
 }
-
-    
