@@ -1,8 +1,11 @@
+
+
+// // kijken of de wachtwoorden overeenkomen
+
 function confirmPassword(){
     const password = document.getElementById("password").value
     const confirmPassword = document.getElementById("confirm_password").value
     const inputField = document.getElementById("confirm_password")
-    // const confirmText = document.getElementById("confirm-text")
 
 if(confirmPassword.length != 0){
         if(password == confirmPassword){
@@ -12,11 +15,23 @@ if(confirmPassword.length != 0){
         console.log("no match")
         inputField.style.border = "red 1px solid"
     } 
-} 
+}
 }
 
+setInterval(confirmPassword, 100)
 
+// // kijken of het wachtwoord voldoet aan de requirements
+function checkPassword() {
+    const password = document.getElementById("password").value;
+    const passwordSymbol = document.getElementById("password-symbol");
+    const regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
+    if (regularExpression.test(password)){
+        passwordSymbol.textContent = "✓";
+    } else {
+        passwordSymbol.textContent = "✕";
+    }
+}
 
 // Lisa deel request & create
 

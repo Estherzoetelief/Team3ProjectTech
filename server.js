@@ -3,8 +3,19 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
-const multer = require('multer')
-const upload = multer({dest: 'static/upload/'})
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+const upload = multer({ storage: storage });
+
+app.post('/send-request', upload.array('images', 5), addRequest);
+
 
 
 app
@@ -21,9 +32,11 @@ app
     .post('/create-account', addUser)
 
     .get('/request', showRequestPage)
-    .post('/send-request',upload.single('images') ,addRequest)
+    .post('/send-request',upload.array('images', 5) ,addRequest)
 
     .get('/find-requests', showRequests)
+
+
 
     .listen(8511)
 
@@ -143,7 +156,7 @@ async function addUser(req, res){
 async function addRequest(req, res){
   result = await collection2.insertOne({
     category: req.body.category,
-    project_title: req.body.project-title,
+    project_title: req.body.projectTitle,
     description: req.body.description,
     budget: req.body.budget,
     duration: req.body.duration,
@@ -152,7 +165,7 @@ async function addRequest(req, res){
   })
 
   const requestList = await collection2.find({}).toArray()
-  res.render('findRequests.ejs', {requests: requestList})
+  res.render('requests.ejs', {requests: requestList})
 
 }
 
@@ -163,6 +176,6 @@ async function addRequest(req, res){
 async function showRequests(req,res) {
   
   const requestList = await collection2.find({}).toArray()
-res.render('findRequests.ejs', {requests: requestList})
+res.render('requests.ejs', {requests: requestList})
 
 }

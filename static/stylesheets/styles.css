@@ -15,16 +15,20 @@
 
 /* variabelen */
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
+
 :root {
-    --primaryblack: #1E1E1E;
-    --primarywhite: #F9F7F7;
-    --h1-size: 15.00vw;
-    --h2-size: 2.5em;
-    --p-size: 1.125em;
+    --primaryBlack: #1E1E1E;
+    --primaryWhite: #F9F7F7;
+    --accentColor: #1700A5;
+    --h1-size: 14.00vw;
+    --h2-size: 3em;
+    --p-size: 1.4em;
     --bodyTextSize: 1em;
     --bodyTextFont: "Montserrat", sans-serif;
-    --hFont: 'GT Super Txt Trial', sans-serif;
-    --hFontItalic: 'GT Super Txt Trial', sans-serif;
+    --hFont: 'GT Super Ds Trial', sans-serif;
+    --hFontItalic: 'GT Super Ds Trial', sans-serif;
 }
 
 /* ALGEMEEN */
@@ -44,8 +48,8 @@
 
 /* ACHTERGROND */
 
-.inloggen div:first-of-type,
-.registreren div:first-of-type {
+.inloggen>div:first-of-type,
+.registreren>div:first-of-type {
     position: absolute;
     top: 0;
     width: 100vw;
@@ -118,7 +122,7 @@
 input[type=email],
 .registreren input[type=password],
 .registreren input[type=text] {
-    background-color: var(--primaryblack);
+    background-color: var(--primaryBlack);
     height: 2.5em;
     border: none;
     margin-bottom: 2em;
@@ -163,12 +167,12 @@ input[type=email],
 
 .inloggen input[type=submit],
 .registreren input[type=submit] {
-    background-color: var(--primarywhite);
+    background-color: var(--primaryWhite);
     height: 3.8em;
     border-radius: 0.8em;
     border: none;
     font-weight: 600;
-    color: var(--primaryblack);
+    color: var(--primaryBlack);
     letter-spacing: 0.15em;
 }
 
@@ -194,7 +198,7 @@ input[type=email],
     height: 65vh;
     justify-content: center;
     display: grid;
-    color: var(--primarywhite);
+    color: var(--primaryWhite);
     border-radius: 1em;
 }
 
@@ -227,7 +231,7 @@ input[type=email],
 .registreren article section:first-of-type p {
     color: #A3A3A3;
     font-weight: 100;
-    margin-bottom: -5em;
+    margin-bottom: -3em;
 }
 
 
@@ -249,9 +253,35 @@ input[type=email],
 
 .registreren fieldset:nth-of-type(3) {
     grid-template-columns: 1fr 1fr;
+    margin-bottom: 2.5em;
 }
 
-/* wachtwoord requirements */
+.registreren fieldset:nth-of-type(3)>section {
+    display: grid;
+}
+
+.registreren fieldset:nth-of-type(3)>section input {
+    width: 90%;
+    height: 100%;
+}
+
+.registreren fieldset:nth-of-type(3) section p {
+    font-size: 0.7em;
+    margin-top: 1.5em;
+}
+
+.registreren fieldset:nth-of-type(3) div {
+    position: relative;
+    height: 2em;
+}
+
+
+/* requirement password validatie */
+
+.registreren fieldset section span {
+    margin-right: 0.6em;
+}
+
 
 
 /* submit knop */
@@ -266,18 +296,10 @@ input[type=email],
 
 /* icons positioneren in de inputlabels */
 
-.registreren fieldset:nth-of-type(3) img:nth-of-type(2) {
+.registreren fieldset:nth-of-type(3) div img {
     position: absolute;
-    top: -0.5em;
-    right: 0;
-    opacity: 0.3;
-    scale: 0.175;
-}
-
-.registreren fieldset:nth-of-type(3) img:nth-of-type(1) {
-    position: absolute;
-    top: -0.5em;
-    left: 13em;
+    top: -1.9em;
+    right: 0.1em;
     opacity: 0.3;
     scale: 0.175;
 }
@@ -285,22 +307,6 @@ input[type=email],
 
 
 
-/* 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial'); */
-
-:root {
-    --primaryBlack: #1E1E1E;
-    --primaryWhite: #F9F7F7;
-    --accentColor: #1700A5;
-    --h1-size: 14.00vw;
-    --h2-size: 3em;
-    --p-size: 1.4em;
-    --bodyTextSize: 1em;
-    --bodyTextFont: "Montserrat", sans-serif;
-    --hFont: 'GT Super Ds Trial', sans-serif;
-    --hFontItalic: 'GT Super Ds Trial', sans-serif;
-}
 
 
 
@@ -685,9 +691,10 @@ Hier start request & create page css
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: repeat(6, 0.2fr);
-    grid-gap: 0.3em;
-    width: 100vw;
+    grid-gap: 0.8em;
+    width: 70vw;
     height: 10em;
+    padding-left: 2em;
 }
 
 /* container voor de informatie */
@@ -765,12 +772,14 @@ Hier start request & create page css
 /* Alle informatie */
 .requests section div h2 {
     color: var(--primaryWhite);
+    font-family: var(--hFont);
     font-style: italic;
     font-size: 2em;
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0px
 }
+
 
 /* scrollable text & scrollbar */
 .requests section div p {
@@ -783,7 +792,7 @@ Hier start request & create page css
 }
 
 .requests .scroll-text {
-    height: 7.7em;
+    height: 6.5em;
     overflow-y: scroll;
 }
 
@@ -848,17 +857,78 @@ Hier start request & create page css
 
 }
 
-.requests .createrequests h1 {
+.createrequests h1 {
     color: var(--primaryWhite);
 }
+
+.requests>main>div:first-of-type {
+    display: flex;
+    gap: 35vw;
+    margin-top: 5em;
+}
+
+.requests h1 {
+    color: var(--primaryWhite);
+    font-weight: 300;
+    /* margin-bottom: -0.7em;
+    margin-top: 3em; */
+}
+
+
+.job-switch {
+    height: 2.6em;
+    width: 15em;
+    background-color: #363636;
+    border-radius: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    position: relative;
+}
+
+.job-switch a {
+    color: var(--primaryWhite);
+    font-family: var(--bodyTextFont);
+    font-size: 0.9em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.job-switch a:first-of-type {
+    background-color: var(--primaryWhite);
+    color: var(--primaryBlack);
+    height: 2.6em;
+    width: 9em;
+    border-radius: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.job-switch a:last-of-type {
+    color: var(--primaryWhite);
+    height: 2.6em;
+    width: 9em;
+    border-radius: 100vw;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+
 
 /* filter buttons */
 
 .filter-btns {
     margin-top: 3em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.75em;
     display: flex;
-    overflow-x: scroll;
+    /* overflow-x: scroll ; */
     width: 90vw;
     outline: none;
     height: 3em;
@@ -867,6 +937,7 @@ Hier start request & create page css
     /* background-color: #0d36ff; */
     padding-left: 1em;
 
+
 }
 
 .requests .filter-btns::-webkit-scrollbar {
@@ -874,27 +945,35 @@ Hier start request & create page css
 }
 
 .filter-btn {
-    background-color: #363636;
+    background-color: #4e4e4e;
     border-radius: 3em;
     margin-right: 1em;
     color: var(--primaryWhite);
     padding: 0.5em 2em;
     outline: none;
-    border: 0;
+    border: none;
     font-family: var(--bodyTextFont);
-    font-weight: 500;
+    font-weight: 600;
     height: 3em;
     cursor: pointer;
-    border: 0.5px rgb(161, 161, 161) solid;
     display: inline-block;
     white-space: nowrap;
-
 }
 
 .requests .active-btn {
     transition: 0.5s;
     box-shadow: 0 0 0.5em 0.1em #BCB1FD;
 }
+
+
+/* HR styling  */
+
+.requests hr {
+    border: #504f4f39 0.5px solid;
+    margin-bottom: 0.75em;
+}
+
+
 
 
 /* Drop-down filters */
@@ -915,12 +994,12 @@ Hier start request & create page css
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 0.8px #aaaaaa solid;
+    /* border: 0.8px #aaaaaa solid; */
     border-radius: 0.5em;
-    padding: 0.8em 1em 0.8em 1em;
+    padding: 0.9em 2em 0.9em 2em;
     cursor: pointer;
-    transition: background 0.3s;
-    width: 8em;
+    /* transition: background 0.3s; */
+    /* width: 8em; */
     font-family: var(--bodyTextFont);
     font-weight: 500;
     font-size: 0.8em;
@@ -943,6 +1022,8 @@ Hier start request & create page css
     border-right: 5px solid transparent;
     border-top: 6px solid var(--primaryWhite);
     transition: 0.3s;
+    margin-left: 2em;
+    opacity: 0.6;
 }
 
 .rotate-caret {
@@ -991,7 +1072,7 @@ Hier start request & create page css
 }
 
 .requests .menu li:before,
-&:after {
+li:after {
     position: absolute;
     content: '';
     border-bottom: 3px solid rgb(0, 99, 228);
@@ -1013,7 +1094,7 @@ Hier start request & create page css
 
 .requests .dropdown-menus-container {
     display: flex;
-    margin-bottom: 1em;
+    margin-bottom: em;
     width: 94vw;
     height: 400px;
     z-index: 0;
@@ -1032,7 +1113,7 @@ Hier start request & create page css
 
 
 .requests .all-requests {
-    margin-top: 4.7em;
+    margin-top: 8em;
     margin-left: 0.5em
 }
 
@@ -1155,10 +1236,18 @@ Hier start request & create page css
     height: 100%;
     background-color: rgba(0, 0, 0, 0.60);
     z-index: 1;
-    pointer-events: none;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 0.5em;
+    ;
+
+
 }
 
-.create-request fieldset:first-of-type {
+
+.createrequest section:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
     width: 85vw;
     justify-content: center;
     max-width: 70em;
