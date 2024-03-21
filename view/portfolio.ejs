@@ -33,21 +33,37 @@
 
     <section class="work" id="workElement">
         <h2>Work</h2>
+
+
+        
         <section>
-            <figure>
+            <% collectionPortfolioUploads.images.forEach(image => { %>
+                <figure>
+                    <img class="unhide" src="uploads/<%= image %>" alt="test">
+                    <!-- <img class="unhide" src="uploads/<%= image %>" alt="test"> -->
+                    <section class="hide">
+                        <h2>Read more </h2>
+                        <button></button>
+                    </section>
+                    <section>
+                        <p>In this surrealist masterpiece, an enchanting realm unfolds, seamlessly intertwining dreams and reality on the pages of a brilliantly conceived book. The author wields their pen as an artist does a brush, each word a stroke contributing to a vivid and kaleidoscopic canvas.</p>
+                    </section>
+                </figure>
+            <% }) %>
+            <!-- <figure>
                 <img class="unhide" src="/img/fotoPortfolio1.png" alt="test">
                 <section class="hide">
                     <h2>Read more </h2>
                     <button></button>
                 </section>
                 <section>
-                    <p>In this surrealist masterpiece, an enchanting realm unfolds, seamlessly intertwining dreams and reality on the pages of a brilliantly conceived book. The author wields their pen as an artist does a brush, each word a stroke contributing to a vivid and kaleidoscopic canvas.
+                    <p>
 
                     </p>
                 </section>
 
-            </figure>
-            <figure>
+            </figure> -->
+            <!-- <figure>
                 <img class="unhide" src="/img/fotoPortfolio2.png" alt="test">
                 <section class="hide">
                     <h2>Read more </h2>
@@ -125,7 +141,7 @@
                     <p>The book serves as a gallery of linguistic innovations, with the author pushing the boundaries of language and narrative structure. Through avant-garde techniques and unconventional wordplay, the text becomes a dynamic work of art, challenging readers to engage with literature in a way that transcends the traditional boundaries of storytelling. Each page is a testament to the author's ability to not only craft a compelling narrative but also to push the boundaries of artistic expression within the written word.</p>
                 </section>
                 <img class="unhide" src="/img/fotoPortfolio8.png" alt="test">
-            </figure>
+            </figure> -->
         </section>
 
     </section>
@@ -153,7 +169,9 @@
      <form method="POST" action="/upload" enctype="multipart/form-data" id="uploadForm">
         <div>
             <label>Upload multiple profile picture</label>
-            <input type="file" name="uploaded_file" required multiple accept="multipart/form-data"/>
+            <input type="file" name="photos" required multiple accept="multipart/form-data"/>
+
+            <!-- <input type="file" name="uploaded_file" required multiple accept="multipart/form-data"/> -->
         </div>
         <div>
             <input type="submit" value="Upload"/>
@@ -170,11 +188,11 @@
 
 </body>
 <footer></footer>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js"
     integrity="sha512-VJ/iYbiu1eJ6yLimfTi65t2R9TFcG5D9X8ZCfbbEFhTfPnKJh8byoKXEawi5ScJZBYL1eiirL1+MczZDx0Tz9Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="/scripts/script.js"></script>
-<script src="/scripts/server.js"></script>
+<script src="server.js"></script>
 </html>

@@ -51,9 +51,25 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
+// function showPortfolioPage(req, res){
+//   res.render('portfolio.ejs')
+// }
+
 function showPortfolioPage(req, res){
-  res.render('portfolio.ejs')
+  collectionPortfolioUploads.findOne({ portfolio: loginName })
+    .then(data => {
+      if (data) {
+        res.render('portfolio.ejs', { collectionPortfolioUploads: data });
+      } else {
+        res.status(404).send('Portfolio not found');
+      }
+    })
+    .catch(error => {
+      console.error('Error retrieving portfolio:', error);
+      res.status(500).send('Error retrieving portfolio');
+    });
 }
+
 
 function addUser(req, res){
 	
@@ -192,6 +208,78 @@ And make them accessible through http://localhost:3000/a.
 //     console.log(req.file.filename)
 //   }
 
+// const multer = require('multer');
+
+// // Defines storage for uploaded files
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'uploads/'); // Destination folder for uploaded files
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null,Date.now() + file.originalname); // Renames the file to include the timestamp
+//   },
+// });
+
+// In dit specifieke voorbeeld wordt de cb-functie aangeroepen met null als eerste argument 
+// (wat aangeeft dat er geen fout is opgetreden) en de relatieve map "uploads/" als tweede argument, 
+// wat aangeeft dat de geüploade bestanden moeten worden opgeslagen in de map met de naam "uploads".
+
+// Hier moet nog een dynamisch login systeem komen
+// const loginName = 'Ivo'
+
+// // Initializes Multer with the storage configuration
+
+// const upload = multer({ storage: storage });
+
+// app.post('/upload', upload.single('uploaded_file'), (req, res) => {
+//   // req.file contains the uploaded file details
+//   // req.body contains other form data if any
+//       result = collectionPortfolioUploads.insertOne({
+//       portfolio: loginName,
+//       image1: req.file.filename
+//     })
+
+
+//   res.status(200).send('File uploaded successfully');
+// });
+
+
+
+
+// app.post('/upload', upload.array('photos', 7), function (req, res, next) {
+//   // req.files is array of `photos` files
+//   // req.body will contain the text fields, if there were any
+// })
+
+
+
+// const uploads = images.find()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------------------
+// -------------------------------------------------------------------
+// Niewste al gehele versie 
+// -------------------------------------------------------------------
+// -------------------------------------------------------------------
+
+
 const multer = require('multer');
 
 // Defines storage for uploaded files
@@ -200,7 +288,7 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/'); // Destination folder for uploaded files
   },
   filename: (req, file, cb) => {
-    cb(null,Date.now() + file.originalname); // Renames the file to include the timestamp
+    cb(null, Date.now() + file.originalname); // Renames the file to include the timestamp
   },
 });
 
@@ -212,17 +300,71 @@ const storage = multer.diskStorage({
 const loginName = 'Ivo'
 
 // Initializes Multer with the storage configuration
-
 const upload = multer({ storage: storage });
 
-app.post('/upload', upload.single('uploaded_file'), (req, res) => {
-  // req.file contains the uploaded file details
-  // req.body contains other form data if any
-      result = collectionPortfolioUploads.insertOne({
-      portfolio: loginName,
-      image1: req.file.filename
+// Serve the "/uploads" directory statically
+app.use('/uploads', express.static('uploads')); 
+
+// app.post('/upload', upload.array('photos', 7), (req, res) => {
+//   // req.files contains the uploaded files details
+//   // req.body contains other form data if any
+
+//   const imagePaths = req.files.map(file => file.filename); // Extract filenames from uploaded files
+
+  
+//   // Assuming you have a MongoDB collection called 'collectionPortfolioUploads'
+//   collectionPortfolioUploads.insertOne({
+//     portfolio: loginName,
+//     images: imagePaths // Save array of image paths in the database
+//   })
+//   .then(() => {
+//     res.status(200).send('Files uploaded successfully');
+//   })
+//   .catch(error => {
+//     console.error('Error uploading files:', error);
+//     res.status(500).send('Error uploading files');
+//   });
+// });
+
+
+
+
+
+
+// Assuming you have the MongoDB client properly configured and connected
+
+app.post('/upload', upload.array('photos', 7), (req, res) => {
+  const imagePaths = req.files.map(file => file.filename);
+
+  // Update the existing document in MongoDB collection to push new image paths to the array
+  collectionPortfolioUploads.updateOne(
+    { portfolio: loginName }, // Filter to find the document for the logged-in user
+    { $push: { images: { $each: imagePaths } } } // Update operation to push new image paths to the array
+  )
+  .then(() => {
+    res.status(200).send('Files uploaded successfully');
+  })
+  .catch(error => {
+    console.error('Error uploading files:', error);
+    res.status(500).send('Error uploading files');
+  });
+});
+
+
+// Assuming you want to retrieve the images from the database and display them on a webpage
+app.get('/portfolio', (req, res) => {
+  // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
+  collectionPortfolioUploads.findOne({ portfolio: loginName })
+    .then(data => {
+      if (data) {
+        // Assuming you have an HTML template to display the images
+        res.render('portfolio', { images: data.images });
+      } else {
+        res.status(404).send('Portfolio not found');
+      }
     })
-
-
-  res.status(200).send('File uploaded successfully');
+    .catch(error => {
+      console.error('Error retrieving portfolio:', error);
+      res.status(500).send('Error retrieving portfolio');
+    });
 });
