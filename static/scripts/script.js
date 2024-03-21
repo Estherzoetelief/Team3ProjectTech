@@ -1,8 +1,9 @@
+
+
 function confirmPassword(){
     const password = document.getElementById("password").value
     const confirmPassword = document.getElementById("confirm_password").value
     const inputField = document.getElementById("confirm_password")
-    // const confirmText = document.getElementById("confirm-text")
 
 if(confirmPassword.length != 0){
         if(password == confirmPassword){
@@ -12,8 +13,10 @@ if(confirmPassword.length != 0){
         console.log("no match")
         inputField.style.border = "red 1px solid"
     } 
-} 
 }
+}
+
+setInterval(confirmPassword, 100)
 
 
 
@@ -209,47 +212,3 @@ allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
 
 
 
-
-
-
-
-
-
-
-// fetch(jsonFile).then(respone=>{
-//     return respone.json();
-// }).then(data=>{
-//     data.map(requestCard => {
-//         const {images, title, description, max_amount, date, person} = requestCard;
-//         requestsContainer.innerHTML += `
-//         <section class="filter-item" data-name:"logo-design" >
-//             <div class="imglayout">
-//                 <img src="${images[0]}" alt="">
-//                 <img src="${images[1]}" alt="">
-//                 <img src="${images[2]}" alt="">
-//                 <img src="${images[3]}" alt="">
-//                 <img src="${images[4]}" alt="">
-//                 <img src="${images[5]}" alt="">
-//             </div>
-//             <div >
-//                 <h2>${title}</h2>
-//                 <div class="scroll-text">
-//                     <p>${description}</p>
-//                 </div>
-//                 <p>3-5 days</p>
-//                 <p>${max_amount}</p>
-//                 <p>${date}</p>
-//                 <p>${person}</p>
-//                 <a href="">Match</a>
-//             </div>
-//         </section>`;
-//     })
-// })
-
-
-
-
-
-
-
-    
