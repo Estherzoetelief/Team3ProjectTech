@@ -66,9 +66,9 @@ function addUser(req, res){
 
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
-
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
+const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
 
 async function addUser(req, res){
     result = await collection.insertOne({
@@ -208,12 +208,21 @@ const storage = multer.diskStorage({
 // (wat aangeeft dat er geen fout is opgetreden) en de relatieve map "uploads/" als tweede argument, 
 // wat aangeeft dat de geüploade bestanden moeten worden opgeslagen in de map met de naam "uploads".
 
+// Hier moet nog een dynamisch login systeem komen
+const loginName = 'Ivo'
 
 // Initializes Multer with the storage configuration
+
 const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('uploaded_file'), (req, res) => {
   // req.file contains the uploaded file details
   // req.body contains other form data if any
+      result = collectionPortfolioUploads.insertOne({
+      portfolio: loginName,
+      image1: req.file.filename
+    })
+
+
   res.status(200).send('File uploaded successfully');
 });
