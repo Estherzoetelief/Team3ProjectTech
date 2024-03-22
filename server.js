@@ -332,7 +332,6 @@ app.use('/uploads', express.static('uploads'));
 
 
 // Assuming you have the MongoDB client properly configured and connected
-
 app.post('/upload', upload.array('photos', 7), (req, res) => {
   const imagePaths = req.files.map(file => file.filename);
 
