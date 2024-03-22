@@ -1,97 +1,97 @@
 
 
-// // kijken of de wachtwoorden overeenkomen
+// // // kijken of de wachtwoorden overeenkomen
 
-function confirmPassword(){
-    const password = document.getElementById("password").value
-    const confirmPassword = document.getElementById("confirm_password").value
-    const inputField = document.getElementById("confirm_password")
+// function confirmPassword(){
+//     const password = document.getElementById("password").value
+//     const confirmPassword = document.getElementById("confirm_password").value
+//     const inputField = document.getElementById("confirm_password")
 
-if(confirmPassword.length != 0){
-        if(password == confirmPassword){
-     console.log("match")
-       inputField.style.border = "green 1px solid"
-    } else {
-        console.log("no match")
-        inputField.style.border = "red 1px solid"
-    } 
-}
-}
+// if(confirmPassword.length != 0){
+//         if(password == confirmPassword){
+//      console.log("match")
+//        inputField.style.border = "green 1px solid"
+//     } else {
+//         console.log("no match")
+//         inputField.style.border = "red 1px solid"
+//     } 
+// }
+// }
 
-setInterval(confirmPassword, 100)
+// setInterval(confirmPassword, 100)
 
-// // kijken of het wachtwoord voldoet aan de requirements
-function checkPassword() {
-    const password = document.getElementById("password").value;
-    const passwordSymbol = document.getElementById("password-symbol");
-    const regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+// // // kijken of het wachtwoord voldoet aan de requirements
+// function checkPassword() {
+//     const password = document.getElementById("password").value;
+//     const passwordSymbol = document.getElementById("password-symbol");
+//     const regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
-    if (regularExpression.test(password)){
-        passwordSymbol.textContent = "✓";
-    } else {
-        passwordSymbol.textContent = "✕";
-    }
-}
+//     if (regularExpression.test(password)){
+//         passwordSymbol.textContent = "✓";
+//     } else {
+//         passwordSymbol.textContent = "✕";
+//     }
+// }
 
-// Lisa deel request & create
+// // Lisa deel request & create
 
-const jsonFile = "../data.json";
-const requestsContainer = document.querySelector('.all-requests')
+// const jsonFile = "../data.json";
+// const requestsContainer = document.querySelector('.all-requests')
 
-fetch(jsonFile).then(respone=>{
-    return respone.json();
-}).then(data =>{
-    data.map(requestCard => {
-        const {images, title, description, max_amount, date, person, categorie} = requestCard;
-        requestsContainer.innerHTML += `
-        <section class="filter-item" data-name="${categorie}">
-            <div class="imglayout">
-                <img src="${images[0]}" alt="">
-                <img src="${images[1]}" alt="">
-                <img src="${images[2]}" alt="">
-                <img src="${images[3]}" alt="">
-                <img src="${images[4]}" alt="">
-                <img src="${images[5]}" alt="">
-            </div>
-            <div >
-                <h2>${title}</h2>
-                <div class="scroll-text">
-                    <p>${description}</p>
-                </div>
-                <p>3-5 days</p>
-                <p>${max_amount}</p>
-                <p>${date}</p>
-                <p>${person}</p>
-                <a href="">Match</a>
-            </div>
-        </section>`;
-    })
-    const allFilterItems = document.querySelectorAll('.filter-item');
-const allFilterBtns = document.querySelectorAll('.filter-btn');
+// fetch(jsonFile).then(respone=>{
+//     return respone.json();
+// }).then(data =>{
+//     data.map(requestCard => {
+//         const {images, title, description, max_amount, date, person, categorie} = requestCard;
+//         requestsContainer.innerHTML += `
+//         <section class="filter-item" data-name="${categorie}">
+//             <div class="imglayout">
+//                 <img src="${images[0]}" alt="">
+//                 <img src="${images[1]}" alt="">
+//                 <img src="${images[2]}" alt="">
+//                 <img src="${images[3]}" alt="">
+//                 <img src="${images[4]}" alt="">
+//                 <img src="${images[5]}" alt="">
+//             </div>
+//             <div >
+//                 <h2>${title}</h2>
+//                 <div class="scroll-text">
+//                     <p>${description}</p>
+//                 </div>
+//                 <p>3-5 days</p>
+//                 <p>${max_amount}</p>
+//                 <p>${date}</p>
+//                 <p>${person}</p>
+//                 <a href="">Match</a>
+//             </div>
+//         </section>`;
+//     })
+//     const allFilterItems = document.querySelectorAll('.filter-item');
+// const allFilterBtns = document.querySelectorAll('.filter-btn');
 
-console.log(allFilterBtns, allFilterItems);
+// console.log(allFilterBtns, allFilterItems);
 
-const filterItems = e => {
-    document.querySelector('.active-btn').classList.remove('active-btn');
-    e.target.classList.add('active-btn');
-    console.log(e.target);
-
-
-    allFilterItems.forEach( item => {
-        item.classList.add('hide');
-        console.log(item);
+// const filterItems = e => {
+//     document.querySelector('.active-btn').classList.remove('active-btn');
+//     e.target.classList.add('active-btn');
+//     console.log(e.target);
 
 
-        if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === 'all'){
-            item.classList.remove('hide');
-        }
+//     allFilterItems.forEach( item => {
+//         item.classList.add('hide');
+//         console.log(item);
 
 
-    });
-};
+//         if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === 'all'){
+//             item.classList.remove('hide');
+//         }
 
-allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
-})
+
+//     });
+// };
+
+// allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
+// })
 
 
 
