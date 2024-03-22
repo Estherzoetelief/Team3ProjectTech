@@ -135,7 +135,7 @@
         </section>
         <input type="button" value="Match" id="matchButton" />
         <section id="matchForm" class="hidden">
-            <h3>Do you want to:</h2>
+            <h3>Do you want to:</h3>
             <section id="matchOption1">
                 <input type="radio" name="Match" id="matchWithPerson" value="matchWithPerson" required>
                 <label for="matchWithPerson">Match with Micheal Vos</label><br>
@@ -144,15 +144,16 @@
             </section>
             
             <section id="matchOption2" class="hidden">
-                <input type="radio" name="MatchJobs" value="Matchjobs" id="project1" disabled required>
-                <label for="project1">Fitness app</label><br>
-                <input type="radio" name="MatchJobs" value="Matchjobs" id="project2" disabled required>
-                <label for="project2">Logo design</label><br>
-                <input type="radio" name="MatchJobs" value="" id="project3" disabled required>
-                <label for="project3">Front end design</label><br>
+                <input type="radio" name="MatchJobs" value="Matchjobs" id="project1" class="option2ForMatchButton" disabled required>
+                <label class="option2ForMatchButton" for="project1">Fitness app</label><br>
+                <input  type="radio" name="MatchJobs" value="Matchjobs" id="project2" class="option2ForMatchButton" disabled required>
+                <label class="option2ForMatchButton" for="project2">Logo design</label><br>
+                <input type="radio" name="MatchJobs" value="" id="project3" class="option2ForMatchButton" disabled required>
+                <label class="option2ForMatchButton" for="project3">Front end design</label><br>
             </section>
     
             <input type="submit" value="Submit" id="submitMatch"/>
+<button class="">close</button>
         </section>
     </section>
 </div> 
