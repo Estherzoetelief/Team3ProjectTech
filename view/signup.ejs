@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="../static/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
 
 <body class="registreren">
@@ -16,29 +16,43 @@
     <article>
 
         <section>
-            <h1>Create New Account</h1>
+            <h1>Create Account</h1>
             <p>Already have an account? <a href="/sign-in">Sign In.</a></p>
         </section>
 
         <section>
-            <form action="/" method="post">
+            <form action="/create-account" method="post">
                 <fieldset>
                     <label for="name">Name and surname</label>
                     <label for="username">Username</label>
-                    <input type="text" name="name" id="name" placeholder="Your Name">
-                    <input type="text" name="username" id="username" placeholder="Enter Username">
+                    <input type="text" name="name" id="name" placeholder="Your Name" required>
+                    <input type="text" name="username" id="username" placeholder="Enter Username" required>
                 </fieldset>
                 <fieldset>
                     <label for="email">E-Mail</label>
-                    <input type="email" name="email" id="email" placeholder="youremail@gmail.com">
+                    <input type="email" name="email" id="email" placeholder="youremail@gmail.com" required>
                 </fieldset>
                 <fieldset>
-                    <label for="password">Password</label>
-                    <label for="confirm_password">Confirm Password</label>
-                    <input type="password" name="password" id="password" placeholder="*********">
-                    <input type="password" name="confirm_password" id="confirm_password" placeholder="*********">
-                    <img src="../static/img/lock.svg" alt="">
-                    <img src="../static/img/lock.svg" alt="">
+
+                    <section>
+                        <label for="password">Password</label>
+                        <div>
+                            <input type="password" name="password" id="password" placeholder="*********" required
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                            title="Min. 8 characters + 1 symbol / number">
+                            <img src="img/lock.svg" alt="">
+                        </div>
+                        <p><span id="password-symbol">✕</span> Min. 8 characters + 1 symbol and number</p>
+                    </section>
+
+                    <section>
+                        <label for="confirm_password">Confirm Password</label>
+                        <div>
+                            <input type="password" name="confirm_password" id="confirm_password" placeholder="*********"
+                            required>
+                            <img src="img/lock.svg" alt="">
+                        </div>
+                    </section>
                 </fieldset>
                 <fieldset>
                     <input type="submit" value="SIGN UP">
@@ -50,7 +64,7 @@
 
     </article>
 
-
+    <script src="/scripts/script.js"></script>
 </body>
 
 </html>

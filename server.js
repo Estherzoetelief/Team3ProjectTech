@@ -5,23 +5,48 @@ const app = express()
 
 // const port = 8511
 
+const multer = require('multer');
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'upload/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + '-' + file.originalname)
+//     }
+// })
+const upload = multer({dest: 'static/upload/' });
+
 app
   .use(express.urlencoded({extended: true})) 
-  .use(express.static('static'))             
+  .use(express.static('static'))            
   .set('view engine', 'ejs')      
   .set('views', 'view')   
 
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
+
+    .post('/log-in', signIn)
     .post('/create-account', addUser)
+feature-upload-images
     .get('/portfolio', showPortfolioPage)
+
+
+    .get('/create-request', createRequest)
+    .post('/send-request', upload.single('images') ,addRequest)
+
+    .get('/find-requests', showRequests)
     .listen(8511)
+
+  
+
+
 
 
 // VERBINDING MET DE DATABASE
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
+const { title } = require('process')
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 const client = new MongoClient(uri, {
     serverApi: {
@@ -40,6 +65,17 @@ client.connect()
     console.log(`For uri - ${uri}`)
   })
 
+const db = client.db(process.env.DB_NAME)
+const collection = db.collection(process.env.DB_COLLECTION)
+const collection2 = db.collection(process.env.DB_COLLECTION2)
+
+
+
+
+
+
+
+
 
 // ROUTE FUNCTIES
 
@@ -50,6 +86,7 @@ function showRegisterPage(req, res){
 function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
+
 
 // function showPortfolioPage(req, res){
 //   res.render('portfolio.ejs')
@@ -68,23 +105,52 @@ function showPortfolioPage(req, res){
       console.error('Error retrieving portfolio:', error);
       res.status(500).send('Error retrieving portfolio');
     });
+
+function createRequest(req, res){
+  res.render('createrequest.ejs')
+
 }
 
-
-function addUser(req, res){
-	
-	res.render('account.ejs', { 
-        naam: req.body.naam,
-        wachtwoord: req.body.wachtwoord,
-        geboortedatum: req.body.geboortedatum
-    });
-	}
 
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
 const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
+
+// CHECKEN OF DE INLOG GEGEVENS KLOPPEN
+
+async function signIn(req, res) {
+  try {
+    const userInput = await collection.findOne({email: req.body.email });
+
+    if (userInput && userInput.password === req.body.password ) {
+      res.render("home.ejs", {
+        name: userInput.name,
+        username: userInput.username,
+        email: req.body.email,
+        password: req.body.password
+    })
+    } else {
+      alert("Invalid username or password")
+    }
+  } catch (error) {
+    console.error(error);
+    res.send('Error during login');
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
+
 
 async function addUser(req, res){
     result = await collection.insertOne({
@@ -95,13 +161,14 @@ async function addUser(req, res){
     })
 
     console.log(`Added with _id: ${result.insertedID}`)
-    res.render("added.ejs", {
+    res.render("home.ejs", {
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
     })
 }
+
 
 // Deze gaan we niet gebruiken want we willen afbeeldingen op schijf opslaan, webserver.
 // // AFBEELDINGEN TOEVOEGEN AAN DE DATABASE
@@ -367,3 +434,36 @@ app.get('/portfolio', (req, res) => {
       res.status(500).send('Error retrieving portfolio');
     });
 });
+
+
+
+
+
+
+// REQUEST TOEVOEGEN AAN DE DATABASE
+
+async function addRequest(req, res){
+  result = await collection2.insertOne({
+    category: req.body.category,
+    project_title: req.body.projectTitle,
+    description: req.body.description,
+    budget: req.body.budget,
+    duration: req.body.duration,
+    deadline: req.body.deadline,
+    images: req.file.filename
+  })
+
+  const requestList = await collection2.find({}).toArray()
+  res.render('requests.ejs', {requests: requestList})
+}
+
+
+
+// REQUEST TONEN OP DE FIND REQUEST PAGE
+
+async function showRequests(req,res) {
+  
+const requestList = await collection2.find({}).toArray()
+res.render('requests.ejs', {requests: requestList})
+}
+
