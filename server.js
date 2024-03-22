@@ -3,9 +3,16 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
-const multer = require('multer')
-const upload = multer({dest: 'static/upload/'})
-
+const multer = require('multer');
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'upload/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + '-' + file.originalname)
+//     }
+// })
+const upload = multer({dest: 'static/upload/' });
 
 app
   .use(express.urlencoded({extended: true})) 
@@ -20,10 +27,12 @@ app
     .post('/log-in', signIn)
     .post('/create-account', addUser)
 
-    .get('/request', showRequestPage)
-    .post('/send-request',upload.single('images') ,addRequest)
+    .get('/create-request', createRequest)
+    .post('/send-request', upload.single('images') ,addRequest)
 
     .get('/find-requests', showRequests)
+
+
 
     .listen(8511)
 
@@ -76,8 +85,8 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-function showRequestPage(req, res){
-  res.render('request.ejs')
+function createRequest(req, res){
+  res.render('createrequest.ejs')
 }
 
 
@@ -143,7 +152,7 @@ async function addUser(req, res){
 async function addRequest(req, res){
   result = await collection2.insertOne({
     category: req.body.category,
-    project_title: req.body.project-title,
+    project_title: req.body.projectTitle,
     description: req.body.description,
     budget: req.body.budget,
     duration: req.body.duration,
@@ -152,8 +161,7 @@ async function addRequest(req, res){
   })
 
   const requestList = await collection2.find({}).toArray()
-  res.render('findRequests.ejs', {requests: requestList})
-
+  res.render('requests.ejs', {requests: requestList})
 }
 
 
@@ -162,7 +170,6 @@ async function addRequest(req, res){
 
 async function showRequests(req,res) {
   
-  const requestList = await collection2.find({}).toArray()
-res.render('findRequests.ejs', {requests: requestList})
-
+const requestList = await collection2.find({}).toArray()
+res.render('requests.ejs', {requests: requestList})
 }

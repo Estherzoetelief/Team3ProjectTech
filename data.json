@@ -1,0 +1,69 @@
+[
+
+  {
+    "images": [
+      "../static/img/requestimg20.jpeg", 
+      "../static/img/requestimg22.jpeg",
+      "../static/img/requestimg23.jpeg",
+      "../static/img/requestimg24.jpeg",
+      "../static/img/requestimg21.jpeg",
+      "../static/img/requestimg19.jpeg"
+    ],
+    "title": "Looking for a developer",
+    "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
+    "max_amount": 300,
+    "date": "2024/0318",
+    "person": "David Johnson"
+  },
+
+    {
+      "images": [
+      "../static/img/requestimg3.jpeg", 
+      "../static/img/requestimg5.jpg",
+      "../static/img/requestimg1.jpg",
+      "../static/img/requestimg4.jpg",
+      "../static/img/requestimg2.jpg",
+      "../static/img/requestimg6.jpg"
+  ],
+      "title": "Graphic Design Posterss",
+      "duration" : "2-3 days",
+      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
+      "max_amount": "€780",
+      "date": "15/04/24",
+      "person": "Zaar Brouwer",
+      "categorie": "logo-design"
+    },
+
+    {
+      "images": [
+        "../static/img/requestimg8.jpg", 
+        "../static/img/requestimg9.jpg",
+        "../static/img/requestimg10.jpg",
+        "../static/img/requestimg11.jpg",
+        "../static/img/requestimg12.jpeg",
+        "../static/img/requestimg13.jpeg"
+      ],
+      "title": "Company Logo",
+      "description": "We'd love to enhance our website with captivating CSS animations. Our website is the face of our brand, and we believe animations can bring it to life. We're seeking animations that are sleek, modern, and add a touch of interactivity without overwhelming the user experience. Smooth transitions, subtle hover effects, and creative loading animations would greatly enhance user engagement. We value creativity and innovation, so feel free to explore unique ideas that align with our brand identity. Let's collaborate to create a visually stunning website that leaves a lasting impression on our visitors.",
+      "max_amount": "€890",
+      "date": "2024/03/16",
+      "person": "Jane Smith",
+      "categorie": "css"
+    },
+
+    {
+      "images": [
+        "../static/img/requestimg14.jpeg", 
+        "../static/img/requestimg15.jpeg",
+        "../static/img/requestimg16.jpeg",
+        "../static/img/requestimg17.jpeg",
+        "../static/img/requestimg18.jpeg",
+        "../static/img/requestimg13.jpeg"
+      ],
+      "title": "Looking for a developer",
+      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
+      "max_amount": 300,
+      "date": "2024/0318",
+      "person": "David Johnson"
+    }
+]
