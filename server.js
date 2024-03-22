@@ -28,7 +28,6 @@ app
 
     .post('/log-in', signIn)
     .post('/create-account', addUser)
-feature-upload-images
     .get('/portfolio', showPortfolioPage)
 
 
@@ -111,8 +110,6 @@ function createRequest(req, res){
 
 }
 
-
-
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
@@ -139,15 +136,6 @@ async function signIn(req, res) {
     res.send('Error during login');
   }
 }
-
-
-
-
-
-
-
-
-
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
@@ -466,4 +454,4 @@ async function showRequests(req,res) {
 const requestList = await collection2.find({}).toArray()
 res.render('requests.ejs', {requests: requestList})
 }
-
+}
