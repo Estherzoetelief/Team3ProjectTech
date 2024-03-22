@@ -253,6 +253,12 @@ input[type=email],
     grid-column-gap: 2em;
 }
 
+.registreren fieldset:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
 .registreren fieldset:nth-of-type(3) {
     grid-template-columns: 1fr 1fr;
     margin-bottom: 2.5em;
@@ -263,7 +269,7 @@ input[type=email],
 }
 
 .registreren fieldset:nth-of-type(3)>section input {
-    width: 90%;
+    width: 100%;
     height: 100%;
 }
 
@@ -981,7 +987,7 @@ Hier start request & create page css
 ----------------------------
 -------------------------- */
 
-.requests {
+.requests{
     background-color: var(--primaryBlack);
 }
 
@@ -1112,6 +1118,11 @@ Hier start request & create page css
 .requests {
     display: flex;
     justify-content: center;
+    margin-top: 4em;
+}
+
+.requests .navbar{
+   justify-content: left;
 }
 
 /* Alle informatie */
@@ -1924,4 +1935,354 @@ li:after {
         width: 40em;
     }
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================== */
+/* PORTFOLIO PAGINA NICHOLAS */
+/* ======================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
+
+:root {
+    --primaryBlack: #1E1E1E;
+    --primaryWhite: #F9F7F7;
+    --accentColor: #1700A5;
+    --h1-size: 14.00vw;
+    --h2-size: 3em;
+    --p-size: 1.4em;
+    --bodyTextSize: 1em;
+    --bodyTextFont: "Montserrat", sans-serif;
+    --hFont: 'GT Super Ds Trial', sans-serif;
+    --hFontItalic: 'GT Super Ds Trial', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------- */
+/* DISCOVER PAGE */
+/* ----------- */
+
+
+.discover{
+    background-color: var(--primaryBlack);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primaryBlack);
+  padding: 0 4em;
+  height: 5em;
+  width: 100%;;
+  box-shadow: 0 0 1em .1em #111;
+  z-index: 1;
+}
+
+.navbar div {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  color: var(--primaryWhite);
+  text-decoration: none;
+}
+
+.navLeft {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navLeft a {
+  font-family: var(--bodyTextFont);
+  font-size: 1em;
+}
+
+.navLeft a.active {
+  position: relative;
+  margin-right: 2.2em;
+}
+
+.navLeft a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background-color: var(--primaryWhite);
+}
+
+.navCenter {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.navCenter a {
+  font-size: 2.4em;
+  font-family: var(--hFont);
+}
+
+.navRight {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navRight a {
+  margin-left: 1.8em;
+}
+
+.heart img {
+  width: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.lightning img {
+  height: 20px;
+  width: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  font-family: var(--bodyTextFont);
+  font-size: 1em;
+  color: var(--primaryWhite);
+}
+
+.profile img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: .6em;
+}
+
+@keyframes sparkle {
+  0% {
+      opacity: 1;
+      transform: scale(0.5);
+  }
+  100% {
+      opacity: 0;
+      transform: scale(1);
+  }
+}
+
+.sparkleAnimation {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle .6s forwards;
+  will-change: opacity, transform;
+  z-index: 1;
+}
+
+.gridContainer {
+  columns: 12em;
+  column-gap: 1em;
+  padding: 2em 4em;
+  background-color: var(--primaryBlack);
+}
+
+.gridDiscover {
+  margin-top: 6em;
+}
+
+.figureContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.figureContainer img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+}
+
+@keyframes heart {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heartAnimation {
+  animation: heart .4s ease-out;
+}
+
+.heartButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: url('../img/heart.png') no-repeat center;
+  background-size: cover;
+  width: 20px;
+  height: 18px;
+  display: none;
+  cursor: pointer;
+}
+
+.heartButton:hover {
+  filter: opacity(0.8);
+}
+
+.figureContainer:hover .heartButton {
+  display: block;
+}
+
+.figureContainer:hover img {
+  filter: brightness(0.6);
+}
+
+/* ----------- */
+/* DETAIL PAGE */
+/* ----------- */
+
+.detailContainer {
+  background-color: var(--primaryBlack);
+  color: var(--primaryWhite);
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 5em);
+  width: 100%;
+  position: fixed;
+  top: 5em;
+  z-index: -1;
+  padding: 0 4em;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.imageContainer img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.textContainer {
+  font-family: var(--bodyTextFont);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleContainer h2 {
+  font-family: var(--hFont);
+  font-size: var(--h2-size);
+}
+
+.titleContainer img {
+  width: 20px;
+}
+
+.titleContainer img:hover {
+  filter: opacity(0.8);
+}
+
+.tagContainer {
+  display: flex;
+  flex-direction: row;
+  font-size: .8em;
+  margin-top: 1em;
+}
+
+.tagContainer p {
+  padding: .8em 1.2em;
+  border-radius: 2em;
+  background-color: #2F2F2F;
+  margin-right: 1em;
+}
+
+.textContainer > p {
+  font-size: var(--bodyTextSize);
+  line-height: 2em;
+  margin-top: 2em;
+}
+
+.textContainer > a {
+  text-decoration: none;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 3em;
+  background-color: #2F2F2F;
+  padding: 1.6em;
+  border-radius: .6em;
+}
+
+.profileContainer img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileContainer h3 {
+  margin-left: 1em;
+  color: var(--primaryWhite);
+}
+
+.gridDetail {
+  box-shadow: 0 0 1em .1em #111;
+  position: absolute;
+  top: 100vh;
+  width: 100%;
 }

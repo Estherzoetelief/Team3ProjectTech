@@ -14,33 +14,7 @@ const multer = require('multer');
 //         cb(null, Date.now() + '-' + file.originalname)
 //     }
 // })
-const upload = multer({dest: 'static/upload/' });
-
-app
-  .use(express.urlencoded({extended: true})) 
-  .use(express.static('static'))            
-  .set('view engine', 'ejs')      
-  .set('views', 'view')   
-
-app
-    .get('/register', showRegisterPage)
-    .get('/sign-in', showSignInPage)
-
-    .post('/log-in', signIn)
-    .post('/create-account', addUser)
-    .get('/portfolio', showPortfolioPage)
-
-
-    .get('/create-request', createRequest)
-    .post('/send-request', upload.single('images') ,addRequest)
-
-    .get('/find-requests', showRequests)
-    .listen(8511)
-
-  
-
-
-
+const upload2 = multer({dest: 'static/upload/' });
 
 // VERBINDING MET DE DATABASE
 
@@ -71,9 +45,29 @@ const collection2 = db.collection(process.env.DB_COLLECTION2)
 
 
 
+app
+  .use(express.urlencoded({extended: true})) 
+  .use(express.static('static'))            
+  .set('view engine', 'ejs')      
+  .set('views', 'view')   
+
+app
+    .get('/register', showRegisterPage)
+    .get('/sign-in', showSignInPage)
+  //  .get('/portfolio', showPortfolioPage)
+    .post('/log-in', signIn)
+    .post('/create-account', addUser)
+ 
+
+    .get('/create-request', createRequest)
+    .post('/send-request', upload2.single('images') ,addRequest)
+
+    .get('/find-requests', showRequests)
 
 
-
+    .get('/discover', showDiscoverPage)
+    .get('/detail', showDetailPage)
+    .listen(8511) 
 
 
 // ROUTE FUNCTIES
@@ -86,10 +80,18 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
+function createRequest(req, res){
+  res.render('createrequest.ejs')
+}
 
-// function showPortfolioPage(req, res){
-//   res.render('portfolio.ejs')
-// }
+function showDiscoverPage(req,res){
+  res.render('discover.ejs')
+}
+
+function showDetailPage(req,res){
+  res.render('detail.ejs')
+}
+
 
 function showPortfolioPage(req, res){
   collectionPortfolioUploads.findOne({ portfolio: loginName })
@@ -103,16 +105,10 @@ function showPortfolioPage(req, res){
     .catch(error => {
       console.error('Error retrieving portfolio:', error);
       res.status(500).send('Error retrieving portfolio');
-    });
+    })}
 
-function createRequest(req, res){
-  res.render('createrequest.ejs')
-
-}
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
-const db = client.db(process.env.DB_NAME)
-const collection = db.collection(process.env.DB_COLLECTION)
 const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
 
 // CHECKEN OF DE INLOG GEGEVENS KLOPPEN
@@ -335,8 +331,6 @@ And make them accessible through http://localhost:3000/a.
 // -------------------------------------------------------------------
 
 
-const multer = require('multer');
-
 // Defines storage for uploaded files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -404,7 +398,6 @@ app.post('/upload', upload.array('photos', 7), (req, res) => {
   });
 });
 
-
 // Assuming you want to retrieve the images from the database and display them on a webpage
 app.get('/portfolio', (req, res) => {
   // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
@@ -422,9 +415,6 @@ app.get('/portfolio', (req, res) => {
       res.status(500).send('Error retrieving portfolio');
     });
 });
-
-
-
 
 
 
@@ -453,5 +443,4 @@ async function showRequests(req,res) {
   
 const requestList = await collection2.find({}).toArray()
 res.render('requests.ejs', {requests: requestList})
-}
 }

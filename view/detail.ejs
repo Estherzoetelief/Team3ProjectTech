@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Page</title>
+<link rel="stylesheet" href="stylesheets/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <%- include('nav.ejs') %>
+    </header>   
+<main>
+    <section class="detailContainer">
+        <section class="imageContainer">
+            <img src="https://ideaspot.tv/codepen-assets/pinterest-like-layout/architecture-gb0824a395_1920.jpg" id="tiltable-image">
+        </section>
+        <section class="textContainer">
+            <div class="titleContainer">
+                <h2>Title Project</h2>
+                <a href="#"><img src="img/heart.png"></a>
+            </div>
+            <div class="tagContainer">
+                <p>Illustration</p>
+                <p>Graphic Design</p>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <a href="#">
+                <section class="profileContainer">
+                    <img src="img/profile.jpg">
+                    <h3>Name Designer</h3>
+                </section>
+            </a>
+        </section>
+    </section>
+    <section class="gridContainer gridDetail"></section>
+</main>
+    <script src="scripts/home.js"></script>
+</body>
+</html>

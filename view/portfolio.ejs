@@ -9,25 +9,18 @@
     <title>Document</title>
 </head>
 
-
-<header>
-    <%- include('navbar.ejs'); %>
-</header>
-
-<body class="portfolioPagina">
-    <article>
+<body class="portfolioPagina" >
         <h1>Micheal Vos</h1>
         <h2>Designer</h2>
         <!-- animatie maken waarin je allemaal verschillende kwaliteiten ziet -->
         <p> 2012 - 2024</p>
         <hr>
-    </article>
     <section class="buttonsToggle">
         <section>
             <!--wit achtergrond voor de knoppen -->
             <div id="animationButton"></div>
             <button type="button" id="buttonWork">Work</button>
-            <button type="button" id="buttonJobs">jobs</button>
+            <button type="button" id="buttonJobs2">jobs</button>
         </section>
     </section>
 
@@ -50,6 +43,11 @@
                     </section>
                 </figure>
             <% }) %>
+
+
+
+
+
             <!-- <figure>
                 <img class="unhide" src="/img/fotoPortfolio1.png" alt="test">
                 <section class="hide">
@@ -182,17 +180,8 @@
      </div>
     </div>
 
-<!-- 
-        <input type="file" name="file">
-        <input type="submit" value="Upload File"> -->
-
-</body>
-<footer></footer>
-<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js"
-    integrity="sha512-VJ/iYbiu1eJ6yLimfTi65t2R9TFcG5D9X8ZCfbbEFhTfPnKJh8byoKXEawi5ScJZBYL1eiirL1+MczZDx0Tz9Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="/scripts/script.js"></script>
-<script src="server.js"></script>
+<script src="/scripts/portfolio.js"></script>
+</body>
+
 </html>
