@@ -14,7 +14,7 @@ const multer = require('multer');
 //         cb(null, Date.now() + '-' + file.originalname)
 //     }
 // })
-const upload2 = multer({dest: 'static/upload/' });
+// const upload2 = multer({dest: 'static/upload/' });
 
 // VERBINDING MET DE DATABASE
 
@@ -41,6 +41,7 @@ client.connect()
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
 const collection2 = db.collection(process.env.DB_COLLECTION2)
+const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
 
 
 
@@ -54,7 +55,7 @@ app
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
-  //  .get('/portfolio', showPortfolioPage)
+    .get('/portfolio', showPortfolioPage)
     .post('/log-in', signIn)
     .post('/create-account', addUser)
  
@@ -108,8 +109,6 @@ function showPortfolioPage(req, res){
     })}
 
 
-// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
-const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
 
 // CHECKEN OF DE INLOG GEGEVENS KLOPPEN
 
@@ -179,7 +178,7 @@ async function addUser(req, res){
 // met Multer verdere verwerking nodig hebben, zoals het verplaatsen of 
 // verwijderen van bestanden, dan kan fs daarbij van pas komen.
 
-// const multer = require('multer')
+
 
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -399,22 +398,22 @@ app.post('/upload', upload.array('photos', 7), (req, res) => {
 });
 
 // Assuming you want to retrieve the images from the database and display them on a webpage
-app.get('/portfolio', (req, res) => {
-  // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
-  collectionPortfolioUploads.findOne({ portfolio: loginName })
-    .then(data => {
-      if (data) {
-        // Assuming you have an HTML template to display the images
-        res.render('portfolio', { images: data.images });
-      } else {
-        res.status(404).send('Portfolio not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error retrieving portfolio:', error);
-      res.status(500).send('Error retrieving portfolio');
-    });
-});
+// app.get('/portfolio', (req, res) => {
+//   // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
+//   collectionPortfolioUploads.findOne({ portfolio: loginName })
+//     .then(data => {
+//       if (data) {
+//         // Assuming you have an HTML template to display the images
+//         res.render('portfolio', { images: data.images });
+//       } else {
+//         res.status(404).send('Portfolio not found');
+//       }
+//     })
+//     .catch(error => {
+//       console.error('Error retrieving portfolio:', error);
+//       res.status(500).send('Error retrieving portfolio');
+//     });
+// });
 
 
 
