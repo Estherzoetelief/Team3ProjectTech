@@ -18,8 +18,8 @@
         <div>
             <h1>Jobs</h1>
             <div class="job-switch">
-                <a href="">Find</a>
-                <a href="">Create</a>
+                <a href="/find-requests">Find</a>
+                <a href="/create-request">Create</a>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
         <article class="all-requests">
             <% requests.forEach(request => { %>
 
-            <section class="filter-item" data-name="${categorie}">
+            <section class="filter-item">
                 <div class="imglayout">
                     <img src="upload/<%= request.images %>" alt="">
                     <img src="upload/<%= request.images %>" alt="">

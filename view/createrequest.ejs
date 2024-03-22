@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+</head>
+<body class="create-request">
+
+    <div class="background"></div>
+
+    <div class="toggle">
+        <div class="job-switch">
+            <a href="/find-requests">Find</a>
+            <a href="/create-request">Create</a>
+        </div>
+    </div>
+
+<form action="/send-request" method="post" enctype="multipart/form-data">
+
+<div class="progressbar">
+    <div class="progress" id="progress"></div>
+    <div class="progress-step active-progress"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+</div>
+
+<fieldset class="fieldset active">
+<h2>In which category are you looking for a professional?</h2>
+<div class="radio-btns-container">
+<input type="radio" name="category" id="app-design" value="App Design">
+<label for="app-design">App Design</label>
+<input type="radio" name="category" id="brand-style" value="Brand Style">
+<label for="brand-style">Brand Style</label>
+<input type="radio" name="category" id="product-gaming" value="Product & Gaming">
+<label for="product-gaming">Product & Gaming</label>
+<input type="radio" name="category" id="marketing" value="Marketing">
+<label for="marketing">Marketing</label>
+<input type="radio" name="category" id="logo-design" value="Logo Design">
+<label for="logo-design">Logo Design</label>
+<input type="radio" name="category" id="website-to-app" value="Website to App">
+<label for="website-to-app">Website to App</label>
+<input type="radio" name="category" id="product-design" value="Product Design">
+<label for="product-design">Product Design</label>
+<input type="radio" name="category" id="ux-design" value="UX Design">
+<label for="ux-design">UX Design</label>
+<input type="radio" name="category" id="front-dev" value="Front-end Development">
+<label for="front-dev">Front-end Development</label>
+<input type="radio" name="category" id="back-dev" value="Back-end Development">
+<label for="back-dev">Back-end Development</label>
+<input type="radio" name="category" id="motion-design" value="Motion Design">
+<label for="motion-design">Motion Design</label>
+</div>
+<div class="btn-container" >
+    <a href="" class="btn-next"></a>
+</div>
+</fieldset>
+
+<fieldset   >
+    <h2>Provide some context for description
+        of your request</h2>
+<input type="text" name="projectTitle" id="project-title" placeholder="Project Title">
+<input type="text" name="description" id="description-field" placeholder="Description">
+<div class="btn-container"   >
+    <a href="" class="btn btn-prev"></a>
+    <a href="" class="btn-next"></a>
+</div>
+</fieldset>
+<fieldset>
+    <h2>Select filters to search more specifically</h2>
+    <div class="drop-down-input">
+<select name="budget" id="budget-dd">
+    <option value="">Budget</option>
+    <option value="Under €55">Under €55</option>
+    <option value="€55 - €100">€55 - €100 </option>
+    <option value="€100 & above">€100 & above</option>
+</select>
+<select name="duration" id="duration-dd">
+    <option value="">Duration</option>
+    <option value="1-7 days">1-7 days</option>
+    <option value="2-4 weeks">2-4 weeks</option>
+    <option value="1-2 months">1-2 months </option>
+    <option value="3-4 months">3-4 months </option>
+    <option value="5-6 months">5-6 months </option>
+    <option value="6+ months">6+ months </option>
+</select>
+<input type="date" name="deadline" id="deadline">
+</div>
+<div class="btn-container" > 
+    <a href="" class="btn btn-prev"></a>
+    <a href="" class="btn btn-next"></a>
+</div>
+</fieldset>
+
+<fieldset>
+    <h2>Upload files</h2>
+    <div class="file-input">
+    <input type="file" name="images" accept="image/*" required>
+    </div>
+    <div class="btn-container" >
+        <a href="" class="btn btn-prev"></a>
+        <input type="submit" value="Submit Request">
+    </div>
+</fieldset>
+</form>
+<script src="scripts/script.js"></script>
+</body>
+</html>
+
+

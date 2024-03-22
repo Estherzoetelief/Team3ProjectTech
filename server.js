@@ -4,19 +4,15 @@ const express = require('express')
 const app = express()
 
 const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-})
-const upload = multer({ storage: storage });
-
-app.post('/send-request', upload.array('images', 5), addRequest);
-
-
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'upload/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + '-' + file.originalname)
+//     }
+// })
+const upload = multer({dest: 'static/upload/' });
 
 app
   .use(express.urlencoded({extended: true})) 
@@ -31,8 +27,8 @@ app
     .post('/log-in', signIn)
     .post('/create-account', addUser)
 
-    .get('/request', showRequestPage)
-    .post('/send-request',upload.array('images', 5) ,addRequest)
+    .get('/create-request', createRequest)
+    .post('/send-request', upload.single('images') ,addRequest)
 
     .get('/find-requests', showRequests)
 
@@ -89,8 +85,8 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-function showRequestPage(req, res){
-  res.render('request.ejs')
+function createRequest(req, res){
+  res.render('createrequest.ejs')
 }
 
 
@@ -166,7 +162,6 @@ async function addRequest(req, res){
 
   const requestList = await collection2.find({}).toArray()
   res.render('requests.ejs', {requests: requestList})
-
 }
 
 
@@ -175,7 +170,6 @@ async function addRequest(req, res){
 
 async function showRequests(req,res) {
   
-  const requestList = await collection2.find({}).toArray()
+const requestList = await collection2.find({}).toArray()
 res.render('requests.ejs', {requests: requestList})
-
 }

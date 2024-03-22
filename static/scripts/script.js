@@ -1,12 +1,10 @@
-
-
 // // kijken of de wachtwoorden overeenkomen
 
-function confirmPassword(){
-    const password = document.getElementById("password").value
-    const confirmPassword = document.getElementById("confirm_password").value
-    const inputField = document.getElementById("confirm_password")
 
+function confirmPasswordFunction(){
+const password = document.getElementById("password").value
+const confirmPassword = document.getElementById("confirm_password").value
+const inputField = document.getElementById("confirm_password")
 if(confirmPassword.length != 0){
         if(password == confirmPassword){
      console.log("match")
@@ -18,7 +16,7 @@ if(confirmPassword.length != 0){
 }
 }
 
-setInterval(confirmPassword, 100)
+// confirmPassword.addEventListener('input', confirmPasswordFunction())
 
 // // kijken of het wachtwoord voldoet aan de requirements
 function checkPassword() {
@@ -32,6 +30,9 @@ function checkPassword() {
         passwordSymbol.textContent = "✕";
     }
 }
+
+// password.addEventListener("input", checkPassword);
+
 
 // Lisa deel request & create
 
@@ -158,3 +159,5 @@ function updateProgressbar() {
     const progressActive = document.querySelectorAll('.progress-step.active-progress');
     progress.style.width = (progressActive.length - 1) / (progressSteps.length - 1) * 100 + '%';
 }
+
+

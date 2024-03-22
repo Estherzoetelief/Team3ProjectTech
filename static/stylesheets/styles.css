@@ -34,7 +34,8 @@
 /* ALGEMEEN */
 
 .registreren,
-.inloggen {
+.inloggen,
+.create-request {
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -49,7 +50,8 @@
 /* ACHTERGROND */
 
 .inloggen>div:first-of-type,
-.registreren>div:first-of-type {
+.registreren>div:first-of-type,
+.background{
     position: absolute;
     top: 0;
     width: 100vw;
@@ -314,7 +316,6 @@ input[type=email],
 body {
     margin: 0;
     padding: 0;
-    background-color: #1700A5;
 }
 
 .desktopOriginalNav {
@@ -600,45 +601,19 @@ snippetes van internet */
 
 
 
+
+
+
+
 /* --------------------------
 ----------------------------
 Hier start request & create page css 
 ----------------------------
 -------------------------- */
 
-
-
-
-
-/* 
-.button-box {
-    width: 310px;
-    position: relative;
-    border-radius: 30px;
-    background-color: #363636;
-    border: 1px solid rgb(137, 137, 137);
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 51px;
+.requests {
+    background-color: var(--primaryBlack);
 }
-
-.btn {
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 150px;
-    height: 100%;
-    background: var(--primaryWhite);
-    border-radius: 30px;
-    transition: 0.5s;
-
-}
-
-.rightbtn {
-    color: white;
-} */
 
 
 /* reqeusts cards */
@@ -900,7 +875,7 @@ Hier start request & create page css
 .job-switch a:first-of-type {
     background-color: var(--primaryWhite);
     color: var(--primaryBlack);
-    height: 2.6em;
+    height: 2.8em;
     width: 9em;
     border-radius: 100vw;
     position: absolute;
@@ -910,14 +885,18 @@ Hier start request & create page css
 
 .job-switch a:last-of-type {
     color: var(--primaryWhite);
-    height: 2.6em;
+    height: 2.8em;
     width: 9em;
     border-radius: 100vw;
-    opacity: 0.8;
     position: absolute;
     top: 0;
     right: 0;
 }
+
+.requests .job-switch a:last-of-type{
+    opacity: 0.8;
+}
+
 
 
 
@@ -1136,7 +1115,38 @@ li:after {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+
+
+
+
+
+/* -------------------------- */
 /* create a request page START */
+/* -------------------------- */
+
+.create-request .job-switch{
+    margin-top: -8em;
+}
+
+.create-request .job-switch a:first-of-type{
+    background-color: var(--primaryBlack);
+    color: var(--primaryWhite);
+    opacity: 0.8;
+}
+
+.create-request .job-switch a:last-of-type{
+    background-color: var(--primaryWhite);
+    color: var(--primaryBlack);
+}
+
+
+
+.create-request .toggle{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    z-index: 2;
+}
 
 
 .create-request h2 {
@@ -1152,12 +1162,13 @@ li:after {
 /* Arrow buttons */
 .create-request {
     background-color: var(--primaryBlack);
-    height: 100vh;
     background-image: url(../img/chris-bair-bOK5eWMDIWk-unsplash.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    display: grid;
     margin: 0;
+    height: 100vh;
 }
 
 .create-request .btn-next,
@@ -1218,7 +1229,7 @@ li:after {
 
 .create-request fieldset .btn-container {
     position: absolute;
-    bottom: 0;
+    bottom: -10em;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1227,7 +1238,7 @@ li:after {
 }
 
 /* 1e fieldset: category choice */
-.create-request::before {
+/* .create-request::before {
     content: "";
     position: absolute;
     top: 0;
@@ -1239,23 +1250,21 @@ li:after {
     margin: 0;
     text-align: center;
     margin-bottom: 0.5em;
-    ;
+} */
 
 
-}
-
-
-.createrequest section:first-of-type {
-    display: flex;
-    flex-wrap: wrap;
+.create-request fieldset:first-of-type {
     width: 85vw;
     justify-content: center;
-    max-width: 70em;
+    max-width: 60em;
     border: none;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     z-index: 2;
+    margin-bottom: -5em;
 }
+
 
 .create-request .radio-btns-container {
     display: flex;
@@ -1270,7 +1279,7 @@ li:after {
 }
 
 .create-request fieldset:first-of-type label {
-    background-color: #36363674;
+    background-color: #21171774;
     border-radius: 3em;
     margin-right: 1em;
     color: var(--primaryWhite);
@@ -1278,11 +1287,11 @@ li:after {
     font-family: var(--bodyTextFont);
     font-weight: 200;
     cursor: pointer;
-    border: 0.5px rgb(161, 161, 161) solid;
+    border: none;
     display: inline-block;
     white-space: nowrap;
     margin: 0.4em 0.4em;
-    padding: 0.5em 1.3em;
+    padding: 1em 2em 1em 2em;
     transition: 0.3s;
     z-index: 2;
 
@@ -1310,21 +1319,25 @@ li:after {
     z-index: 2;
     width: 10em;
     width: 40vw;
-
+    margin-bottom: -8em;
 }
 
 .create-request fieldset:nth-of-type(2) input {
-    background-color: rgba(211, 211, 211, 0.578);
+    background-color: rgba(0, 0, 0, 0.267);
     font-family: var(--bodyTextFont);
     border: none;
     margin-bottom: 1em;
-    color: #363636;
+    color: var(--primaryWhite);
     font-weight: 500;
     padding-left: 2.5em;
     border-radius: 12px;
     padding-top: 1.5em;
     max-width: 50em;
  
+}
+
+.create-request fieldset:nth-of-type(2) input::placeholder{
+    color: rgba(255, 255, 255, 0.268);
 }
 
 .create-request fieldset:nth-of-type(2) input:nth-of-type(1) {
@@ -1335,7 +1348,7 @@ li:after {
 
 .create-request fieldset:nth-of-type(2) input:nth-of-type(2) {
     width: 70vw;
-    padding-bottom: 15em;
+    padding-bottom: 12em;
 }
 
 
@@ -1358,17 +1371,21 @@ li:after {
 
 .create-request fieldset:nth-of-type(3) select,
 .create-request fieldset:nth-of-type(3) input[type="date"] {
-    background-color: #363636ae;
+    background-color: #21171774;;
     color: var(--primaryWhite);
-    border: 0.8px #aaaaaa solid;
+    border: none;
     border-radius: 0.5em;
-    padding: 1em 1.5em;
+    padding: 1em 1.5em 1em 1.5em;
     cursor: pointer;
     transition: background 0.3s;
     font-family: var(--bodyTextFont);
     font-weight: 500;
     font-size: 0.8em;
     margin: 1em 1em;
+}
+
+::webkit-calendar-picker-indicator{
+    background-color: white;
 }
 
 .create-request fieldset:nth-of-type(3) select:hover {
@@ -1385,17 +1402,22 @@ li:after {
 }
 
 .create-request fieldset:nth-of-type(4) input:nth-of-type(1)[type="file"] {
-    background-color: #2e12e6;
-    background-color: #363636;
     color: var(--primaryWhite);
-    border: 0.8px #aaaaaa solid;
-    border-radius: 0.5em;
-    padding: 1em 1.5em;
     cursor: pointer;
-    transition: background 0.3s;
     font-family: var(--bodyTextFont);
     font-weight: 500;
     font-size: 0.8em;
+    width: 100%;
+}
+
+.create-request .file-input{
+    background-color: #21171774;
+    padding: 4em 6em 6em 6em;
+    border-radius: 1em;
+}
+
+.create-request .file-input input{
+    outline: none;
 }
 
 .create-request fieldset:nth-of-type(4) input[type="submit"] {
@@ -1421,16 +1443,22 @@ li:after {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
+    position: relative;
 }
+
+/* .create-request select{
+    -moz-appearance: none; 
+    -webkit-appearance: none; 
+    appearance: none;
+    /* and then whatever styles you want*/
 
 
 /* ALLE fieldsets */
 .create-request fieldset {
-
     display: none;
     transform-origin: top;
     animation: animate 0.5s ease-in-out;
+    margin-top: -30em;
 }
 
 @keyframes animate {
@@ -1452,13 +1480,15 @@ li:after {
 /* progress bar */
 .create-request .progressbar {
     position: fixed;
-    top: 4em;
+    scale: 0.8;
+    top: 10em;
     display: flex;
     justify-content: space-between;
     margin-bottom: 2em;
     width: 50vw;
     counter-reset: step;
     z-index: 2;
+    opacity: 0.75;
 }
 
 .create-request .progressbar::before,
@@ -1468,13 +1498,13 @@ li:after {
     top: 50%;
     height: 1px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: var(--primaryWhite);
 }
 
 .create-request .progress {
     background-color: #fdfdff;
     width: 0%;
-    box-shadow: 0 0 0.5em 0.1em #BCB1FD;
+    box-shadow: 0 0 0.5em 0.1em #bcb1fd7e;
     z-index: 2;
 }
 
@@ -1508,11 +1538,12 @@ li:after {
 }
 
 
+
 /* mediaquery voor juiste positie progress bar op desktop */
 @media screen and (min-width: 768px) {
     .create-request .progressbar {
         position: fixed;
-        top: 10em;
+        top: 12em;
     }
 
     .create-request .drop-down-input {
