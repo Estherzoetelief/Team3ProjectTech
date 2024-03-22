@@ -14,34 +14,7 @@ const multer = require('multer');
 //         cb(null, Date.now() + '-' + file.originalname)
 //     }
 // })
-const upload = multer({dest: 'static/upload/' });
-
-app
-  .use(express.urlencoded({extended: true})) 
-  .use(express.static('static'))            
-  .set('view engine', 'ejs')      
-  .set('views', 'view')   
-
-app
-    .get('/register', showRegisterPage)
-    .get('/sign-in', showSignInPage)
-
-    .post('/log-in', signIn)
-    .post('/create-account', addUser)
-feature-upload-images
-    .get('/portfolio', showPortfolioPage)
-
-
-    .get('/create-request', createRequest)
-    .post('/send-request', upload.single('images') ,addRequest)
-
-    .get('/find-requests', showRequests)
-    .listen(8511)
-
-  
-
-
-
+const upload2 = multer({dest: 'static/upload/' });
 
 // VERBINDING MET DE DATABASE
 
@@ -68,13 +41,34 @@ client.connect()
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
 const collection2 = db.collection(process.env.DB_COLLECTION2)
+const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION2)
 
 
 
 
+app
+  .use(express.urlencoded({extended: true})) 
+  .use(express.static('static'))            
+  .set('view engine', 'ejs')      
+  .set('views', 'view')   
+
+app
+    .get('/register', showRegisterPage)
+    .get('/sign-in', showSignInPage)
+  //  .get('/portfolio', showPortfolioPage)
+    .post('/log-in', signIn)
+    .post('/create-account', addUser)
+ 
+
+    .get('/create-request', createRequest)
+    .post('/send-request', upload2.single('images') ,addRequest)
+
+    .get('/find-requests', showRequests)
 
 
-
+    .get('/discover', showDiscoverPage)
+    .get('/detail', showDetailPage)
+    .listen(8511) 
 
 
 // ROUTE FUNCTIES
@@ -87,36 +81,33 @@ function showSignInPage(req, res){
     res.render('signIn.ejs')
 }
 
-
-// function showPortfolioPage(req, res){
-//   res.render('portfolio.ejs')
-// }
-
-function showPortfolioPage(req, res){
-  collectionPortfolioUploads.findOne({ portfolio: loginName })
-    .then(data => {
-      if (data) {
-        res.render('portfolio.ejs', { collectionPortfolioUploads: data });
-      } else {
-        res.status(404).send('Portfolio not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error retrieving portfolio:', error);
-      res.status(500).send('Error retrieving portfolio');
-    });
-
 function createRequest(req, res){
   res.render('createrequest.ejs')
+}
 
+function showDiscoverPage(req,res){
+  res.render('discover.ejs')
+}
+
+function showDetailPage(req,res){
+  res.render('detail.ejs')
 }
 
 
+// function showPortfolioPage(req, res){
+//   collectionPortfolioUploads.findOne({ portfolio: loginName })
+//     .then(data => {
+//       if (data) {
+//         res.render('portfolio.ejs', { collectionPortfolioUploads: data });
+//       } else {
+//         res.status(404).send('Portfolio not found');
+//       }
+//     })
+//     .catch(error => {
+//       console.error('Error retrieving portfolio:', error);
+//       res.status(500).send('Error retrieving portfolio');
+//     })}
 
-// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
-const db = client.db(process.env.DB_NAME)
-const collection = db.collection(process.env.DB_COLLECTION)
-const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
 
 // CHECKEN OF DE INLOG GEGEVENS KLOPPEN
 
@@ -139,15 +130,6 @@ async function signIn(req, res) {
     res.send('Error during login');
   }
 }
-
-
-
-
-
-
-
-
-
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 
@@ -347,8 +329,6 @@ And make them accessible through http://localhost:3000/a.
 // -------------------------------------------------------------------
 
 
-const multer = require('multer');
-
 // Defines storage for uploaded files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -416,29 +396,39 @@ app.post('/upload', upload.array('photos', 7), (req, res) => {
   });
 });
 
-
 // Assuming you want to retrieve the images from the database and display them on a webpage
+// app.get('/portfolio', (req, res) => {
+//   // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
+//   collectionPortfolioUploads.findOne({ portfolio: loginName })
+//     .then(data => {
+//       if (data) {
+//         // Assuming you have an HTML template to display the images
+//         res.render('portfolio', { images: data.images });
+//       } else {
+//         res.status(404).send('Portfolio not found');
+//       }
+//     })
+//     .catch(error => {
+//       console.error('Error retrieving portfolio:', error);
+//       res.status(500).send('Error retrieving portfolio');
+//     });
+// });
+
+
 app.get('/portfolio', (req, res) => {
-  // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
   collectionPortfolioUploads.findOne({ portfolio: loginName })
-    .then(data => {
-      if (data) {
-        // Assuming you have an HTML template to display the images
-        res.render('portfolio', { images: data.images });
-      } else {
-        res.status(404).send('Portfolio not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error retrieving portfolio:', error);
-      res.status(500).send('Error retrieving portfolio');
-    });
+      .then(data => {
+          if (data) {
+              res.render('portfolio.ejs', { collectionPortfolioUploads: data });
+          } else {
+              res.status(404).send('Portfolio not found');
+          }
+      })
+      .catch(error => {
+          console.error('Error retrieving portfolio:', error);
+          res.status(500).send('Error retrieving portfolio');
+      });
 });
-
-
-
-
-
 
 // REQUEST TOEVOEGEN AAN DE DATABASE
 
@@ -466,4 +456,3 @@ async function showRequests(req,res) {
 const requestList = await collection2.find({}).toArray()
 res.render('requests.ejs', {requests: requestList})
 }
-
