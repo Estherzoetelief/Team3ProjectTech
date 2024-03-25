@@ -14,13 +14,13 @@ const multer = require('multer');
 //         cb(null, Date.now() + '-' + file.originalname)
 //     }
 // })
-const upload2 = multer({dest: 'static/upload/' });
+// const upload2 = multer({dest: 'static/upload/' });
 
 // VERBINDING MET DE DATABASE
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const { title } = require('process')
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=ProjectTechApp`
 const client = new MongoClient(uri, {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -41,7 +41,7 @@ client.connect()
 const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
 const collection2 = db.collection(process.env.DB_COLLECTION2)
-const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION2)
+const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
 
 
 
@@ -55,15 +55,15 @@ app
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
-  //  .get('/portfolio', showPortfolioPage)
+   .get('/portfolio', showPortfolioPage)
     .post('/log-in', signIn)
     .post('/create-account', addUser)
  
 
     .get('/create-request', createRequest)
-    .post('/send-request', upload2.single('images') ,addRequest)
+    // .post('/send-request', upload2.single('images') ,addRequest)
 
-    .get('/find-requests', showRequests)
+    // .get('/find-requests', showRequests)
 
 
     .get('/discover', showDiscoverPage)
@@ -94,19 +94,19 @@ function showDetailPage(req,res){
 }
 
 
-// function showPortfolioPage(req, res){
-//   collectionPortfolioUploads.findOne({ portfolio: loginName })
-//     .then(data => {
-//       if (data) {
-//         res.render('portfolio.ejs', { collectionPortfolioUploads: data });
-//       } else {
-//         res.status(404).send('Portfolio not found');
-//       }
-//     })
-//     .catch(error => {
-//       console.error('Error retrieving portfolio:', error);
-//       res.status(500).send('Error retrieving portfolio');
-//     })}
+function showPortfolioPage(req, res){
+  collectionPortfolioUploads.findOne({ portfolio: loginName })
+    .then(data => {
+      if (data) {
+        res.render('portfolio.ejs', { collectionPortfolioUploads: data });
+      } else {
+        res.status(404).send('Portfolio not found');
+      }
+    })
+    .catch(error => {
+      console.error('Error retrieving portfolio:', error);
+      res.status(500).send('Error retrieving portfolio');
+    })}
 
 
 // CHECKEN OF DE INLOG GEGEVENS KLOPPEN
@@ -287,10 +287,11 @@ And make them accessible through http://localhost:3000/a.
 //       portfolio: loginName,
 //       image1: req.file.filename
 //     })
+//   })
 
 
 //   res.status(200).send('File uploaded successfully');
-// });
+
 
 
 
@@ -330,24 +331,24 @@ And make them accessible through http://localhost:3000/a.
 
 
 // Defines storage for uploaded files
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Destination folder for uploaded files
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname); // Renames the file to include the timestamp
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'uploads/'); // Destination folder for uploaded files
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + file.originalname); // Renames the file to include the timestamp
+//   },
+// });
 
 // In dit specifieke voorbeeld wordt de cb-functie aangeroepen met null als eerste argument 
 // (wat aangeeft dat er geen fout is opgetreden) en de relatieve map "uploads/" als tweede argument, 
 // wat aangeeft dat de geüploade bestanden moeten worden opgeslagen in de map met de naam "uploads".
 
 // Hier moet nog een dynamisch login systeem komen
-const loginName = 'Ivo'
+const loginName = "Ivo"
 
 // Initializes Multer with the storage configuration
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 // Serve the "/uploads" directory statically
 app.use('/uploads', express.static('uploads')); 
@@ -379,22 +380,22 @@ app.use('/uploads', express.static('uploads'));
 
 
 // Assuming you have the MongoDB client properly configured and connected
-app.post('/upload', upload.array('photos', 7), (req, res) => {
-  const imagePaths = req.files.map(file => file.filename);
+// app.post('/upload', upload.array('photos', 7), (req, res) => {
+//   const imagePaths = req.files.map(file => file.filename);
 
-  // Update the existing document in MongoDB collection to push new image paths to the array
-  collectionPortfolioUploads.updateOne(
-    { portfolio: loginName }, // Filter to find the document for the logged-in user
-    { $push: { images: { $each: imagePaths } } } // Update operation to push new image paths to the array
-  )
-  .then(() => {
-    res.status(200).send('Files uploaded successfully');
-  })
-  .catch(error => {
-    console.error('Error uploading files:', error);
-    res.status(500).send('Error uploading files');
-  });
-});
+//   // Update the existing document in MongoDB collection to push new image paths to the array
+//   collectionPortfolioUploads.updateOne(
+//     { portfolio: loginName }, // Filter to find the document for the logged-in user
+//     { $push: { images: { $each: imagePaths } } } // Update operation to push new image paths to the array
+//   )
+//   .then(() => {
+//     res.status(200).send('Files uploaded successfully');
+//   })
+//   .catch(error => {
+//     console.error('Error uploading files:', error);
+//     res.status(500).send('Error uploading files');
+//   });
+// });
 
 // Assuming you want to retrieve the images from the database and display them on a webpage
 // app.get('/portfolio', (req, res) => {
@@ -432,27 +433,27 @@ app.get('/portfolio', (req, res) => {
 
 // REQUEST TOEVOEGEN AAN DE DATABASE
 
-async function addRequest(req, res){
-  result = await collection2.insertOne({
-    category: req.body.category,
-    project_title: req.body.projectTitle,
-    description: req.body.description,
-    budget: req.body.budget,
-    duration: req.body.duration,
-    deadline: req.body.deadline,
-    images: req.file.filename
-  })
+// async function addRequest(req, res){
+//   result = await collection2.insertOne({
+//     category: req.body.category,
+//     project_title: req.body.projectTitle,
+//     description: req.body.description,
+//     budget: req.body.budget,
+//     duration: req.body.duration,
+//     deadline: req.body.deadline,
+//     images: req.file.filename
+//   })
 
-  const requestList = await collection2.find({}).toArray()
-  res.render('requests.ejs', {requests: requestList})
-}
+//   const requestList = await collection2.find({}).toArray()
+//   res.render('requests.ejs', {requests: requestList})
+// }
 
 
 
 // REQUEST TONEN OP DE FIND REQUEST PAGE
 
-async function showRequests(req,res) {
+// async function showRequests(req,res) {
   
-const requestList = await collection2.find({}).toArray()
-res.render('requests.ejs', {requests: requestList})
-}
+// const requestList = await collection2.find({}).toArray()
+// res.render('requests.ejs', {requests: requestList})
+// }
