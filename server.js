@@ -2,8 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
-
-// const port = 8511
+const session = require('express-session')
 
 const multer = require('multer');
 // const storage = multer.diskStorage({
@@ -42,10 +41,12 @@ const db = client.db(process.env.DB_NAME)
 const collection = db.collection(process.env.DB_COLLECTION)
 const collection2 = db.collection(process.env.DB_COLLECTION2)
 
-
-
-
 app
+  .use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET
+  }))
   .use(express.urlencoded({extended: true})) 
   .use(express.static('static'))            
   .set('view engine', 'ejs')      
@@ -147,10 +148,7 @@ async function addUser(req, res){
     })
 
     console.log(`Added with _id: ${result.insertedID}`)
-    res.render("discover.ejs", {
-        username: req.body.username,
-        profile_picture: req.file.filename
-    })
+    res.redirect(`/discover?username=${req.body.username}&profile_picture=${req.file.filename}`);
 }
 
 
