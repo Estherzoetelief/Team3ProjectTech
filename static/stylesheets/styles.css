@@ -143,13 +143,6 @@ input[type=email],
 
 
 
-
-/* icoontjes in de input labels */
-
-
-
-
-
 /* label */
 .inloggen label,
 .registreren label {
@@ -214,7 +207,7 @@ input[type=email],
 }
 
 .registreren input[type=email] {
-    width: 60%;
+    width: 100%;
 }
 
 .registreren input[type=password] {
@@ -256,8 +249,13 @@ input[type=email],
 .registreren fieldset:nth-of-type(2) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
+
+.registreren fieldset:nth-of-type(2) input[type=file]{
+   appearance: none;
+   opacity: 0.5;
+}
+
 
 .registreren fieldset:nth-of-type(3) {
     grid-template-columns: 1fr 1fr;
@@ -2005,6 +2003,10 @@ li:after {
   width: 100%;;
   box-shadow: 0 0 1em .1em #111;
   z-index: 1;
+}
+
+#noBackgroundNav{
+    background-color: none;
 }
 
 .navbar div {

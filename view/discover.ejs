@@ -11,7 +11,27 @@
 </head>
 <body class="discover">
     <header>
-        <%- include('nav.ejs')%>
+        <nav class="navbar">
+            <div class="navLeft">
+                <a href="/discover" class="active">Discover</a>
+                <a href="/find-requests">Jobs</a>
+            </div>
+            <div class="navCenter">
+                <a href="#">Spark</a>
+            </div>
+            <div class="navRight">
+                <a href="#" class="heart">
+                    <img src="img/heart.png">
+                </a>
+                <a href="#" class="lightning">
+                    <img src="img/lightning.png">
+                </a>
+                <a href="#" class="profile">
+                    <img src="/upload/<%= profile_picture %>">
+                    <p><%= username %></p>
+                </a>
+            </div>
+        </nav>
     </header>      
 <main>
     <section class="gridContainer gridDiscover"></section>

@@ -56,7 +56,8 @@ app
     .get('/sign-in', showSignInPage)
   //  .get('/portfolio', showPortfolioPage)
     .post('/log-in', signIn)
-    .post('/create-account', addUser)
+    .post('/create-account', upload2.single('profilePicture'), addUser)
+
  
 
     .get('/create-request', createRequest)
@@ -141,15 +142,14 @@ async function addUser(req, res){
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        profile_picture: req.file.filename
     })
 
     console.log(`Added with _id: ${result.insertedID}`)
-    res.render("home.ejs", {
-        name: req.body.name,
+    res.render("discover.ejs", {
         username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
+        profile_picture: req.file.filename
     })
 }
 
