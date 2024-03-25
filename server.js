@@ -83,15 +83,27 @@ function showSignInPage(req, res){
 }
 
 function createRequest(req, res){
-  res.render('createrequest.ejs')
+  res.render('createrequest.ejs', {
+    username: req.session.user.username,
+    profile_picture: req.session.user.profile_picture,
+    session: req.session
+})
 }
 
 function showDiscoverPage(req,res){
-  res.render('discover.ejs')
+  res.render('discover.ejs', {
+    username: req.session.user.username,
+    profile_picture: req.session.user.profile_picture,
+    session: req.session
+});
 }
 
 function showDetailPage(req,res){
-  res.render('detail.ejs')
+  res.render('detail.ejs', {
+    username: req.session.user.username,
+    profile_picture: req.session.user.profile_picture,
+    session: req.session
+});
 }
 
 
@@ -119,15 +131,20 @@ async function signIn(req, res) {
   try {
     const userInput = await collection.findOne({email: req.body.email });
 
-    if (userInput && userInput.password === req.body.password ) {
-      res.render("home.ejs", {
+    if (userInput && userInput.password === req.body.password) {
+      req.session.user = {
         name: userInput.name,
         username: userInput.username,
-        email: req.body.email,
-        password: req.body.password
-    })
+        profile_picture: req.file.filename,
+        email: req.body.email
+      }
+      res.render("discover.ejs", {
+        username: req.session.user.username,
+        profile_picture: req.body.profile_picture,
+        session: req.session
+      });
     } else {
-      alert("Invalid username or password")
+      // alert("Invalid username or password")
     }
   } catch (error) {
     console.error(error);
@@ -139,32 +156,33 @@ async function signIn(req, res) {
 
 
 async function addUser(req, res){
-    result = await collection.insertOne({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        profile_picture: req.file.filename
-    })
+  result = await collection.insertOne({
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      profile_picture: req.file.filename
+  })
 
-    console.log(`Added with _id: ${result.insertedID}`)
-    res.redirect(`/discover?username=${req.body.username}&profile_picture=${req.file.filename}`);
+  req.session.user = {
+    name: req.body.name,
+    username: req.body.username,
+    email: req.body.email,
+    profile_picture: req.file.filename
+  };
+
+  console.log(`Added with _id: ${result.insertedID}`);
+
+  // Verkrijg de gebruikersnaam en profielfoto uit de request body
+  const { username, profile_picture } = req.body;
+
+  // Stuur de gebruiker door naar de Discover-pagina en geef de gebruikersnaam en profielfoto door
+  res.render('discover.ejs', { 
+    username: req.body.username, 
+    profile_picture: req.file.filename, 
+    session: req.session 
+});
 }
-
-
-// Deze gaan we niet gebruiken want we willen afbeeldingen op schijf opslaan, webserver.
-// // AFBEELDINGEN TOEVOEGEN AAN DE DATABASE
-// const photosCollection = db.collection('photos');
-
-// app.post('/api/portfolio/photos', (req, res) => {
-//     const { userId, photoData } = req.body;
-
-//     // Opslaan van de foto in de database
-//     photosCollection.insertOne({ userId, photoData }, (err, result) => {
-//         if (err) return res.status(500).send(err);
-//         res.status(201).send('Photo added to portfolio successfully');
-//     });
-// });
 
 
 
@@ -440,5 +458,10 @@ async function addRequest(req, res){
 async function showRequests(req,res) {
   
 const requestList = await collection2.find({}).toArray()
-res.render('requests.ejs', {requests: requestList})
+res.render('requests.ejs', {
+  requests: requestList,
+  username: req.session.user.username, // Haal de gebruikersnaam uit de sessie
+  profile_picture: req.session.user.profile_picture, // Haal het profielfoto-URL uit de sessie
+  session: req.session
+});
 }
