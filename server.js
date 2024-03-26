@@ -1,9 +1,13 @@
-require('dotenv').config() 
+require('dotenv').config();
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const multer = require('multer');
+const { MongoClient } = require('mongodb');
+const path = require('path');
 
-// const port = 8511
+const app = express();
+const port = 8511;
+
 
 app
   .use(express.urlencoded({extended: true})) 
@@ -12,147 +16,140 @@ app
   .set('views', 'view')   
 
 app
-    .get('/register', showRegisterPage)
-    .get('/sign-in', showSignInPage)
-    .post('/create-account', addUser)
-    .get('/portfolio', showPortfolioPage)
-    .listen(8511)
+    // .get('/register', showRegisterPage)
+    // .get('/sign-in', showSignInPage)
+    // .post('/create-account', addUser)
+    // .get('/portfolio', showPortfolioPage)
+    .listen(port)
 
 
-// VERBINDING MET DE DATABASE
+// MongoDB URI
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
+// MongoDB client aanmaken
 const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-})
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
+// Middleware voor bestand uploaden met Multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads');
+  },
+  filename: function (req, file, cb) {
+    cb(null,Date.now() + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
+// MongoDB connectie maken en server starten
 client.connect()
   .then(() => {
-    console.log('Database connection established')
+    console.log('Database connection established');
+    // app.listen(port, () => console.log(`Server running on port ${port}`));
   })
-  .catch((err) => {
-    console.log(`Database connection error - ${err}`)
-    console.log(`For uri - ${uri}`)
-  })
+  .catch((err) => console.error(`Database connection error: ${err}`));
 
+// MongoDB-collectie voor afbeeldingspaden
+const imagePathsCollection = client.db(process.env.DB_NAME).collection('portfolio_uploads');
 
-// ROUTE FUNCTIES
+// ROUTES
 
-function showRegisterPage(req, res){
-    res.render('signUp.ejs')
-}
+// Route voor het renderen van de registratiepagina
+app.get('/register', (req, res) => {
+  res.render('signUp.ejs');
+});
 
-function showSignInPage(req, res){
-    res.render('signIn.ejs')
-}
+// Route voor het renderen van de inlogpagina
+app.get('/sign-in', (req, res) => {
+  res.render('signIn.ejs');
+});
 
-function showPortfolioPage(req, res){
-  res.render('portfolio.ejs')
-}
+// Route voor het renderen van de portfolio-pagina
+app.get('/portfolio', (req, res) => {
+  res.render('portfolio.ejs');
+});
 
-function addUser(req, res){
-	
-	res.render('account.ejs', { 
-        naam: req.body.naam,
-        wachtwoord: req.body.wachtwoord,
-        geboortedatum: req.body.geboortedatum
-    });
-	}
+// Route voor het verwerken van het aanmaken van een account
+app.post('/create-account', (req, res) => {
+  res.render('account.ejs', { 
+    naam: req.body.naam,
+    wachtwoord: req.body.wachtwoord,
+    geboortedatum: req.body.geboortedatum
+  });
+});
 
+// Route voor het uploaden van afbeeldingen
+// app.post('/upload', upload.array('profile-files'), async (req, res) => {
+//   try {
+//     const uploadedFiles = req.files.map(file => ({
+//       path: file.path,
+//       originalName: file.originalname
+//     }));
+    
+//     // Afbeeldingspaden opslaan in MongoDB-collectie
+//     const result = await imagePathsCollection.insertMany(uploadedFiles);
+//     console.log(`${result.insertedCount} image paths inserted`);
 
-// NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
-
-const db = client.db(process.env.DB_NAME)
-const collection = db.collection(process.env.DB_COLLECTION)
-
-async function addUser(req, res){
-    result = await collection.insertOne({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    })
-
-    console.log(`Added with _id: ${result.insertedID}`)
-    res.render("added.ejs", {
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    })
-}
-
-// Deze gaan we niet gebruiken want we willen afbeeldingen op schijf opslaan, webserver.
-// // AFBEELDINGEN TOEVOEGEN AAN DE DATABASE
-// const photosCollection = db.collection('photos');
-
-// app.post('/api/portfolio/photos', (req, res) => {
-//     const { userId, photoData } = req.body;
-
-//     // Opslaan van de foto in de database
-//     photosCollection.insertOne({ userId, photoData }, (err, result) => {
-//         if (err) return res.status(500).send(err);
-//         res.status(201).send('Photo added to portfolio successfully');
-//     });
+//     res.sendStatus(200);
+//   } catch (err) {
+//     console.error('Error uploading files:', err);
+//     res.status(500).send('Error uploading files');
+//   }
 // });
 
+// hierboven moet eig uitgevoerd worden. maar dan met goede files. en naar goede collection. hieronder gebeurt niet zo validateHeaderValue.
 
 
-
-
-// fs kan gebruikt worden in combinatie met Multer om de configuratie voor het 
-// opslaan van afbeeldingen op de server aan te passen. Het kan handig zijn 
-// als je verdere functionaliteit nodig hebt voor het werken met bestanden 
-// op de server. Bijvoorbeeld, als we na het uploaden van een afbeelding 
-// met Multer verdere verwerking nodig hebben, zoals het verplaatsen of 
-// verwijderen van bestanden, dan kan fs daarbij van pas komen.
-
-const multer = require('multer')
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-})
-const upload = multer({ storage: storage })
-
-/*
-app.use('/a',express.static('/b'));
-Above line would serve all files/folders inside of the 'b' directory
-And make them accessible through http://localhost:3000/a.
-*/
-app.use(express.static(__dirname + '/public'));
-app.use('/uploads', express.static('uploads'));
-
-app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
-  // req.file is the `profile-file` file
-  // req.body will hold the text fields, if there were any
-  console.log(JSON.stringify(req.file))
-  var response = '<a href="/">Home</a><br>'
-  response += "Files uploaded successfully.<br>"
-  response += `<img src="${req.file.path}" /><br>`
-  return res.send(response)
-})
-
-app.post('/profile-upload-multiple', upload.array('profile-files', 12), function (req, res, next) {
-    // req.files is array of `profile-files` files
-    // req.body will contain the text fields, if there were any
-    var response = '<a href="/">Home</a><br>'
-    response += "Files uploaded successfully.<br>"
-    for(var i=0;i<req.files.length;i++){
-        response += `<img src="${req.files[i].path}" /><br>`
-    }
+// app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
+//  console.log('naar database')
+//   res.status(200).send('File uploaded successfully');
+  
+  
+//   // req.files is array of `profile-files` files
+//     // req.body will contain the text fields, if there were any
+//     // var response = '<a href="/">Home</a><br>'
+//     // response += "Files uploaded successfully.<br>"
+//     // for(var i=0;i<req.files.length;i++){
+//     //     response += `<img src="${req.files[i].path}" /><br>`
+//     // }
     
-    return res.send(response)
-})
-   
+//     // return res.send(response)
 
-// app.listen(port,() => console.log(`Server running on port ${port}!`))
+
+// })
+
+app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
+  try {
+      console.log('naar database');
+
+      // Haal de gebruikersnaam op uit de sessie of een andere bron, en sla deze op
+      const gebruikersnaam = 'VervangDitMetDeGebruikersnaam';
+
+      // Array om bestandspaden op te slaan
+      const filepaths = [];
+
+      // Loop door de geüploade bestanden en haal de bestandsnaam en het pad op
+      req.files.forEach(file => {
+          const filepath = file.path;
+          const filename = file.originalname;
+          filepaths.push({ filename, filepath });
+      });
+
+      // Opslaan van de gegevens in de MongoDB-collectie 'portfolio_uploads'
+      const result = await imagePathsCollection.insertMany(filepaths.map(filepath => ({
+          username: gebruikersnaam,
+          filename: filepath.filename,
+          filepath: filepath.filepath
+      })));
+      
+      console.log(`${result.insertedCount} image paths inserted`);
+
+      // Stuur een succesvolle reactie terug naar de client
+      res.status(200).send('File uploaded successfully');
+  } catch (err) {
+      console.error('Error uploading files:', err);
+      res.status(500).send('Error uploading files');
+  }
+});

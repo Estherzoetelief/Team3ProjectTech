@@ -130,3 +130,34 @@ document.getElementById('matchWithPerson').addEventListener('click', () => {
 //     { radioButton.checked = false; }
 // });
 
+
+
+
+
+
+
+
+
+
+// popup upload multer multiple mike
+document.addEventListener('DOMContentLoaded', function () {
+    const uploadForm = document.getElementById('uploadForm');
+    const successPopup = document.getElementById('successPopup');
+
+    uploadForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(uploadForm);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                successPopup.style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error uploading file:', error));
+    });
+});
