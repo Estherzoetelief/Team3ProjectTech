@@ -28,17 +28,34 @@ const button = document.getElementById('animationButton');
 const buttonJobs = document.getElementById("buttonJobs");
 const buttonWork = document.getElementById("buttonWork");
 const divContainer = document.querySelector(".animationSlide")
+let origineleScrollPositie = 0;
 
 const workClick = () => {
     button.style.left = '0';
-   divContainer.classList.remove('moveJobs');
+    // divContainer.classList.remove('moveJobs');
+//   document.getElementById(".animationSlide").scrollLeft += 90;
+//   divContainer.scrollleft -= 1200;
+// document.querySelector("animationSlide") = divContainer;
+//   console.log("hallo");
+button.style.left = '0';
+divContainer.scrollLeft = origineleScrollPositie; // Terug naar de oorspronkelijke positie scrollen
+console.log("Hallo");
     // elementJobs.classList.add('hidden');
 };
 
 const jobsClick = () => {
-    button.style.left = '5em';
-    divContainer.classList.add('moveJobs');
-    console.log("tesdjsklfjasdklfa;jsjt")
+//     button.style.left = '5em';
+//     // divContainer.classList.add('moveJobs');
+//     // console.log("tesdjsklfjasdklfa;jsjt")
+// //  divContainer.scrollright = ;
+// divContainer.scrollLeft += 1400;
+// // .animationSlide = divContainer;
+//   console.log("doei");
+button.style.left = '5em';
+origineleScrollPositie = divContainer.scrollLeft; // Opslaan van de oorspronkelijke scrollpositie
+divContainer.scrollLeft += 1400; // Scrollen naar rechts
+console.log("Doei");
+
     // elementJobs.classList.remove('hidden');
 };
 
@@ -74,59 +91,89 @@ figurePortfolio.forEach((figure, index) => {
 const matchForm = document.getElementById("matchForm");
 const matchOption2Labels = document.querySelectorAll('#matchOption2 label');
 const matchOption2Inputs = document.querySelectorAll('#matchOption2 input');
+const matchOption2Section = document.getElementById("matchOption2")
+const backgroundBlurForMatchBtn = document.querySelector('.popUpBlur')
 
 // functie om het formulier te openen en zorgen dat niet alles beschikbaar is eerst
 const openMatchForm = () => {
-    matchOption2Inputs.forEach(inputForMatchOption2 => {
-        inputForMatchOption2.disabled = true;
-    });
-    matchOption2Labels.forEach(labelForMatchOption2 => {
-        labelForMatchOption2.classList.add("matchOption2-disabled");
-    });
-
     matchForm.classList.remove("hidden");
+
+    matchOption2Section.classList.add("hiddenMatchOption2");
+    // backgroundBlurMatchButton.classList.add('visable')
+    //  matchOption2Section.classList.add('active');
+    backgroundBlurForMatchBtn.classList.add('active')
+    console.log('backgroundBlurMatchButton')
+    
+    // matchOption2Inputs.forEach(inputForMatchOption2 => {
+    //     inputForMatchOption2.disabled = true;
+    //     //     inputForMatchOption2.classList.add('hiddenMatchOption2')
+    //     console.log("yaya1")
+    // });
+    // matchOption2Labels.forEach(labelForMatchOption2 => {
+    //     labelForMatchOption2.classList.add("matchOption2-disabled");
+    //     labelForMatchOption2.classList.add("hiddenMatchOption2")
+    //     console.log("yaya2")
+    // });
+
+
 };
 // functie om het formulier te sluiten
 const closeMatchForm = () => {
     matchForm.classList.add("hidden");
+    backgroundBlurForMatchBtn.classList.remove('active')
+
 };
-
 // aanroepen wanneer de functie moet worden uitgevoerd
-
 document.getElementById("matchButton").addEventListener("click", openMatchForm);
 document.getElementById("submitMatch").addEventListener("click", closeMatchForm);
+document.getElementById("closeMatchFormButton").addEventListener("click", closeMatchForm);
+// document.getElementById("closeMatchFormButton").addEventListener("click", closeMatchForm);
+
 
 // functie en aanroeping wat er gebeurt als je op de knop match with job gebeurt
 document.getElementById('matchWithJob').addEventListener('click', () => {
-    openMatchForm();
-
+    // openMatchForm();
+    matchOption2Section.classList.add("unhiddenMatchOption2");
+    matchOption2Section.classList.remove("hiddenMatchOption2");
     matchOption2Inputs.forEach(inputForMatchOption2 => {
         inputForMatchOption2.disabled = false;
         inputForMatchOption2.classList.add("option2ForMatchButton")
+        inputForMatchOption2.classList.add("unhiddenMatchOption2");
+console.log("yaya1")
     });
     matchOption2Labels.forEach(labelForMatchOption2 => {
         labelForMatchOption2.classList.remove("matchOption2-disabled");
         labelForMatchOption2.classList.add("animateShadow");
+        labelForMatchOption2.classList.add("unhiddenMatchOption2");
+        console.log("yaya2")
     });
 });
 // functie en aanroeping wat er gebeurt als je op de knop match with person gebeurt
 
 document.getElementById('matchWithPerson').addEventListener('click', () => {
+
+    matchOption2Section.classList.add("hiddenMatchOption2");
+    matchOption2Section.classList.remove("unhiddenMatchOption2")
     matchOption2Labels.forEach(labelForMatchOption2 => {
         labelForMatchOption2.classList.add("matchOption2-disabled");
         labelForMatchOption2.classList.remove("animateShadow");
+
     matchOption2Inputs.forEach(inputForMatchOption2 => {
-        inputForMatchOption2.classList.remove("option2ForMatchButton")
-    })
+            inputForMatchOption2.classList.remove("option2ForMatchButton")
+        })
         console.log("yaya")
     });
 });
 
-//  function radioButton zorgt ervoor dat het de omcirclde weghaald 
-// matchOption2Inputs.forEach(radioButton => {
-//     radioButton.disabled = true;
-    
-//     if (radioButton.checked)
-//     { radioButton.checked = false; }
-// });
 
+
+// const MatchButton = document.getElementById('MatchButton')
+// const backgroundBlurMatchButton = document.querySelector('.PopUpBlur')
+// const matchForm = document.getElementById("matchForm");
+
+// MatchButton.addEventListener('click', () => {
+//     matchForm.style.display = 'block'
+//     backgroundBlurMatchButton.style.display = 'block'
+//     MatchButton.style.display = 'none'
+
+// })

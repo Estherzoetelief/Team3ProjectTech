@@ -669,6 +669,8 @@ body.portfolioPagina {
     display: none;
 }
 
+
+
 /* // buttons  */
 
 
@@ -719,12 +721,18 @@ body.portfolioPagina {
     width: 200vw;
     transition: 1s;
     /* width: 200%; */
+    max-width: 100vw;
+    overflow-x: scroll;
+    transition: scroll-left 0.5s ease;
+    justify-items: center;
+   
+    /* width: 200%; */
     /* overflow-x: auto; 
  white-space: nowrap;  */
 }
 
 .moveJobs {
-    transform: translateX(-100vw);
+    /* transform: translateX(-100vw); */
 
 }
 
@@ -732,6 +740,7 @@ body.portfolioPagina {
 .work {
     width: 100vw;
     max-width: 100%;
+    min-width: 100vw;
 
 }
 
@@ -763,6 +772,9 @@ body.portfolioPagina {
     position: relative;
     width: 100vw;
     height: 100vh;
+    min-width: 100vw;
+
+  
 }
 
 .jobs>input {
@@ -841,14 +853,14 @@ body.portfolioPagina {
     /* color: blue; */
 
 }
-
+/* deze sectie is de section waar alles in staat van het match formulier */
 .jobs>section:nth-of-type(2) {
     background-color: #363636;
     border-radius: 1em;
-    padding: 2em;
-    padding-left: 2em;
+    padding: 4em;
+    /* padding-left: 2em; */
     width: 60vw;
-    height: 30vh;
+    height: 60vh;
     z-index: 999;
     text-align: center;
     position: absolute;
@@ -856,19 +868,43 @@ body.portfolioPagina {
     left: 0;
     top: 0;
     margin: 0 auto;
+    transition: all 300ms ease-in-out;
    
 }
 
 .jobs>section:nth-of-type(2)>#matchOption1 {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     padding: 1em;
 }
-.jobs>section:nth-of-type(2)>#matchOption2 {
-    display: flex;
+
+
+ .hiddenMatch0ption2{
+    display: none;
+}
+
+.unhiddenMatchOption2 {
+    display: block;
+
     justify-content: center;
     margin: 1em;
+
 }
+#closeMatchFormButton {
+    position: absolute;
+font-family: var(--bodyTextFont);
+font-size: var(--bodyTextSize);
+border: none;
+background-color: #363636;
+right: 2rem;
+bottom: 1rem;
+color: var(--primaryWhite);
+text-decoration: underline 8px;
+padding-bottom: 1em;
+/* color: var(--primaryWhite); */
+
+}
+
 
 .matchOption2-disabled {
     opacity: 0.5;
@@ -893,10 +929,24 @@ body.portfolioPagina {
         box-shadow: 0 0 0.5em 0.1em #6c6a76;
     }
 }
-
-.closeMatchFormButton {
-    
+.popUpBlur {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 30;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+display: none;
+transition: opacity 100ms ease-in-out 200ms;
 }
+
+
+ .active{
+display: block;
+
+}
+
 /* work pagina algemeen */
 
 .work {
