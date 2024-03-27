@@ -206,38 +206,15 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
 
 
 // deel proberen met session
-// const express = require('express');
 // const session = require('express-session');
-// const multer = require('multer');
-// const { MongoClient } = require('mongodb');
-// const path = require('path');
-
-// const app = express();
-// const port = 8511;
 
 // // Sessiemiddleware toevoegen
 // app.use(session({
-//   secret: 'geheim', // Geheime sleutel voor het ondertekenen van sessiecookies
+//   secret: process.env.SESSION_SECRET, // Geheime sleutel voor het ondertekenen van sessiecookies
 //   resave: false,
 //   saveUninitialized: true
 // }));
 
-// // Multer configuratie en initialisatie
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './uploads');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
-// const upload = multer({ storage: storage });
-
-// // MongoDB client en connectie
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
 // client.connect();
 
 // // Middleware voor het verwerken van uploads
@@ -252,9 +229,4 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
 //     console.error('Error uploading files:', err);
 //     res.status(500).send('Error uploading files');
 //   }
-// });
-
-// // Andere routes en server luisteren
-// app.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
 // });
