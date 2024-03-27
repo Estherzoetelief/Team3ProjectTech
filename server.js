@@ -24,18 +24,20 @@ app
 
 
 // MongoDB URI
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-
+// const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority&appName=${process.env.DB_NAME}`;
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@projecttechapp.2oo3dq6.mongodb.net/?retryWrites=true&w=majority&appName=ProjectTechApp`;
 // MongoDB client aanmaken
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
+const gebruikersnaam = 'TestUser_newacc';
+
 // Middleware voor bestand uploaden met Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './uploads');
+    cb(null, '/uploads');
   },
   filename: function (req, file, cb) {
     cb(null,Date.now() + file.originalname);
@@ -241,7 +243,7 @@ app.post('/create-account', (req, res) => {
 app.get('/portfolio', async (req, res) => {
   try {
     // Haal de gebruikersnaam op uit de sessie of een andere bron, en sla deze op
-    const gebruikersnaam = 'TestUser_newacc';
+    // const gebruikersnaam = 'TestUser_newacc';
 
     // Zoek het data-item in de MongoDB-collectie op basis van de gebruikersnaam
     const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
