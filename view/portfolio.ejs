@@ -28,6 +28,7 @@
         </section>
     </section>
  <div class="animationSlide"> 
+   
     <section class="work" id="workElement">
         <h2>Work</h2>
         <section>
@@ -57,8 +58,29 @@
 
             </figure>
         </section>
+ <!-- op deze section voeg ik user-images class toe voor versie van (dynamische database images) -->
+ <!-- om deze versie ongedaan te maken. figures uncommenten en dynamische deel van <% %> commenten -->
+        <section class="user-images">
 
-        <section>
+            <% imagePaths.forEach(imagePath => { %>
+                <figure>
+                    <section class="hide">
+                        <h2>Read more </h2>
+                        <button></button>
+                    </section>
+                    <section>
+                        <p>The book serves as a literary maze, a journey where the reader is challenged to navigate through a series of interconnected chambers, each revealing a unique facet of the artistic vision. Symbolism and metaphor dance through the text, creating an intricate tapestry that invites interpretation and contemplation.</p>
+                    </section>
+                    <img class="unhide" src="<%= imagePath %>" alt="User Image">
+    
+                </figure>
+              <% }); %>
+
+
+
+
+
+<!-- 
             <figure>
                 <section class="hide">
                     <h2>Read more </h2>
@@ -122,7 +144,7 @@
                     <p>The book serves as a gallery of linguistic innovations, with the author pushing the boundaries of language and narrative structure. Through avant-garde techniques and unconventional wordplay, the text becomes a dynamic work of art, challenging readers to engage with literature in a way that transcends the traditional boundaries of storytelling. Each page is a testament to the author's ability to not only craft a compelling narrative but also to push the boundaries of artistic expression within the written word.</p>
                 </section>
                 <img class="unhide" src="img/fotoPortfolio8.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
-            </figure>
+            </figure> -->
         </section>
 
     </section>

@@ -66,10 +66,10 @@ app.get('/sign-in', (req, res) => {
   res.render('signIn.ejs');
 });
 
-// Route voor het renderen van de portfolio-pagina
-app.get('/portfolio', (req, res) => {
-  res.render('portfolio.ejs');
-});
+// Route voor het renderen van de portfolio-pagina voor normale code (database image loader gebruikt deze niet)
+// app.get('/portfolio', (req, res) => {
+//   res.render('portfolio.ejs');
+// });
 
 // Route voor het verwerken van het aanmaken van een account
 app.post('/create-account', (req, res) => {
@@ -159,50 +159,50 @@ app.post('/create-account', (req, res) => {
 
 // werkende gedeelte zonder session
 
-app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
-  try {
-      console.log('naar database');
+// app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
+//   try {
+//       console.log('naar database');
 
-      // Haal de gebruikersnaam op uit de sessie of een andere bron, en sla deze op
-      const gebruikersnaam = 'TestUser_newacc';
+//       // Haal de gebruikersnaam op uit de sessie of een andere bron, en sla deze op
+//       const gebruikersnaam = 'TestUser_newacc';
 
-      // Array om bestandspaden op te slaan
-      const filepaths = [];
+//       // Array om bestandspaden op te slaan
+//       const filepaths = [];
 
-      // Loop door de geüploade bestanden en haal de bestandsnaam en het pad op
-      req.files.forEach(file => {
-          const filepath = file.path;
-          const filename = file.originalname;
-          filepaths.push({ filename, filepath });
-      });
+//       // Loop door de geüploade bestanden en haal de bestandsnaam en het pad op
+//       req.files.forEach(file => {
+//           const filepath = file.path;
+//           const filename = file.originalname;
+//           filepaths.push({ filename, filepath });
+//       });
 
-      // Zoek het data-item in de MongoDB-collectie op basis van de gebruikersnaam
-      const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+//       // Zoek het data-item in de MongoDB-collectie op basis van de gebruikersnaam
+//       const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
 
-      if (existingDataItem) {
-          // Voeg de nieuwe afbeeldingen toe aan de bestaande array met afbeeldingen
-          const updatedImages = [...existingDataItem.images, ...filepaths];
+//       if (existingDataItem) {
+//           // Voeg de nieuwe afbeeldingen toe aan de bestaande array met afbeeldingen
+//           const updatedImages = [...existingDataItem.images, ...filepaths];
 
-          // Update het data-item met de nieuwe afbeeldingen
-          await imagePathsCollection.updateOne(
-              { username: gebruikersnaam },
-              { $set: { images: updatedImages } }
-          );
+//           // Update het data-item met de nieuwe afbeeldingen
+//           await imagePathsCollection.updateOne(
+//               { username: gebruikersnaam },
+//               { $set: { images: updatedImages } }
+//           );
 
-          console.log('Images added to existing data item:', updatedImages);
-      } else {
-          // Als het data-item niet bestaat, maak dan een nieuw item aan met de afbeeldingen
-          await imagePathsCollection.insertOne({ username: gebruikersnaam, images: filepaths });
-          console.log('New data item created with images:', filepaths);
-      }
+//           console.log('Images added to existing data item:', updatedImages);
+//       } else {
+//           // Als het data-item niet bestaat, maak dan een nieuw item aan met de afbeeldingen
+//           await imagePathsCollection.insertOne({ username: gebruikersnaam, images: filepaths });
+//           console.log('New data item created with images:', filepaths);
+//       }
 
-      // Stuur een succesvolle reactie terug naar de client
-      res.status(200).send('File uploaded successfully');
-  } catch (err) {
-      console.error('Error uploading files:', err);
-      res.status(500).send('Error uploading files');
-  }
-});
+//       // Stuur een succesvolle reactie terug naar de client
+//       res.status(200).send('File uploaded successfully');
+//   } catch (err) {
+//       console.error('Error uploading files:', err);
+//       res.status(500).send('Error uploading files');
+//   }
+// });
 
 
 // deel proberen met session
@@ -230,3 +230,82 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
 //     res.status(500).send('Error uploading files');
 //   }
 // });
+
+
+
+// TRY van gedeelte zonder session MET toevoegen geuploade en database images
+
+// ---- 
+
+// Route voor het renderen van de portfolio-pagina
+app.get('/portfolio', async (req, res) => {
+  try {
+    // Haal de gebruikersnaam op uit de sessie of een andere bron, en sla deze op
+    const gebruikersnaam = 'TestUser_newacc';
+
+    // Zoek het data-item in de MongoDB-collectie op basis van de gebruikersnaam
+    const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+
+    // let imagePaths = [];
+    // if (existingDataItem) {
+    //   imagePaths = existingDataItem.images.map(image => image.filepath);
+    // }
+
+    let imagePaths = [];
+    if (existingDataItem) {
+     imagePaths = existingDataItem.images.map(({ filepath }) => filepath);
+}
+
+
+// Pas de renderfunctie aan om de imagePaths-variabele door te geven
+  res.render('portfolio', { imagePaths: imagePaths });
+  } catch (error) {
+    console.error('Error fetching user images from database:', error);
+    res.status(500).send('Error fetching user images from database');
+  }
+});
+
+
+// -----
+
+
+// Route voor het verwerken van het uploaden van afbeeldingen
+app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
+  try {
+    // Voeg hier je bestaande logica toe voor het opslaan van de afbeeldingen in de database
+       // Array om bestandspaden op te slaan
+       const filepaths = [];
+
+       // Loop door de geüploade bestanden en haal de bestandsnaam en het pad op
+       req.files.forEach(file => {
+           const filepath = file.path;
+           const filename = file.originalname;
+           filepaths.push({ filename, filepath });
+       });
+ 
+       // Zoek het data-item in de MongoDB-collectie op basis van de gebruikersnaam
+       const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+ 
+       if (existingDataItem) {
+           // Voeg de nieuwe afbeeldingen toe aan de bestaande array met afbeeldingen
+           const updatedImages = [...existingDataItem.images, ...filepaths];
+ 
+           // Update het data-item met de nieuwe afbeeldingen
+           await imagePathsCollection.updateOne(
+               { username: gebruikersnaam },
+               { $set: { images: updatedImages } }
+           );
+ 
+           console.log('Images added to existing data item:', updatedImages);
+       } else {
+           // Als het data-item niet bestaat, maak dan een nieuw item aan met de afbeeldingen
+           await imagePathsCollection.insertOne({ username: gebruikersnaam, images: filepaths });
+           console.log('New data item created with images:', filepaths);
+       }
+    // Nadat de afbeeldingen zijn geüpload, render de portfolio-pagina opnieuw om de wijzigingen weer te geven
+    res.redirect('/portfolio');
+  } catch (err) {
+    console.error('Error uploading files:', err);
+    res.status(500).send('Error uploading files');
+  }
+});
