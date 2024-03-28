@@ -775,6 +775,7 @@ body.portfolioPagina {
     /* display: flex;
     flex-direction: row;
     justify-items: center; */
+    /* contain:layout; */
 
   
 }
@@ -818,53 +819,71 @@ body.portfolioPagina {
     background-color: var(--primaryWhite);
     color: #1E1E1E;
 } */
+.jobs>button,
+.jobs>section:nth-of-type(2)>button>p {
+    z-index: 100;
+    color: white;
+    
+    
+}
 
-.jobs>input,
-.jobs>section:nth-of-type(2)>input {
+.jobs>button,
+.jobs>section:nth-of-type(2)>button {
     text-align: center;
   padding: 0.5em 2.5em;
     border-radius: 0.8em;
 cursor: pointer;
 border: 2px solid #bcb1fdc8;
 background: linear-gradient(45deg, #fff 50%, #bcb1fdc8 50%);
--webkit-background-clip: text;
+/* -webkit is dat je iets nieuws gaat proberen wat nog niet op elke browser een werkende code is -webkit hoeft niet niet meer overal
+background clip betekent letterlijk wat je invult je hebt verschillende vormen en het gaat erom hoeveel je invuld bijv alleen de tekst of de padding box */
 background-clip: text;
 -webkit-text-fill-color: transparent;
 position: relative;
 text-decoration: none;
 margin-top: 3em;
+-webkit-appearance: none;
+appearance: none;
+z-index: 1;
+
+
 
 }
 
-.jobs>input:after,
-.jobs>section:nth-of-type(2)>input:after {
+.jobs>button:after,
+.jobs>section:nth-of-type(2)>button:after {
 content: "";
 position: absolute;
 top: 0;
-bottom: 0;
+/* bottom: 0; */
 left: 0;
-right: 0;
+/* right: 0; */
+/* inset:0; */
+width:100%;
+height:100%;
 justify-self: center;
+/* deze regel hieronder wordt niet uitgevoerd, ik weet niet waarom */
 background: linear-gradient(45deg, #bcb1fdc8 50%, transparent 50%);
-z-index: -1;
-border-radius: 0.8em;
+background-position: right;
+/* background-color:red; */
+z-index: 0;
+border-radius: inherit;
 
 }
 
-.jobs>input,
-.jobs>section:nth-of-type(2)>input, 
-.jobs>input:after,
-.jobs>section:nth-of-type(2)>input:after {
+.jobs>button,
+.jobs>section:nth-of-type(2)>button, 
+.jobs>button:after,
+.jobs>section:nth-of-type(2)>button:after {
 background-size: 300%;
 background-position: 100%;
 transition: 1s ease-out, font-size 0.2s;
-
 }
 
-.jobs>input:hover,
-.jobs>section:nth-of-type(2)>input:hover,
-.jobs>input:after,
-.jobs>section:nth-of-type(2)>input:after {
+.jobs>button:hover,
+.jobs>section:nth-of-type(2)>button:hover,
+.jobs>button:hover:after,
+.jobs>section:nth-of-type(2)>button:hover:after {
 background-position: 0;
 font-size: 1em;
 box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
