@@ -23,11 +23,11 @@
 // buttonWork.addEventListener("click", workClick);
 
 const elementJobs = document.getElementById("jobsElement");
-const elementWork = document.getElementById("workElement")
+const elementWork = document.getElementById("workElement");
 const button = document.getElementById('animationButton');
 const buttonJobs = document.getElementById("buttonJobs");
 const buttonWork = document.getElementById("buttonWork");
-const divContainer = document.querySelector(".animationSlide")
+const divContainer = document.querySelector(".animationSlide");
 let origineleScrollPositie = 0;
 
 const workClick = () => {
@@ -38,6 +38,7 @@ const workClick = () => {
 // document.querySelector("animationSlide") = divContainer;
 //   console.log("hallo");
 button.style.left = '0';
+divContainer.behavior = "smooth";
 divContainer.scrollLeft = origineleScrollPositie; // Terug naar de oorspronkelijke positie scrollen
 console.log("Hallo");
     // elementJobs.classList.add('hidden');
@@ -52,9 +53,11 @@ const jobsClick = () => {
 // // .animationSlide = divContainer;
 //   console.log("doei");
 button.style.left = '5em';
-origineleScrollPositie = divContainer.scrollLeft; // Opslaan van de oorspronkelijke scrollpositie
-divContainer.scrollLeft += 1400; // Scrollen naar rechts
-console.log("Doei");
+origineleScrollPositie = divContainer.scrollLeft;
+// divContainer.behavior = "smooth"; 
+// Opslaan van de oorspronkelijke scrollpositie
+divContainer.scrollLeft +=  elementWork.offsetWidth; // Scrollen naar rechts
+console.log(elementWork.offsetWidth);
 
     // elementJobs.classList.remove('hidden');
 };
@@ -94,14 +97,23 @@ const matchOption2Inputs = document.querySelectorAll('#matchOption2 input');
 const matchOption2Section = document.getElementById("matchOption2")
 const backgroundBlurForMatchBtn = document.querySelector('.popUpBlur')
 
+
+const updateBackgroundHeightMatchForm = () => {
+    const matchFormHeight = matchForm.scrollHeight;
+    // Hoogte van de inhoud
+       matchForm.style.height = `${matchFormHeight}px`; // Pas de hoogte van de achtergrond aan
+   };
 // functie om het formulier te openen en zorgen dat niet alles beschikbaar is eerst
 const openMatchForm = () => {
-    matchForm.classList.remove("hidden");
+    // matchForm.classList.add("hidden");
+    matchForm.classList.remove("inactiveAnimationForm");
+    matchForm.classList.add("activeAnimationForm");
+    console.log("matchFormactive");
 
     matchOption2Section.classList.add("hiddenMatchOption2");
     // backgroundBlurMatchButton.classList.add('visable')
     //  matchOption2Section.classList.add('active');
-    backgroundBlurForMatchBtn.classList.add('active')
+    backgroundBlurForMatchBtn.classList.add('activeForbackgroundBlurBtn')
     console.log('backgroundBlurMatchButton')
     
     // matchOption2Inputs.forEach(inputForMatchOption2 => {
@@ -119,9 +131,10 @@ const openMatchForm = () => {
 };
 // functie om het formulier te sluiten
 const closeMatchForm = () => {
-    matchForm.classList.add("hidden");
-    backgroundBlurForMatchBtn.classList.remove('active')
-
+    // matchForm.classList.add("hidden");
+    backgroundBlurForMatchBtn.classList.remove("activeForbackgroundBlurBtn")
+    matchForm.classList.add("inactiveAnimationForm");
+    matchForm.classList.remove("activeAnimationForm");
 };
 // aanroepen wanneer de functie moet worden uitgevoerd
 document.getElementById("matchButton").addEventListener("click", openMatchForm);
@@ -132,6 +145,7 @@ document.getElementById("closeMatchFormButton").addEventListener("click", closeM
 
 // functie en aanroeping wat er gebeurt als je op de knop match with job gebeurt
 document.getElementById('matchWithJob').addEventListener('click', () => {
+    updateBackgroundHeightMatchForm ();
     // openMatchForm();
     matchOption2Section.classList.add("unhiddenMatchOption2");
     matchOption2Section.classList.remove("hiddenMatchOption2");
@@ -151,7 +165,7 @@ console.log("yaya1")
 // functie en aanroeping wat er gebeurt als je op de knop match with person gebeurt
 
 document.getElementById('matchWithPerson').addEventListener('click', () => {
-
+    // updateBackgroundHeightMatchForm ();
     matchOption2Section.classList.add("hiddenMatchOption2");
     matchOption2Section.classList.remove("unhiddenMatchOption2")
     matchOption2Labels.forEach(labelForMatchOption2 => {
@@ -164,6 +178,8 @@ document.getElementById('matchWithPerson').addEventListener('click', () => {
         console.log("yaya")
     });
 });
+
+// window.addEventListener('DOMContentLoaded', updateBackgroundHeightMatchForm);
 
 
 
