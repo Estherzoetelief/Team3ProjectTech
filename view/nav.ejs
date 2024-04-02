@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="navLeft">
-        <a href="/discover" class="active">Discover</a>
-        <a href="/find-requests">Jobs</a>
+        <a class="hoverAnimationNav" href="/discover" class="active">Discover</a>
+        <a class="hoverAnimationNav" href="/find-requests">Jobs</a>
     </div>
     <div class="navCenter">
         <a href="#">Spark</a>
@@ -14,12 +14,12 @@
             <img src="img/lightning.png">
         </a>
         <% if (session.user) { %>
-          <a href="#" class="profile">
+          <a href="/portfolio" class="profile">
               <img src="upload/<%= profile_picture %>">
               <p><%= session.user.username %></p>
           </a>
         <% } else { %>
-          <a href="/sign-in">Log in</a>
+          <a class="signIn" href="/sign-in">Log in</a>
         <% } %>
     </div>
 </nav>

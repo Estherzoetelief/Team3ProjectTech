@@ -30,6 +30,12 @@
     --hFontItalic: 'GT Super Ds Trial', sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 
 /* ALGEMEEN */
 
@@ -287,6 +293,15 @@ input[type=email],
 .registreren fieldset section span {
     margin-right: 0.6em;
 }
+
+.passwordsMatch, .passwordsMatch:focus{
+    outline: solid 1px green;
+}
+
+.passwordsDontMatch, .passwordsDontMatch:focus{
+   outline: solid 1px red;
+}
+
 
 
 
@@ -1525,6 +1540,7 @@ li:after {
     width: 100vw;
     justify-content: center;
     z-index: 2;
+    margin-bottom: 15em;
 }
 
 
@@ -1608,7 +1624,7 @@ li:after {
 
 .create-request fieldset .btn-container {
     position: absolute;
-    bottom: -10em;
+    bottom: -3em;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1641,7 +1657,6 @@ li:after {
     justify-content: center;
     align-items: center;
     z-index: 2;
-    margin-bottom: -5em;
 }
 
 
@@ -1823,6 +1838,7 @@ li:after {
     align-items: center;
     flex-direction: column;
     position: relative;
+    height: 10em;
 }
 
 /* .create-request select{
@@ -1958,28 +1974,6 @@ li:after {
 /* PORTFOLIO PAGINA NICHOLAS */
 /* ======================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.cdnfonts.com/css/gt-super-ds-trial');
-
-:root {
-    --primaryBlack: #1E1E1E;
-    --primaryWhite: #F9F7F7;
-    --accentColor: #1700A5;
-    --h1-size: 14.00vw;
-    --h2-size: 3em;
-    --p-size: 1.4em;
-    --bodyTextSize: 1em;
-    --bodyTextFont: "Montserrat", sans-serif;
-    --hFont: 'GT Super Ds Trial', sans-serif;
-    --hFontItalic: 'GT Super Ds Trial', sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 /* ----------- */
 /* DISCOVER PAGE */
 /* ----------- */
@@ -2005,8 +1999,9 @@ li:after {
   z-index: 1;
 }
 
-#noBackgroundNav{
-    background-color: none;
+.create-request .navbar{
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .navbar div {
@@ -2023,6 +2018,7 @@ li:after {
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  gap: 2em;
 }
 
 .navLeft a {
@@ -2053,7 +2049,7 @@ li:after {
 
 .navCenter a {
   font-size: 2.4em;
-  font-family: var(--hFont);
+  font-family: none;
 }
 
 .navRight {
@@ -2065,6 +2061,7 @@ li:after {
 
 .navRight a {
   margin-left: 1.8em;
+  font-family: var(--bodyTextFont);
 }
 
 .heart img {
@@ -2096,6 +2093,31 @@ li:after {
   margin-right: .6em;
 }
 
+.hoverAnimationNav{
+    display: inline-block;
+    position: relative;
+  }
+  
+.hoverAnimationNav::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 0.05em;
+    bottom: -0.3em;
+    left: 0;
+    background-color: var(--primaryWhite);
+    transform-origin: bottom right;
+    transition: transform 0.20s ease-in-out;
+  }
+  
+  .hoverAnimationNav:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+
 @keyframes sparkle {
   0% {
       opacity: 1;
@@ -2103,7 +2125,7 @@ li:after {
   }
   100% {
       opacity: 0;
-      transform: scale(1);
+      transform: scale(2);
   }
 }
 

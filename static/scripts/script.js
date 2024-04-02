@@ -38,70 +38,26 @@
 // }
 
 
-
-
-// // kijken of de wachtwoorden overeenkomen
-
-
-function confirmPasswordFunction(){
-const password = document.getElementById("password").value
-const confirmPassword = document.getElementById("confirm_password").value
-const inputField = document.getElementById("confirm_password")
-if(confirmPassword.length != 0){
-        if(password == confirmPassword){
-     console.log("match")
-       inputField.style.border = "green 1px solid"
-    } else {
-        console.log("no match")
-        inputField.style.border = "red 1px solid"
-    } 
-}
-}
-
-// confirmPassword.addEventListener('input', confirmPasswordFunction())
-
-// // kijken of het wachtwoord voldoet aan de requirements
-function checkPassword() {
-    const password = document.getElementById("password").value;
-    const passwordSymbol = document.getElementById("password-symbol");
-    const regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-
-    if (regularExpression.test(password)){
-        passwordSymbol.textContent = "✓";
-    } else {
-        passwordSymbol.textContent = "✕";
-    }
-}
-
-// password.addEventListener("input", checkPassword);
-
-
-
-    const allFilterItems = document.querySelectorAll('.filter-item');
+const allFilterItems = document.querySelectorAll('.filter-item');
 const allFilterBtns = document.querySelectorAll('.filter-btn');
-
-console.log(allFilterBtns, allFilterItems);
 
 const filterItems = e => {
     document.querySelector('.active-btn').classList.remove('active-btn');
     e.target.classList.add('active-btn');
-    console.log(e.target);
-
-
+  
+    const category = e.target.dataset.name;
+  
     allFilterItems.forEach( item => {
         item.classList.add('hide');
-        console.log(item);
-
-
-        if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === 'all'){
+  
+        if(category === 'all' || item.dataset.category === category){
             item.classList.remove('hide');
         }
-
-
     });
 };
 
 allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
+
 
 const prevBtns = document.querySelectorAll('.btn-prev');
 const nextBtns = document.querySelectorAll('.btn-next');
@@ -166,4 +122,3 @@ function updateProgressbar() {
     const progressActive = document.querySelectorAll('.progress-step.active-progress');
     progress.style.width = (progressActive.length - 1) / (progressSteps.length - 1) * 100 + '%';
 }
-

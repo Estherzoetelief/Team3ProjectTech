@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,37 @@
     <title>Document</title>
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body class="create-request">
 
 <header>
-    <% include('nav.ejs') %>
+    <nav class="navbar">
+        <div class="navLeft">
+            <a class="hoverAnimationNav" href="/discover" class="active">Discover</a>
+            <a class="hoverAnimationNav" href="/find-requests">Jobs</a>
+        </div>
+        <div class="navCenter">
+            <a href="#">Spark</a>
+        </div>
+        <div class="navRight">
+            <a href="#" class="heart">
+                <img src="img/heart.png">
+            </a>
+            <a href="#" class="lightning">
+                <img src="img/lightning.png">
+            </a>
+            <% if (session.user) { %>
+              <a href="#" class="profile">
+                  <img src="upload/<%= profile_picture %>">
+                  <p><%= session.user.username %></p>
+              </a>
+            <% } else { %>
+              <a class="signIn" href="/sign-in">Log in</a>
+            <% } %>
+        </div>
+    </nav>
 </header>
 
     <div class="background"></div>
@@ -103,7 +130,7 @@
 <fieldset>
     <h2>Upload files</h2>
     <div class="file-input">
-    <input type="file" name="images" accept="image/*" required>
+    <input type="file" name="images" accept="image/*" required multiple>
     </div>
     <div class="btn-container" >
         <a href="" class="btn btn-prev"></a>

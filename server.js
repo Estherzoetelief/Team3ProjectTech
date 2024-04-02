@@ -5,15 +5,8 @@ const app = express()
 const session = require('express-session')
 
 const multer = require('multer');
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'upload/')
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, Date.now() + '-' + file.originalname)
-//     }
-// })
 const upload2 = multer({dest: 'static/upload/' });
+
 
 // VERBINDING MET DE DATABASE
 
@@ -55,7 +48,7 @@ app
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
-  //  .get('/portfolio', showPortfolioPage)
+   .get('/portfolio', showPortfolioPage)
     .post('/log-in', signIn)
     .post('/create-account', upload2.single('profilePicture'), addUser)
 
@@ -83,44 +76,59 @@ function showSignInPage(req, res){
 }
 
 function createRequest(req, res){
-  res.render('createrequest.ejs', {
-    username: req.session.user.username,
-    profile_picture: req.session.user.profile_picture,
-    session: req.session
-})
+  if (req.session.user) {
+    res.render('createrequest.ejs', {
+        username: req.session.user.username,
+        profile_picture: req.session.user.profile_picture,
+        session: req.session
+    });
+} else {
+    res.redirect('/sign-in')
+}
 }
 
-function showDiscoverPage(req,res){
-  res.render('discover.ejs', {
-    username: req.session.user.username,
-    profile_picture: req.session.user.profile_picture,
-    session: req.session
-});
+function showDiscoverPage(req, res) {
+  if (req.session.user) {
+      res.render('discover.ejs', {
+          username: req.session.user.username,
+          profile_picture: req.session.user.profile_picture,
+          session: req.session
+      });
+  } else {
+      res.render('discover.ejs', {
+          session: req.session
+      });
+  }
 }
+
 
 function showDetailPage(req,res){
-  res.render('detail.ejs', {
-    username: req.session.user.username,
-    profile_picture: req.session.user.profile_picture,
-    session: req.session
-});
+  if (req.session.user) {
+    res.render('detail.ejs', {
+        username: req.session.user.username,
+        profile_picture: req.session.user.profile_picture,
+        session: req.session
+    });
+} else {
+    res.render('detail.ejs', {
+        session: req.session
+    });
+}
 }
 
-
 function showPortfolioPage(req, res){
-  collectionPortfolioUploads.findOne({ portfolio: loginName })
-    .then(data => {
-      if (data) {
-        res.render('portfolio.ejs', { collectionPortfolioUploads: data });
-      } else {
-        res.status(404).send('Portfolio not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error retrieving portfolio:', error);
-      res.status(500).send('Error retrieving portfolio');
-    })}
-
+  if (req.session.user) {
+    res.render('portfolio.ejs', {
+        username: req.session.user.username,
+        profile_picture: req.session.user.profile_picture,
+        session: req.session
+    });
+} else {
+    res.render('portfolio.ejs', {
+        session: req.session
+    });
+}
+}
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
@@ -135,16 +143,15 @@ async function signIn(req, res) {
       req.session.user = {
         name: userInput.name,
         username: userInput.username,
-        profile_picture: req.file.filename,
-        email: req.body.email
+        profile_picture: userInput.profile_picture,
       }
       res.render("discover.ejs", {
         username: req.session.user.username,
-        profile_picture: req.body.profile_picture,
+        profile_picture: userInput.profile_picture,
         session: req.session
       });
     } else {
-      // alert("Invalid username or password")
+      res.status(401).send({ error: 'Invalid username or password' });
     }
   } catch (error) {
     console.error(error);
@@ -156,6 +163,12 @@ async function signIn(req, res) {
 
 
 async function addUser(req, res){
+
+  const existingEmail = await collection.findOne({ email: req.body.email });
+  if (existingEmail) {
+    return res.status(400).json({ error: 'E-mail already in use' });
+  }
+
   result = await collection.insertOne({
       name: req.body.name,
       username: req.body.username,
@@ -434,9 +447,16 @@ app.get('/portfolio', (req, res) => {
 
 
 
+
+
+
+
 // REQUEST TOEVOEGEN AAN DE DATABASE
 
 async function addRequest(req, res){
+
+  const userProfile = await collection.findOne({ email: req.session.user.email });
+
   result = await collection2.insertOne({
     category: req.body.category,
     project_title: req.body.projectTitle,
@@ -444,11 +464,21 @@ async function addRequest(req, res){
     budget: req.body.budget,
     duration: req.body.duration,
     deadline: req.body.deadline,
-    images: req.file.filename
+    images: req.file.filename,
+    user_profile: userProfile
   })
 
+  await collection.updateOne(
+    { _id: userProfile._id }, 
+    { $push: { projects: result.insertedId } }
+);
+
+
   const requestList = await collection2.find({}).toArray()
-  res.render('requests.ejs', {requests: requestList})
+  res.render('requests.ejs', {requests: requestList,
+    username: req.session.user.username,
+    profile_picture: req.session.user.profile_picture,
+    session: req.session,})
 }
 
 
@@ -458,10 +488,18 @@ async function addRequest(req, res){
 async function showRequests(req,res) {
   
 const requestList = await collection2.find({}).toArray()
-res.render('requests.ejs', {
-  requests: requestList,
-  username: req.session.user.username, // Haal de gebruikersnaam uit de sessie
-  profile_picture: req.session.user.profile_picture, // Haal het profielfoto-URL uit de sessie
-  session: req.session
-});
+
+if (req.session.user) {
+    res.render('requests.ejs', {
+        requests: requestList,
+        username: req.session.user.username,
+        profile_picture: req.session.user.profile_picture,
+        session: req.session,
+    });
+} else {
+    res.render('requests.ejs', {
+        session: req.session,
+        requests: requestList
+    });
+}
 }
