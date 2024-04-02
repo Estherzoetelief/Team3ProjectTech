@@ -151,6 +151,77 @@ ScrollTrigger.create({
     }
 });
 
+
+$(".headTextLandingPage").lettering();
+document.addEventListener("DOMContentLoaded", () => {
+   
+    startLoader();
+  });
+  
+  const startLoader = () => {
+    const counterElement = document.querySelector(".preLoader h2");
+    let currentValue = 0;
+  
+    const updateCounter = () => {
+      if (currentValue === 100) {
+        return;
+      }
+      console.log("test");
+  
+      currentValue += Math.floor(Math.random() * 10) + 1;
+      if (currentValue > 100) {
+        currentValue = 100;
+        console.log("test2");
+      }
+      counterElement.textContent = currentValue;
+  
+      const delay = Math.floor(Math.random() * 200) + 50;
+      setTimeout(updateCounter, delay);
+    };
+  
+    updateCounter();
+  };
+
+
+    // GSAP animations
+    gsap.to(".preLoader h2", {
+        delay: 3.5,
+        opacity: 0,
+        duration: .25
+    });
+
+    gsap.to(".bar", {
+        delay: 3.5,
+        height: 0,
+        stagger: 0.1,
+        ease: "power4.inout",
+        duration: .5
+    });
+
+    gsap.from(".headTextLandingPage span", {
+        delay: 4.5,
+        y: 200,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power4.inout",
+        duration: 1
+    });
+
+
+
+var typed = new Typed(".typeWriter", {
+    strings: ["Web developer.", "graphic designer.", "Photographer.", "UX-Designer." , "UI-Designer."],
+    typeSpeed: 130,
+    backSpeed: 100,
+    backDelay: 1000,
+    startDelay: 1000,
+    showCursor: true,
+    cursorChar: "|",
+    loop: true
+  });
+
+
+
 gsap.to('.word .letters:first-child', {
     x: () => -window.innerWidth * 3,
     scale: 10,
