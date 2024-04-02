@@ -10,13 +10,15 @@ const port = 8511;
 
 // Middleware voor bestand uploaden met Multer
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/uploads');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
+    destination: function (req, file, cb) {
+      cb(null, './uploads');
+    },
+    filename: function (req, file, cb) {
+      // Bouw het bestandspad op basis van de originele bestandsnaam en een unieke identifier
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.originalname + '-' + uniqueSuffix);
+    },
+  });
 const upload = multer({ storage: storage });
 
 // MongoDB URI
@@ -54,39 +56,43 @@ app.set('views', 'view');
 
 // Route voor het renderen van de portfolio-pagina
 app.get('/portfolio', async (req, res) => {
-  try {
-    const gebruikersnaam = 'TestUser_newacc';
-    const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
-    let imagePaths = [];
-    if (existingDataItem) {
-      imagePaths = existingDataItem.images.map(({ filepath }) => filepath);
+    try {
+      const gebruikersnaam = 'TestUser_newacc';
+      const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+      let imagePaths = [];
+      if (existingDataItem) {
+        // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
+        imagePaths = existingDataItem.images.map(({ filename }) => filename);
+      }
+      res.render('portfolio', { imagePaths: imagePaths });
+    } catch (error) {
+      console.error('Error fetching user images from database:', error);
+      res.status(500).send('Error fetching user images from database');
     }
-    res.render('portfolio', { imagePaths: imagePaths });
-  } catch (error) {
-    console.error('Error fetching user images from database:', error);
-    res.status(500).send('Error fetching user images from database');
-  }
-});
+  });
+  
 
 // Route voor het verwerken van het uploaden van afbeeldingen
 app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
   try {
     const gebruikersnaam = 'TestUser_newacc';
-    const filepaths = req.files.map(file => ({
-      filename: file.originalname,
-      filepath: file.path
+    const fileContext = req.files.map(file => ({
+      filename: file.filename
+    //   filename: file.originalname
+    //   , filepath: file.path
     }));
     const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
     if (existingDataItem) {
-      const updatedImages = [...existingDataItem.images, ...filepaths];
+      const updatedImages = [...existingDataItem.images, ...fileContext];
       await imagePathsCollection.updateOne(
         { username: gebruikersnaam },
         { $set: { images: updatedImages } }
       );
-      console.log('Images added to existing data item:', updatedImages);
+    //   console.log('Images added to existing data item:', updatedImages);
+      console.log('Images added to existing data item. File context:', updatedImages);
     } else {
-      await imagePathsCollection.insertOne({ username: gebruikersnaam, images: filepaths });
-      console.log('New data item created with images:', filepaths);
+      await imagePathsCollection.insertOne({ username: gebruikersnaam, images: fileContext });
+      console.log('New data item created with images. File context:', fileContext);
     }
     res.redirect('/portfolio');
   } catch (err) {
