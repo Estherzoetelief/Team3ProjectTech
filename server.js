@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
       // Bouw het bestandspad op basis van de originele bestandsnaam en een unieke identifier
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-      cb(null, file.originalname + '-' + uniqueSuffix);
+      cb(null, uniqueSuffix + '-' + file.originalname);
     },
   });
 const upload = multer({ storage: storage });
