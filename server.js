@@ -455,7 +455,7 @@ app.get('/portfolio', (req, res) => {
 
 async function addRequest(req, res){
 
-  const userProfile = await collection.findOne({ email: req.session.user.email });
+  console.log(req.session.user.username)
 
   result = await collection2.insertOne({
     category: req.body.category,
@@ -465,22 +465,21 @@ async function addRequest(req, res){
     duration: req.body.duration,
     deadline: req.body.deadline,
     images: req.file.filename,
-    user_profile: userProfile
+    creator: req.session.user.username
   })
 
-  await collection.updateOne(
-    { _id: userProfile._id }, 
-    { $push: { projects: result.insertedId } }
-);
-
+//   await collection.updateOne(
+//     { _id: userProfile._id }, 
+//     { $push: { projects: result.insertedId } }
+// );
 
   const requestList = await collection2.find({}).toArray()
   res.render('requests.ejs', {requests: requestList,
     username: req.session.user.username,
     profile_picture: req.session.user.profile_picture,
+    creator: req.session.user,
     session: req.session,})
 }
-
 
 
 // REQUEST TONEN OP DE FIND REQUEST PAGE
