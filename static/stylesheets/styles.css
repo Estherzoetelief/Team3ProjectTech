@@ -616,6 +616,7 @@ body.portfolioPagina {
     font-family: var(--hFont);
     font-weight: 300;
     margin-block: 0.4em;
+    /* margin-left: 2em; */
     /* color: blue; */
 
 }
@@ -624,9 +625,11 @@ body.portfolioPagina {
     font-size: var(--h2-size);
     font-family: var(--hFont);
     font-weight: 300;
+    /* margin-left: 2em; */
 }
 
 .portfolioPagina h3 {
+    /* margin-left: 2em; */
     margin: 1em;
     padding: 0em;
     font-size: var(--bodyTextSize);
@@ -636,6 +639,7 @@ body.portfolioPagina {
 
 
 .portfolioPagina p {
+    /* margin-left: 2em; */
     font-size: var(--p-size);
     font-family: var(--bodyTextFont);
 
@@ -665,9 +669,9 @@ body.portfolioPagina {
     object-fit: cover;
 }
 
-.hidden {
-    display: none;
-}
+
+
+
 
 /* // buttons  */
 
@@ -719,19 +723,23 @@ body.portfolioPagina {
     width: 200vw;
     transition: 1s;
     /* width: 200%; */
+    max-width: 100vw;
+    overflow-x: scroll;
+    transition: scroll-left 0.5s ease;
+    justify-items: center;
+    
+   
+    /* width: 200%; */
     /* overflow-x: auto; 
  white-space: nowrap;  */
 }
 
-.moveJobs {
-    transform: translateX(-100vw);
-
-}
 
 .jobs,
 .work {
     width: 100vw;
     max-width: 100%;
+    min-width: 100vw;
 
 }
 
@@ -763,6 +771,13 @@ body.portfolioPagina {
     position: relative;
     width: 100vw;
     height: 100vh;
+    min-width: 100vw;
+    /* display: flex;
+    flex-direction: row;
+    justify-items: center; */
+    /* contain:layout; */
+
+  
 }
 
 .jobs>input {
@@ -771,60 +786,107 @@ body.portfolioPagina {
 
 }
 
-.jobs>input,
+/* .jobs>input,
 .jobs>section:nth-of-type(2)>input {
     color: rgb(0, 0, 0);
     font-weight: 200;
     text-decoration: none;
-    border-radius: 3em;
+    border-radius: 0.8em;
     text-align: center;
     z-index: 2;
-    padding: 0.8em 2.5em;
+    padding: 0.5em 2.5em;
     border: 0.5px solid var(--primaryWhite);
     background-color: rgba(255, 255, 255, 0);
     transition: 0.5s;
     color: var(--primarywhite);
     position: relative;
     justify-self: center;
+    margin-top: 3em; } */
 
-}
+ /* */
 
-.jobs>section:nth-of-type(2)>section input {
-    display: none;
-    z-index: 2;
-}
 
-.jobs>section:nth-of-type(2)>section>label {
-    background-color: #36363674;
-    border-radius: 3em;
-    margin-right: 1em;
-    color: var(--primaryWhite);
-    padding: 1em 2em;
-    font-family: var(--bodyTextFont);
-    font-weight: 200;
-    cursor: pointer;
-    border: 0.5px rgb(161, 161, 161) solid;
-    display: inline-block;
-    white-space: nowrap;
-    margin: 0.4em 0.4em;
-    padding: 0.5em 1.3em;
-    transition: 0.3s;
-    z-index: 2;
-}
-
-.jobs>input:hover,
+/* .jobs>input:hover,
 .jobs>section:nth-of-type(2)>input:hover {
-    /* transform: translateY(0.0000px); */
-    /* transform: translateX(-0.0001%); */
+  
 
     box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
 
-}
+} */
 
-.jobs>input:focus,
+/* .jobs>input:focus,
 .jobs>section:nth-of-type(2)>input:focus {
     background-color: var(--primaryWhite);
     color: #1E1E1E;
+} */
+.jobs>button,
+.jobs>section:nth-of-type(2)>button>p {
+    z-index: 100;
+    color: red;
+    
+    
+}
+
+.jobs>button,
+.jobs>section:nth-of-type(2)>button {
+    text-align: center;
+  padding: 0.5em 2.5em;
+    border-radius: 0.8em;
+cursor: pointer;
+border: 2px solid #bcb1fdc8;
+background: linear-gradient(45deg, #fff 50%, #bcb1fdc8 50%);
+/* -webkit is dat je iets nieuws gaat proberen wat nog niet op elke browser een werkende code is -webkit hoeft niet niet meer overal
+background clip betekent letterlijk wat je invult je hebt verschillende vormen en het gaat erom hoeveel je invuld bijv alleen de tekst of de padding box */
+background-clip: text;
+-webkit-text-fill-color: transparent;
+position: relative;
+text-decoration: none;
+margin-top: 3em;
+-webkit-appearance: none;
+appearance: none;
+z-index: 1;
+
+
+
+}
+
+.jobs>button:after,
+.jobs>section:nth-of-type(2)>button:after {
+content: "";
+position: absolute;
+top: 0;
+/* bottom: 0; */
+left: 0;
+/* right: 0; */
+/* inset:0; */
+width:100%;
+height:100%;
+justify-self: center;
+/* deze regel hieronder wordt niet uitgevoerd, ik weet niet waarom */
+background: linear-gradient(45deg, #bcb1fdc8 50%, transparent 50%);
+background-position: right;
+/* background-color:red; */
+z-index: 0;
+border-radius: inherit;
+
+}
+
+.jobs>button,
+.jobs>section:nth-of-type(2)>button, 
+.jobs>button:after,
+.jobs>section:nth-of-type(2)>button:after {
+background-size: 300%;
+background-position: 100%;
+transition: 1s ease-out, font-size 0.2s;
+}
+
+.jobs>button:hover,
+.jobs>section:nth-of-type(2)>button:hover,
+.jobs>button:hover:after,
+.jobs>section:nth-of-type(2)>button:hover:after {
+background-position: 0;
+font-size: 1em;
+box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
 }
 
 .jobs>section:nth-of-type(2)>section:nth-of-type(1) input[type="radio"]:checked+label {
@@ -841,34 +903,74 @@ body.portfolioPagina {
     /* color: blue; */
 
 }
-
+/* deze sectie is de section waar alles in staat van het match formulier */
 .jobs>section:nth-of-type(2) {
+    padding-inline: 4em;
     background-color: #363636;
     border-radius: 1em;
-    padding: 2em;
-    padding-left: 2em;
+    padding-bottom: 4em;
     width: 60vw;
-    height: 30vh;
+    height: auto;
     z-index: 999;
     text-align: center;
     position: absolute;
-  right: 0;
+    right: 0;
     left: 0;
     top: 0;
     margin: 0 auto;
+    transition: all 300ms ease;
+    padding-top: 1em;
+    overflow: hidden;
+
    
 }
 
+.inactiveAnimationForm {
+   scale: 0;
+}
+
+.activeAnimationForm {
+
+    scale: 1;
+
+}
+
+
+
 .jobs>section:nth-of-type(2)>#matchOption1 {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     padding: 1em;
 }
-.jobs>section:nth-of-type(2)>#matchOption2 {
-    display: flex;
-    justify-content: center;
-    margin: 1em;
+
+
+ .hiddenMatch0ption2{
+    display: none;
+
 }
+
+.unhiddenMatchOption2 {
+    display: block;
+
+    justify-content: center;
+    /* margin: 1em; */
+
+}
+#closeMatchFormButton {
+    position: absolute;
+font-family: var(--bodyTextFont);
+font-size: var(--bodyTextSize);
+border: none;
+background-color: #363636;
+right: 2rem;
+bottom: 1rem;
+color: var(--primaryWhite);
+text-decoration: underline 1px;
+padding-bottom: 1em;
+/* color: var(--primaryWhite); */
+
+}
+
 
 .matchOption2-disabled {
     opacity: 0.5;
@@ -893,10 +995,24 @@ body.portfolioPagina {
         box-shadow: 0 0 0.5em 0.1em #6c6a76;
     }
 }
-
-.closeMatchFormButton {
-    
+.popUpBlur {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 30;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+display: none;
+transition: opacity 100ms ease-in-out 200ms;
 }
+
+
+ .activeForbackgroundBlurBtn{
+display: block;
+
+}
+
 /* work pagina algemeen */
 
 .work {
@@ -1045,6 +1161,7 @@ figure:hover .hide {
 
 .jobs {
     background-color: var(--primaryBlack);
+
 }
 
 /* 
@@ -1094,6 +1211,21 @@ hover met tekst buttons  */
         max-width: 50%;
         width: 50%;
         margin: 1em;
+    }
+    .jobs>section:nth-of-type(2)>#matchOption1 {
+        display: flex;
+ 
+    }
+    .hiddenMatch0ption2{
+        display: none;
+    }
+    
+    .unhiddenMatchOption2 {
+        display: flex;
+    
+        justify-content: center;
+        margin: 1em;
+    
     }
 
 }

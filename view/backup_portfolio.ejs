@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <title>Document</title>
+</head>
+
+
+<body class="portfolioPagina">
+    <article>
+        <h1>Micheal Vos</h1>
+        <h2>Designer</h2>
+        <!-- animatie maken waarin je allemaal verschillende kwaliteiten ziet -->
+        <p> 2012 - 2024</p>
+        <hr>
+    </article>
+
+
+    <section class="buttonsToggle">
+        <section>
+            <div id="animationButton"></div>
+            <button type="button" id="buttonWork">Work</button>
+            <button type="button" id="buttonJobs">jobs</button>
+        </section>
+    </section>
+ <div class="animationSlide"> 
+   
+    <section class="work" id="workElement">
+        <h2>Work</h2>
+        <section>
+            <figure>
+                <img class="unhide" src="img/fotoPortfolio1.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+                </section>
+                <section>
+                    <p>In this surrealist masterpiece, an enchanting realm unfolds, seamlessly intertwining dreams and reality on the pages of a brilliantly conceived book. The author wields their pen as an artist does a brush, each word a stroke contributing to a vivid and kaleidoscopic canvas.
+
+                    </p>
+                </section>
+
+            </figure>
+            <figure>
+                <img class="unhide" src="img/fotoPortfolio2.png" alt="Foto van de binnenkant van een boek van project Micheal Vos">
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+
+                </section>
+                <section>
+                    <p>The narrative transcends conventional storytelling, with the author crafting a labyrinthine tapestry of thoughts and ideas. The prose meanders through a landscape of imagination, inviting the reader to unearth meaning in every winding passage and apparent twist of the tale.</p>
+                </section>
+
+            </figure>
+        </section>
+ <!-- op deze section voeg ik user-images class toe voor versie van (dynamische database images) -->
+ <!-- om deze versie ongedaan te maken. figures uncommenten en dynamische deel van <% %> commenten -->
+        <section class="user-images">
+
+            <% imagePaths.forEach(imagePath => { %>
+                <figure>
+                    <section class="hide">
+                        <h2>Read more </h2>
+                        <button></button>
+                    </section>
+                    <section>
+                        <p>The book serves as a literary maze, a journey where the reader is challenged to navigate through a series of interconnected chambers, each revealing a unique facet of the artistic vision. Symbolism and metaphor dance through the text, creating an intricate tapestry that invites interpretation and contemplation.</p>
+                    </section>
+                    <img class="unhide" src="<%= imagePath %>" alt="User Image">
+    
+                </figure>
+              <% }); %>
+
+
+
+
+
+<!-- 
+            <figure>
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+                </section>
+                <section>
+                    <p>The book serves as a literary maze, a journey where the reader is challenged to navigate through a series of interconnected chambers, each revealing a unique facet of the artistic vision. Symbolism and metaphor dance through the text, creating an intricate tapestry that invites interpretation and contemplation.</p>
+                </section>
+                <img class="unhide" src="img/fotoPortfolio3.png" alt="Foto van een bladzijde van een boek van project Micheal Vos">
+
+            </figure>
+            <figure>
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+                </section>
+                <section>
+                    <p>With a seamless blend of poetry and prose, the author immerses the reader in an atmosphere of mystery. The delineation between imagination and reality becomes increasingly elusive as the narrative unfolds, mirroring the fluidity of the artistic process.</p>
+                </section>
+                <img class="unhide" src="img/fotoPortfolio4.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
+            </figure>
+            <figure>
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+                </section>
+                <section>
+                    <p>Every chapter resembles a carefully crafted piece of visual art, each paragraph a brushstroke adding depth and nuance to the overarching composition. Through a symphony of words and images, the book transcends traditional storytelling, inviting the reader into a world where creativity knows no bounds and the boundaries between artistic expression and narrative dissolve.</p>
+                </section>
+                <img class="unhide" src="img/fotoPortfolio5.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
+            </figure>
+            <figure>
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+                   
+                </section>
+                <section>
+                    <p>The author's narrative technique echoes the brushstrokes of the Surrealist movement, creating a literary equivalent to a Salvador Dalí or René Magritte masterpiece. Each sentence is a deliberate stroke, forming a landscape of the mind that challenges preconceived notions and beckons the reader to explore the nuances of the human psyche.</p>
+                </section>
+                <img class="unhide" src="img/fotoPortfolio6.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
+            </figure>
+            <figure>
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button>
+                    </button>
+                </section>
+                <section>
+                    <p>As the story unfolds, it becomes apparent that the author employs a chiaroscuro of emotions, juxtaposing light and shadow with words. The characters, like living sculptures, navigate a narrative terrain shaped by the interplay of their internal struggles and external environments, giving the book a multidimensional depth that mirrors the complexities of the human experience.</p>
+                </section>
+                <img class="unhide" src="img/fotoPortfolio7.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
+            </figure>
+            <figure>
+                <section class="hide">
+                    <h2>Read more </h2>
+                    <button></button>
+                   
+                </section>
+                <section>
+                    <p>The book serves as a gallery of linguistic innovations, with the author pushing the boundaries of language and narrative structure. Through avant-garde techniques and unconventional wordplay, the text becomes a dynamic work of art, challenging readers to engage with literature in a way that transcends the traditional boundaries of storytelling. Each page is a testament to the author's ability to not only craft a compelling narrative but also to push the boundaries of artistic expression within the written word.</p>
+                </section>
+                <img class="unhide" src="img/fotoPortfolio8.png" alt="Foto van de voorkant van een boek van project Micheal Vos">
+            </figure> -->
+        </section>
+
+    </section>
+
+
+   
+    <section class="jobs" id="jobsElement">
+        <section>
+            <h2>Jobs</h2>
+        </section>
+        <input type="button" value="Match" id="matchButton" />
+        <section id="matchForm" class="hidden">
+            <h3>Do you want to:</h3>
+            <section id="matchOption1">
+                <input type="radio" name="Match" id="matchWithPerson" value="matchWithPerson" required>
+                <label for="matchWithPerson">Match with Micheal Vos</label><br>
+                <input type="radio" name="Match" id="matchWithJob" value="matchWithJob" required>
+                <label for="matchWithJob">Match with his job</label><br>
+            </section>
+            
+            <section id="matchOption2" class="hidden">
+                <input type="radio" name="MatchJobs" value="Matchjobs" id="project1" class="option2ForMatchButton" disabled required>
+                <label class="option2ForMatchButton" for="project1">Fitness app</label><br>
+                <input  type="radio" name="MatchJobs" value="Matchjobs" id="project2" class="option2ForMatchButton" disabled required>
+                <label class="option2ForMatchButton" for="project2">Logo design</label><br>
+                <input type="radio" name="MatchJobs" value="" id="project3" class="option2ForMatchButton" disabled required>
+                <label class="option2ForMatchButton" for="project3">Front end design</label><br>
+            </section>
+    
+            <input type="submit" value="Submit" id="submitMatch"/>
+<button class="closeMatchFormButton">close</button>
+        </section>
+    </section>
+</div> 
+
+
+    <!-- <div class="upload_container">
+        <button>
+        Upload portfolio images
+        </button>
+    </div> -->
+
+    <!-- <div class="upload_container">
+    <form action="/api/portfolio/photos" method="POST" enctype="multipart/form-data">
+        <input type="file" name="photo" accept="image/*">
+        <button type="submit">Upload Image</button>
+    </form>
+    </div> -->
+    <div class="upload_container">
+    <form method="POST" action="/profile-upload-multiple" enctype="multipart/form-data">
+        <div>
+            <label>Upload multiple profile picture</label>
+            <input type="file" name="profile-files" required multiple  />
+        </div>
+        <div>
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+    </div>
+
+
+<!-- 
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form> -->
+
+    <div id="successPopup" style="display: none;">
+        <p>Files successfully uploaded!</p>
+    </div>
+
+
+
+    <script src="scripts/script.js"></script>
+</body>
+
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js"
+    integrity="sha512-VJ/iYbiu1eJ6yLimfTi65t2R9TFcG5D9X8ZCfbbEFhTfPnKJh8byoKXEawi5ScJZBYL1eiirL1+MczZDx0Tz9Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+</html>
