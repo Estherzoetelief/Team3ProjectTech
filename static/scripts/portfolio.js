@@ -192,3 +192,14 @@ document.getElementById('matchWithPerson').addEventListener('click', () => {
 //     MatchButton.style.display = 'none'
 
 // })
+
+var typed = new Typed(".typeWriter", {
+    strings: ["Web developer.", "graphic designer.", "Photographer.", "UX-Designer." , "UI-Designer."],
+    typeSpeed: 150,
+    backSpeed: 120,
+    backDelay: 1000,
+    startDelay: 1000,
+    showCursor: true,
+    cursorChar: "|",
+    loop: true
+  });

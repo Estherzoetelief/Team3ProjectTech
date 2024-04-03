@@ -327,6 +327,39 @@ body.portfolioPagina {
     padding-bottom: 1em;
 }
 
+.portfolioPagina>article:nth-of-type(1) > p:nth-of-type(1) {
+
+    padding-bottom: 1em;
+   
+    font-size: 3em; 
+}
+
+.portfolioPagina>article:nth-of-type(1) > p:nth-of-type(1) span {
+    color: #BCB1FD;
+}
+
+
+
+
+/* article   {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    .headTextLandingPage span {
+        display: inline-block;
+    }
+    
+     p {
+        margin-top: 3em;
+        font-size: 1.5em;
+        font-family: var( --bodyTextFont);
+    
+    } */
+    
+
 .portfolioPagina figure {
 
     margin: 0em;
@@ -485,16 +518,25 @@ body.portfolioPagina {
     background-color: var(--primaryWhite);
     color: #1E1E1E;
 } */
-.jobs>button,
-.jobs>section:nth-of-type(2)>button>p {
+
+
+.jobs>section:nth-of-type(1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+
+}
+.jobs>section:nth-of-type(1)>button> p,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1) {
     z-index: 100;
     color: white;
     
     
 }
 
-.jobs>button,
-.jobs>section:nth-of-type(2)>button {
+.jobs>section:nth-of-type(1)>button,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1) {
     text-align: center;
   padding: 0.5em 2.5em;
     border-radius: 0.8em;
@@ -510,14 +552,14 @@ text-decoration: none;
 margin-top: 3em;
 -webkit-appearance: none;
 appearance: none;
-z-index: 1;
+z-index: 2;
 
 
 
 }
 
-.jobs>button:after,
-.jobs>section:nth-of-type(2)>button:after {
+.jobs>section:nth-of-type(1)>button::after,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1):after{
 content: "";
 position: absolute;
 top: 0;
@@ -528,28 +570,27 @@ left: 0;
 width:100%;
 height:100%;
 justify-self: center;
-/* deze regel hieronder wordt niet uitgevoerd, ik weet niet waarom */
 background: linear-gradient(45deg, #bcb1fdc8 50%, transparent 50%);
 background-position: right;
 /* background-color:red; */
-z-index: 0;
+z-index: 1;
 border-radius: inherit;
 
 }
 
-.jobs>button,
-.jobs>section:nth-of-type(2)>button, 
-.jobs>button:after,
-.jobs>section:nth-of-type(2)>button:after {
+.jobs>section:nth-of-type(1)>button,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1),
+.jobs>section:nth-of-type(1)>button::after,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1):after{
 background-size: 300%;
 background-position: 100%;
 transition: 1s ease-out, font-size 0.2s;
 }
 
-.jobs>button:hover,
-.jobs>section:nth-of-type(2)>button:hover,
-.jobs>button:hover:after,
-.jobs>section:nth-of-type(2)>button:hover:after {
+.jobs>section:nth-of-type(1)>button:hover,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1):hover,
+.jobs>section:nth-of-type(1):hover::after,
+.jobs>section:nth-of-type(2)>button:nth-of-type(1):hover::after {
 background-position: 0;
 font-size: 1em;
 box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
@@ -584,7 +625,7 @@ box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
     left: 0;
     top: 0;
     margin: 0 auto;
-    transition: all 300ms ease;
+    transition: all 600ms ease-in-out;
     padding-top: 1em;
     overflow: hidden;
 
@@ -622,6 +663,40 @@ box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
     /* margin: 1em; */
 
 }
+
+/* #closeMatchFormButton {
+    position: relative;
+font-family: var(--bodyTextFont);
+font-size: var(--bodyTextSize);
+border: none;
+background-color: #363636;
+right: 2rem;
+bottom: 1rem;
+color: var(--primaryWhite);
+text-decoration: underline none !important;
+padding-bottom: 1em;
+display: inline-block;
+cursor: pointer;
+
+
+}
+
+#closeMatchFormButton::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+
+#closeMatchFormButton:hover::before {
+    width: 100%;
+} */
+
+
 #closeMatchFormButton {
     position: absolute;
 font-family: var(--bodyTextFont);
@@ -631,11 +706,31 @@ background-color: #363636;
 right: 2rem;
 bottom: 1rem;
 color: var(--primaryWhite);
-text-decoration: underline 1px;
-padding-bottom: 1em;
+text-decoration: underline none;
+padding-bottom: 0.5em;
+display: inline-block;
+cursor: pointer;
+
+
 /* color: var(--primaryWhite); */
 
 }
+
+#closeMatchFormButton::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color:#BCB1FD;
+    transition: width 0.3s ease-in-out;
+}
+
+#closeMatchFormButton:hover::before {
+    width: 100%;
+}
+
 
 
 .matchOption2-disabled {
