@@ -134,30 +134,53 @@ document.getElementById('matchWithPerson').addEventListener('click', () => {
 
 
 
+// // popup upload multer multiple mike
+// document.addEventListener('DOMContentLoaded', function () {
+//     const uploadForm = document.getElementById('uploadForm');
+//     const successPopup = document.getElementById('successPopup');
+
+//     uploadForm.addEventListener('submit', function (event) {
+//         event.preventDefault();
+
+//         const formData = new FormData(uploadForm);
+
+//         fetch('/upload', {
+//             method: 'POST',
+//             body: formData
+//         })
+//         .then(response => {
+//             if (response.ok) {
+//                 successPopup.style.display = 'block';
+//             }
+//         })
+//         .catch(error => console.error('Error uploading file:', error));
+//     });
+// });
 
 
-
-
-
-// popup upload multer multiple mike
 document.addEventListener('DOMContentLoaded', function () {
-    const uploadForm = document.getElementById('uploadForm');
-    const successPopup = document.getElementById('successPopup');
+    const deleteButtons = document.querySelectorAll('.delete-button');
 
-    uploadForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const imagePath = button.dataset.image;
+            const confirmation = confirm('Weet je zeker dat je deze afbeelding wilt verwijderen?');
 
-        const formData = new FormData(uploadForm);
-
-        fetch('/upload', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                successPopup.style.display = 'block';
+            if (confirmation) {
+                try {
+                    const response = await fetch(`/delete-image/${imagePath}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        // Verwijder de afbeelding van de pagina als het verwijderen succesvol is
+                        button.closest('figure').remove();
+                        alert('Afbeelding succesvol verwijderd');
+                    } else {
+                        alert('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+                    }
+                } catch (error) {
+                    console.error('Error deleting image:', error);
+                    alert('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+                }
             }
-        })
-        .catch(error => console.error('Error uploading file:', error));
+        });
     });
 });

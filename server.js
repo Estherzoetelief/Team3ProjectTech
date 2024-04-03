@@ -100,3 +100,25 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
     res.status(500).send('Error uploading files');
   }
 });
+
+
+// Route voor het verwijderen van een afbeelding
+app.delete('/delete-image/:imagePath', async (req, res) => {
+    try {
+        const gebruikersnaam = 'TestUser_newacc';
+        const imagePath = req.params.imagePath;
+        // Verwijder de afbeelding van de webserver
+        // Code om afbeelding te verwijderen van de webserver, bijvoorbeeld met fs.unlinkSync()
+
+        // Verwijder de afbeelding uit de MongoDB-collectie
+        await imagePathsCollection.updateOne(
+            { username: gebruikersnaam },
+            { $pull: { images: { filename: imagePath } } }
+        );
+
+        res.status(200).send('Afbeelding succesvol verwijderd');
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        res.status(500).send('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+    }
+});
