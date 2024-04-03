@@ -55,7 +55,7 @@ app
  
 
     .get('/create-request', createRequest)
-    .post('/send-request', upload2.single('images') ,addRequest)
+    .post('/send-request', upload2.array('images', 6) ,addRequest)
 
     .get('/find-requests', showRequests)
 
@@ -116,19 +116,28 @@ function showDetailPage(req,res){
 }
 }
 
-function showPortfolioPage(req, res){
+async function showPortfolioPage(req, res) {
   if (req.session.user) {
-    res.render('portfolio.ejs', {
-        username: req.session.user.username,
-        profile_picture: req.session.user.profile_picture,
-        session: req.session
-    });
-} else {
-    res.render('portfolio.ejs', {
-        session: req.session
-    });
+      try {
+          const requestList = await collection2.find({ creator: req.session.user.username }).toArray();
+          res.render('portfolio.ejs', {
+              username: req.session.user.username,
+              profile_picture: req.session.user.profile_picture,
+              requests: requestList,
+              session: req.session
+          });
+      } catch (error) {
+          console.error('Error fetching request list:', error);
+          res.status(500).send('Internal server error');
+      }
+  } else {
+      res.render('portfolio.ejs', {
+          session: req.session
+      });
+  }
 }
-}
+
+
 
 // NIEUWE GEBRUIKER TOEVOEGEN AAN DE DATABASE
 const collectionPortfolioUploads = db.collection(process.env.DB_COLLECTION3)
@@ -455,6 +464,7 @@ app.get('/portfolio', (req, res) => {
 
 async function addRequest(req, res){
 
+  const images = req.files.map(file => file.filename);
   console.log(req.session.user.username)
 
   result = await collection2.insertOne({
@@ -464,7 +474,7 @@ async function addRequest(req, res){
     budget: req.body.budget,
     duration: req.body.duration,
     deadline: req.body.deadline,
-    images: req.file.filename,
+    images: images,
     creator: req.session.user.username
   })
 
