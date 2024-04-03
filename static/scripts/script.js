@@ -198,27 +198,27 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: .5
     });
 
-    gsap.from(".headTextLandingPage span", {
-        delay: 4.5,
+    gsap.from(".letters div", {
+        delay: 3.7,
         y: 200,
         opacity: 0,
-        stagger: 0.2,
+        stagger: 0.1,
         ease: "power4.inout",
         duration: 1
     });
 
 
 
-var typed = new Typed(".typeWriter", {
-    strings: ["Web developer.", "graphic designer.", "Photographer.", "UX-Designer." , "UI-Designer."],
-    typeSpeed: 130,
-    backSpeed: 100,
-    backDelay: 1000,
-    startDelay: 1000,
-    showCursor: true,
-    cursorChar: "|",
-    loop: true
-  });
+// var typed = new Typed(".typeWriter", {
+//     strings: ["Web developer.", "graphic designer.", "Photographer.", "UX-Designer." , "UI-Designer."],
+//     typeSpeed: 130,
+//     backSpeed: 100,
+//     backDelay: 1000,
+//     startDelay: 1000,
+//     showCursor: true,
+//     cursorChar: "|",
+//     loop: true
+//   });
 
 
 
