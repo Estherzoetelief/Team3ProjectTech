@@ -1143,9 +1143,8 @@ Hier start request & create page css
     color: var(--primaryWhite);
     font-family: var(--hFont);
     font-style: italic;
-    font-size: 2em;
+    font-size: 1.8em;
     display: block;
-    margin-top: 0.5em;
     margin-bottom: 0px
 }
 
@@ -1161,8 +1160,9 @@ Hier start request & create page css
 }
 
 .requests .scroll-text {
-    height: 6.5em;
+    height: 8em;
     overflow-y: scroll;
+    margin-bottom: 2em;
 }
 
 .requests ::-webkit-scrollbar-thumb {
@@ -1221,7 +1221,7 @@ Hier start request & create page css
     text-decoration: none;
     color: var(--primaryBlack);
     font-weight: 600;
-    top: 1em;
+    top: -3em;
     position: relative;
 
 }
@@ -1301,7 +1301,7 @@ Hier start request & create page css
     margin-top: 3em;
     margin-bottom: 0.75em;
     display: flex;
-    /* overflow-x: scroll ; */
+    overflow-x: scroll ;
     width: 90vw;
     outline: none;
     height: 3em;

@@ -479,9 +479,9 @@ body.portfolioPagina {
     color: var(--primaryWhite);
     font-family: var(--hFont);
     font-style: italic;
-    font-size: 2em;
+    font-size: 1.8em;
+    font-weight: 800;
     display: block;
-    margin-top: 0.5em;
     margin-bottom: 0px
 }
 
@@ -497,8 +497,9 @@ body.portfolioPagina {
 }
 
 .portfolioPagina .scroll-text {
-    height: 6.5em;
+    height: 8em;
     overflow-y: scroll;
+    margin-bottom: 2em;
 }
 
 .portfolioPagina ::-webkit-scrollbar-thumb {
@@ -506,7 +507,7 @@ body.portfolioPagina {
     border-radius: 1em;
 }
 
-.requests ::-webkit-scrollbar-track {
+.portfolioPagina ::-webkit-scrollbar-track {
     background-color: #6a6a6a;
     border-radius: 1em;
 }
@@ -555,7 +556,7 @@ body.portfolioPagina {
     text-decoration: none;
     color: var(--primaryBlack);
     font-weight: 600;
-    top: 1em;
+    top: -3em;
     position: relative;
 
 }
@@ -753,9 +754,6 @@ margin-top: 3em;
 -webkit-appearance: none;
 appearance: none;
 z-index: 1;
-
-
-
 }
 
 .jobs>button:after,

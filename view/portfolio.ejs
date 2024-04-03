@@ -19,7 +19,13 @@
 
     <div class="popUpBlur"></div>
     <article>
+        <% if (session.user) { %>
         <h1> <%= session.user.name%></h1>
+        <% } else {%>
+        <h1>Username</h1>
+        <% } %>
+
+
         <h2>Designer</h2>
         <!-- animatie maken waarin je allemaal verschillende kwaliteiten ziet -->
         <p> 2012 - 2024</p>
@@ -204,31 +210,36 @@
             </section>
 
             <article class="all-requests">
-                <% requests.forEach(request => { %>
-    
-                <section class="filter-item" data-category="<%= request.category %>">
-                    <div class="imglayout">
-                        <img src="upload/<%= request.images %>" alt="">
-                        <img src="upload/<%= request.images %>" alt="">
-                        <img src="upload/<%= request.images %>" alt="">
-                        <img src="upload/<%= request.images %>" alt="">
-                        <img src="upload/<%= request.images %>" alt="">
-                        <img src="upload/<%= request.images %>" alt="">
-                    </div>
-                    <div>
-                        <h2><%= request.project_title %></h2>
-                        <div class="scroll-text">
-                            <p><%= request.description %></p>
-                        </div>
-    
-                        <p><%= request.duration %></p>
-                        <p><%= request.budget %></p>
-                        <p><%= request.deadline %></p>
-                        <p><%= request.creator%></p>
-                        <a href="">Match</a>
-                    </div>
-                </section>
-                <% }); %>
+                <% if (requests.length > 0) { %>
+                    <% requests.forEach(request => { %>
+                        <section class="filter-item" data-category="<%= request.category %>">
+                            <div class="imglayout">
+                                <% if (Array.isArray(request.images)) { %>
+                                    <% request.images.forEach(image => { %>
+                                        <img src="upload/<%= image %>" alt="">
+                                    <% }); %>
+                                <% } else { %>
+                                    <img src="upload/<%= request.images %>" alt="">
+                                <% } %>
+                            </div>
+                            <div>
+                                <h2><%= request.project_title %></h2>
+                                <div class="scroll-text">
+                                    <p><%= request.description %></p>
+                                </div>
+            
+                                <p><%= request.duration %></p>
+                                <p><%= request.budget %></p>
+                                <p><%= request.deadline %></p>
+                                <p><%= request.creator %></p>
+                                <a href="">Match</a>
+                            </div>
+                        </section>
+                    <% }); %>
+                <% } else { %>
+                    <p>No projects found</p>
+                <% } %>
+            </article>
             </article>
 
 

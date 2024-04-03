@@ -132,7 +132,8 @@ async function showPortfolioPage(req, res) {
       }
   } else {
       res.render('portfolio.ejs', {
-          session: req.session
+          session: req.session,
+          requests: requestList,
       });
   }
 }
@@ -195,10 +196,6 @@ async function addUser(req, res){
 
   console.log(`Added with _id: ${result.insertedID}`);
 
-  // Verkrijg de gebruikersnaam en profielfoto uit de request body
-  const { username, profile_picture } = req.body;
-
-  // Stuur de gebruiker door naar de Discover-pagina en geef de gebruikersnaam en profielfoto door
   res.render('discover.ejs', { 
     username: req.body.username, 
     profile_picture: req.file.filename, 
