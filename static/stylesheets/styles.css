@@ -1393,3 +1393,33 @@ hover met tekst buttons  */
   }
   
   /* ------------------------ */
+
+  .delete-button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: -40px;
+    margin-left: 5px;
+    background-color: #00000017;
+    color: white;
+    border: #8774ff33 3px solid;
+    padding: 5px;
+    width: 100px;
+    border-radius: 10px;
+    content: "";
+    background-image: url(https://icons8.com/icons/set/cross);
+  }
+
+  .delete-button:hover{
+   background-color: rgba(245, 245, 245, 0.817);
+   color: red;
+   border: #a5000093 3px solid;
+   transition: 400ms;
+  }
+
+  .delete-button:active{
+    background-color: red;
+    color: rgb(255, 255, 255);
+    border: #ffdbdb93 3px solid;
+    transition: 400ms;
+   }
