@@ -19,8 +19,14 @@
 
     <div class="popUpBlur"></div>
     <article>
+        <% if (session.user) %>
         <h1> <%= session.user.name%></h1>
-        <h2>Designer</h2>
+        <% } else { %>
+        <h1>Username</h1>
+        <% } %>
+
+        <p>I am a <span class="typeWriter"></span></p>
+
         <!-- animatie maken waarin je allemaal verschillende kwaliteiten ziet -->
         <p> 2012 - 2024</p>
         <hr>
