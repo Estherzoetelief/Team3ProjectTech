@@ -178,7 +178,7 @@
 
 
 
-        <section class="jobs" id="jobsElement">
+        <!-- <section class="jobs" id="jobsElement">
             <h2>Jobs</h2>
             <section>
                 <button type="button" id="matchButton">
@@ -187,24 +187,24 @@
             </section>
 
             <section id="matchForm" class="inactiveAnimationForm">
-                <h3>Do you want to:</h3>
+                <h3>Do you want to match with the:</h3>
                 <section id="matchOption1">
                     <input type="radio" name="Match" id="matchWithPerson" value="matchWithPerson" required>
-                    <label for="matchWithPerson">Match with Micheal Vos</label><br>
+                    <label for="matchWithPerson">Person</label><br>
                     <input type="radio" name="Match" id="matchWithJob" value="matchWithJob" required>
-                    <label for="matchWithJob">Match with his job</label><br>
+                    <label for="matchWithJob">Job</label><br>
                 </section>
 
                 <section id="matchOption2" class="hiddenMatch0ption2">
                     <input type="radio" name="MatchJobs" value="Matchjobs" id="project1" class="option2ForMatchButton"
                         disabled required>
-                    <label class="option2ForMatchButton" for="project1">Fitness app</label><br>
+                    <label class="option2ForMatchButton" for="project1">Fitness app</label>
                     <input type="radio" name="MatchJobs" value="Matchjobs" id="project2" class="option2ForMatchButton"
                         disabled required>
-                    <label class="option2ForMatchButton" for="project2">Logo design</label><br>
+                    <label class="option2ForMatchButton" for="project2">Logo design</label>
                     <input type="radio" name="MatchJobs" value="" id="project3" class="option2ForMatchButton" disabled
                         required>
-                    <label class="option2ForMatchButton" for="project3">Front end design</label><br>
+                    <label class="option2ForMatchButton" for="project3">Front end design</label>
                 </section>
 
                 <button id="submitMatch">Submit</button>
@@ -213,7 +213,34 @@
             </section>
 
 
+        </section> -->
+
+        <section class="jobs" id="jobsElement">
+            <h2>Jobs</h2>
+            <section>
+                <button type="button" id="matchButton">
+                    <p>Match</p>
+                </button>
+            </section>
+        
+            <section id="matchForm" class="inactiveAnimationForm">
+                <h3>Do you want to match with the:</h3>
+                <section id="matchOption1">
+                    <button type="button" id="matchWithPerson" class="matchButton">Person</button>
+                    <button type="button" id="matchWithJob" class="matchButton">Job</button>
+                </section>
+        
+                <section id="matchOption2" class="hiddenMatchOption2">
+                    <button type="button" id="project1" class="option2ForMatchButton matchButton" disabled>Fitness app</button>
+                    <button type="button" id="project2" class="option2ForMatchButton matchButton" disabled>Logo design</button>
+                    <button type="button" id="project3" class="option2ForMatchButton matchButton" disabled>Front end design</button>
+                </section>
+        
+                <button id="submitMatch">Submit</button>
+                <button id="closeMatchFormButton">close</button>
+            </section>
         </section>
+        
     </div>
 
 
