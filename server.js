@@ -62,7 +62,7 @@ app.get('/portfolio', async (req, res) => {
       let imagePaths = [];
       if (existingDataItem) {
         // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
-        imagePaths = existingDataItem.images.map(({ filename }) => filename);
+        imagePaths = existingDataItem.images.map(({ filename }) => filename);  
       }
       res.render('portfolio', { imagePaths: imagePaths });
     } catch (error) {
