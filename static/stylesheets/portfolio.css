@@ -549,7 +549,7 @@ padding-top: 15vh;
       border-radius: 0.6em;
   cursor: pointer;
   
-  background: linear-gradient(45deg,#000000 50%, #fff 50% );
+  background: linear-gradient(45deg,#ffffff 50%, #fff 50% );
   /* -webkit is dat je iets nieuws gaat proberen wat nog niet op elke browser een werkende code is -webkit hoeft niet niet meer overal
   background clip betekent letterlijk wat je invult je hebt verschillende vormen en het gaat erom hoeveel je invuld bijv alleen de tekst of de padding box */
   background-clip: text;
@@ -616,7 +616,7 @@ left: 0;
 width:100%;
 height:100%;
 justify-self: center;
-background: linear-gradient(45deg, rgba(229, 227, 255, 0.461) 50%, transparent 50%);
+background: linear-gradient(45deg, rgba(226, 224, 255, 0.118) 50%, transparent 50%);
 background-position: right;
 z-index: 1;
 border-radius: inherit;
