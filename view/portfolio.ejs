@@ -18,7 +18,6 @@
     <header>
         <%- include('nav.ejs') %>
     </header>
-
     <div class="popUpBlur"></div>
     <article>
         <% if (session.user) { %>
@@ -47,7 +46,7 @@
             <h2>Work</h2>
             <section>
                 <figure>
-                    <img class="unhide" src="img/fotoPortfolio1.png"
+                    <img class="unhide" src="/img/fotoPortfolio1.png"
                         alt="Foto van de voorkant van een boek van project Micheal Vos">
                     <section class="hide">
                         <h2>Read more </h2>
@@ -63,7 +62,7 @@
 
                 </figure>
                 <figure>
-                    <img class="unhide" src="img/fotoPortfolio2.png"
+                    <img class="unhide" src="/img/fotoPortfolio2.png"
                         alt="Foto van de binnenkant van een boek van project Micheal Vos">
                     <section class="hide">
                         <h2>Read more </h2>
@@ -79,7 +78,30 @@
 
                 </figure>
             </section>
+            
+            <section class="user-images">
 
+                <% imagePaths.forEach(imagePath => { %>
+                    <figure>
+                             <!-- knop  voor het verwijderen -->
+                        <button class="delete-button" data-image="<%= imagePath %>">Delete</button>
+                            <!-- code voorafbeelding en styling -->
+                        <section class="hide">
+                            <h2>Read more </h2>
+                            <button></button>
+                        </section>
+                        <section>
+                            <p>The book serves as a literary maze, a journey where the reader is challenged to navigate through a series of interconnected chambers, each revealing a unique facet of the artistic vision. Symbolism and metaphor dance through the text, creating an intricate tapestry that invites interpretation and contemplation.</p>
+                        </section>
+                        <img class="unhide" src="<%= imagePath %>" alt="User Image">
+        
+                    </figure>
+                  <% }); %>
+
+
+
+
+<!-- 
             <section>
                 <figure>
                     <section class="hide">
@@ -92,7 +114,7 @@
                             vision. Symbolism and metaphor dance through the text, creating an intricate tapestry that
                             invites interpretation and contemplation.</p>
                     </section>
-                    <img class="unhide" src="img/fotoPortfolio3.png"
+                    <img class="unhide" src="/img/fotoPortfolio3.png"
                         alt="Foto van een bladzijde van een boek van project Micheal Vos">
 
                 </figure>
@@ -106,7 +128,7 @@
                             mystery. The delineation between imagination and reality becomes increasingly elusive as the
                             narrative unfolds, mirroring the fluidity of the artistic process.</p>
                     </section>
-                    <img class="unhide" src="img/fotoPortfolio4.png"
+                    <img class="unhide" src="/img/fotoPortfolio4.png"
                         alt="Foto van de voorkant van een boek van project Micheal Vos">
                 </figure>
                 <figure>
@@ -121,7 +143,7 @@
                             creativity knows no bounds and the boundaries between artistic expression and narrative
                             dissolve.</p>
                     </section>
-                    <img class="unhide" src="img/fotoPortfolio5.png"
+                    <img class="unhide" src="/img/fotoPortfolio5.png"
                         alt="Foto van de voorkant van een boek van project Micheal Vos">
                 </figure>
                 <figure>
@@ -136,7 +158,7 @@
                             deliberate stroke, forming a landscape of the mind that challenges preconceived notions and
                             beckons the reader to explore the nuances of the human psyche.</p>
                     </section>
-                    <img class="unhide" src="img/fotoPortfolio6.png"
+                    <img class="unhide" src="/img/fotoPortfolio6.png"
                         alt="Foto van de voorkant van een boek van project Micheal Vos">
                 </figure>
                 <figure>
@@ -152,7 +174,7 @@
                             environments, giving the book a multidimensional depth that mirrors the complexities of the
                             human experience.</p>
                     </section>
-                    <img class="unhide" src="img/fotoPortfolio7.png"
+                    <img class="unhide" src="/img/fotoPortfolio7.png"
                         alt="Foto van de voorkant van een boek van project Micheal Vos">
                 </figure>
                 <figure>
@@ -169,14 +191,12 @@
                             Each page is a testament to the author's ability to not only craft a compelling narrative
                             but also to push the boundaries of artistic expression within the written word.</p>
                     </section>
-                    <img class="unhide" src="img/fotoPortfolio8.png"
+                    <img class="unhide" src="/img/fotoPortfolio8.png"
                         alt="Foto van de voorkant van een boek van project Micheal Vos">
                 </figure>
-            </section>
+            </section> -->
 
         </section>
-
-
 
         <!-- <section class="jobs" id="jobsElement">
             <h2>Jobs</h2>
@@ -220,6 +240,9 @@
             <!-- <p>Match</p> --> Match
         </button>
     </section>
+    
+    
+    
 
     <section id="matchForm" class="inactiveAnimationForm">
         <h3>Do you want to match with the:</h3>
@@ -229,6 +252,7 @@
             <button type="button" id="matchWithJob" class="matchButton">Job</button>
         </section>
 
+    
         <section id="matchOption2" class="hiddenMatchOption2">
             <button type="button" id="project1" class="option2ForMatchButton matchButton" disabled>Fitness app</button>
             <button type="button" id="project2" class="option2ForMatchButton matchButton" disabled>Logo design</button>
@@ -305,6 +329,20 @@
         </div>
     </form>
     </div> -->
+
+    <div class="upload_container">
+        <form method="POST" action="/profile-upload-multiple" enctype="multipart/form-data">
+            <div>
+                <!-- <label>Upload multiple profile picture</label> -->
+                <input type="file" name="profile-files" required multiple  />
+                <input type="submit" value="Upload" />
+            </div>
+            <!-- <div>
+                
+            </div> -->
+        </form>
+        </div>
+
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="scripts/portfolio.js"></script>
 </body>

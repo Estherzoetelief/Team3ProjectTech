@@ -1,4 +1,7 @@
 
+
+
+// hover en button waarmee je extra tekst kan zien voor over de foto 
 // // js for navbar
 
 // const discover_text = document.getElementById("discover_p");
@@ -38,6 +41,21 @@
 // }
 
 
+buttonTekstPortfolio.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        tekstPortfolio[index].style.display = 'block'
+    })
+})
+// hier zorgt het ervoor dat als je met je muis van de figure afgaat hij na 1 seconde weer verdwijnt
+figurePortfolio.forEach((figure, index) => {
+    figure.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            tekstPortfolio[index].style.display = 'none'
+        }, 1000)
+    })
+
+  
+  
 const allFilterItems = document.querySelectorAll('.filter-item');
 const allFilterBtns = document.querySelectorAll('.filter-btn');
 
@@ -58,7 +76,70 @@ const filterItems = e => {
 
 allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
 
+//  function radioButton zorgt ervoor dat het de omcirclde weghaald 
+// matchOption2Inputs.forEach(radioButton => {
+//     radioButton.disabled = true;
+    
+//     if (radioButton.checked)
+//     { radioButton.checked = false; }
+// });
 
+
+
+
+
+// // popup upload multer multiple mike
+// document.addEventListener('DOMContentLoaded', function () {
+//     const uploadForm = document.getElementById('uploadForm');
+//     const successPopup = document.getElementById('successPopup');
+
+//     uploadForm.addEventListener('submit', function (event) {
+//         event.preventDefault();
+
+//         const formData = new FormData(uploadForm);
+
+//         fetch('/upload', {
+//             method: 'POST',
+//             body: formData
+//         })
+//         .then(response => {
+//             if (response.ok) {
+//                 successPopup.style.display = 'block';
+//             }
+//         })
+//         .catch(error => console.error('Error uploading file:', error));
+//     });
+// });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const imagePath = button.dataset.image;
+            const confirmation = confirm('Weet je zeker dat je deze afbeelding wilt verwijderen?');
+
+            if (confirmation) {
+                try {
+                    const response = await fetch(`/delete-image/${imagePath}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        // Verwijder de afbeelding van de pagina als het verwijderen succesvol is
+                        button.closest('figure').remove();
+                        alert('Afbeelding succesvol verwijderd');
+                    } else {
+                        alert('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+                    }
+                } catch (error) {
+                    console.error('Error deleting image:', error);
+                    alert('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+                }
+            }
+        });
+    });
+});
+
+  
 const prevBtns = document.querySelectorAll('.btn-prev');
 const nextBtns = document.querySelectorAll('.btn-next');
 const progress = document.getElementById('progress');
