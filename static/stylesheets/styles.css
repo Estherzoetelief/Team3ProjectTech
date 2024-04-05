@@ -2550,7 +2550,7 @@ footer {
     left: 0;
     pointer-events: none;
     background: #ffffff; 
-    -webkit-transform: ;
+    /* -webkit-transform: ; */
 
 }
 
