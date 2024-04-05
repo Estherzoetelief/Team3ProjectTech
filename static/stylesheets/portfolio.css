@@ -86,7 +86,7 @@
     background-color: var(--primaryWhite);
   }
   
-  .jobs {
+  .jobsnav {
     font-family: var(--bodyTextFont);
     font-size: var(--bodyTextSize);
     border: none;
@@ -101,23 +101,23 @@
     position: relative;
   }
   
-  .jobs::before {
+  .jobsnav::before {
     content: '';
     position: absolute;
     bottom: -8px;
     left: 10%;
     width: 0;
     height: 1px;
-    background-color: var(--primaryWhite);
+    /* background-color: var(--primaryWhite); */
     transition: width 0.3s ease-in-out;
     z-index: 2;
   }
   
-  .jobs:hover::before {
+  .jobsnav:hover::before {
     width: 80%;
   }
   
-  .jobs:hover {
+  .jobsnav:hover {
     background-position: 0;
     font-size: 1em;
   }
@@ -960,7 +960,6 @@ box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
 .active::after,
 .active {
     background-position: 0;
-    border: 1px solid #f5f3ff;
     box-shadow: 0 0 1px 0 #ffffffc8;
     z-index: 0;
 

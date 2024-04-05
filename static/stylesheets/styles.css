@@ -2157,6 +2157,42 @@ li:after {
     display: none; 
   }
   
+  .jobsnav {
+    font-family: var(--bodyTextFont);
+    font-size: var(--bodyTextSize);
+    border: none;
+    background: linear-gradient(45deg, #F9F7F7 50%, #f9f7f775 50%);
+    color: var(--primaryWhite);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    background-size: 300%;
+    background-position: 100%;
+    transition: 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  .jobsnav::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 10%;
+    width: 0;
+    height: 1px;
+    /* background-color: var(--primaryWhite); */
+    transition: width 0.3s ease-in-out;
+    z-index: 2;
+  }
+  
+  .jobsnav:hover::before {
+    width: 80%;
+  }
+  
+  .jobsnav:hover {
+    background-position: 0;
+    font-size: 1em;
+  }
+
   .mobileMenu {
     position: fixed;
     left: 0;
