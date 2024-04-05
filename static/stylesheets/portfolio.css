@@ -900,7 +900,6 @@ box-shadow: 0 0 0.5em 0.1em #bcb1fdc8;
 .active::after,
 .active {
     background-position: 0;
-    font-size: 1em;
     border: 1px solid #f5f3ff;
     box-shadow: 0 0 1px 0 #ffffffc8;
     z-index: 0;
