@@ -112,6 +112,7 @@ app
 
     .get('/discover', showDiscoverPage)
     .get('/detail', showDetailPage)
+    .get('/', showLandingPage)
     .listen(8511) 
 
 
@@ -230,6 +231,20 @@ app.delete('/delete-image/:imagePath', async (req, res) => {
 
 function showRegisterPage(req, res){
     res.render('signUp.ejs')
+}
+
+function showLandingPage(req, res) {
+  if (req.session.user) {
+      res.render('landingPage.ejs', {
+          username: req.session.user.username,
+          profile_picture: req.session.user.profile_picture,
+          session: req.session
+      });
+  } else {
+      res.render('landingPage.ejs', {
+          session: req.session
+      });
+  }
 }
 
 function showSignInPage(req, res){

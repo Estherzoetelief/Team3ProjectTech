@@ -14,29 +14,31 @@
         <%- include('nav.ejs') %>
     </header>   
 <main>
-    <section class="detailContainer">
-        <section class="imageContainer">
-            <img src="https://ideaspot.tv/codepen-assets/pinterest-like-layout/architecture-gb0824a395_1920.jpg" id="tiltable-image">
+    <main>
+        <section class="detailContainer">
+            <section class="imageContainer">
+                <img id="tiltableImage">
+            </section>
+            <section class="textContainer">
+                <div class="titleContainer">
+                    <h2>Title Project</h2>
+                    <a href="#"><img src="img/heart.png" class="detailHeart"></a>
+                </div>
+                <div class="tagContainer">
+                    <p>Illustration</p>
+                    <p>Graphic Design</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#">
+                    <section class="profileContainer">
+                        <img src="img/profile.jpg">
+                        <h3>Name Designer</h3>
+                    </section>
+                </a>
+            </section>
         </section>
-        <section class="textContainer">
-            <div class="titleContainer">
-                <h2>Title Project</h2>
-                <a href="#"><img src="img/heart.png"></a>
-            </div>
-            <div class="tagContainer">
-                <p>Illustration</p>
-                <p>Graphic Design</p>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#">
-                <section class="profileContainer">
-                    <img src="img/profile.jpg">
-                    <h3>Name Designer</h3>
-                </section>
-            </a>
-        </section>
-    </section>
-    <section class="gridContainer gridDetail"></section>
+        <section class="gridContainer gridDetail"></section>
+    </main>
 </main>
     <script src="scripts/home.js"></script>
 </body>
