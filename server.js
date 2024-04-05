@@ -8,6 +8,9 @@ const multer = require('multer');
 const upload2 = multer({dest: 'static/upload/' });
 
 
+
+
+
 // VERBINDING MET DE DATABASE
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
@@ -21,6 +24,14 @@ const client = new MongoClient(uri, {
     }
 })
 
+
+
+const db = client.db(process.env.DB_NAME)
+const db2 = client.db(process.env.DB_NAME2)
+const collection = db.collection(process.env.DB_COLLECTION)
+const collection2 = db.collection(process.env.DB_COLLECTION2)
+
+
 client.connect()
   .then(() => {
     console.log('Database connection established')
@@ -30,9 +41,47 @@ client.connect()
     console.log(`For uri - ${uri}`)
   })
 
-const db = client.db(process.env.DB_NAME)
-const collection = db.collection(process.env.DB_COLLECTION)
-const collection2 = db.collection(process.env.DB_COLLECTION2)
+
+
+
+
+
+
+
+
+// / Middleware voor bestand uploaden met Multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads');
+    },
+    filename: function (req, file, cb) {
+      // Bouw het bestandspad op basis van de originele bestandsnaam en een unieke identifier
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, uniqueSuffix + '-' + file.originalname);
+    },
+  });
+const upload = multer({ storage: storage });
+
+
+
+
+// MongoDB connectie maken en server starten
+async function startServer() {
+  try {
+    // Connect the client to the server (optional starting in v4.7)
+    await client.connect();
+    console.log('Database connection established');
+
+    // Start de Express server nadat de MongoDB-verbinding is vastgesteld
+    app.listen(port, () => console.log(`Server running on port ${port}`));
+  } catch (err) {
+    console.error(`Database connection error: ${err}`);
+  }
+}
+startServer();
+
+
+
 
 app
   .use(session({
@@ -41,14 +90,15 @@ app
     secret: process.env.SESSION_SECRET
   }))
   .use(express.urlencoded({extended: true})) 
-  .use(express.static('static'))            
+  .use(express.static('static'))    
+  .use(express.static('uploads'))          
   .set('view engine', 'ejs')      
   .set('views', 'view')   
 
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
-   .get('/portfolio', showPortfolioPage)
+  //  .get('/portfolio', showPortfolioPage)
     .post('/log-in', signIn)
     .post('/create-account', upload2.single('profilePicture'), addUser)
 
@@ -63,6 +113,115 @@ app
     .get('/discover', showDiscoverPage)
     .get('/detail', showDetailPage)
     .listen(8511) 
+
+
+
+
+
+
+
+
+
+
+
+// / MongoDB-collectie voor afbeeldingspaden
+// const imagePathsCollection = client.db('ProjectTechApp').collection('portfolio_uploads');
+const imagePathsCollection = db2.collection(process.env.DB_COLLECTION3)
+
+
+
+app.get('/portfolio', async (req, res) => {
+  try {
+    const gebruikersnaam = 'TestUser_newacc';
+    const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+    let imagePaths = [];
+    if (existingDataItem) {
+      // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
+      imagePaths = existingDataItem.images.map(({ filename }) => filename);
+    }
+    const requestList = await collection2.find({ creator: req.session.user.username }).toArray();
+          res.render('portfolio.ejs', {
+              username: req.session.user.username,
+              profile_picture: req.session.user.profile_picture,
+              requests: requestList,
+              session: req.session,
+              imagePaths: imagePaths 
+          });
+    // res.render('portfolio', { imagePaths: imagePaths });
+  } catch (error) {
+    console.error('Error fetching user images from database:', error);
+    res.status(500).send('Error fetching user images from database');
+  }
+});
+
+
+
+
+
+
+
+
+
+// Route voor het verwerken van het uploaden van afbeeldingen
+app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
+  try {
+    const gebruikersnaam = 'TestUser_newacc';
+    const fileContext = req.files.map(file => ({
+      filename: file.filename
+    //   filename: file.originalname
+    //   , filepath: file.path
+    }));
+    const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+    if (existingDataItem) {
+      const updatedImages = [...existingDataItem.images, ...fileContext];
+      await imagePathsCollection.updateOne(
+        { username: gebruikersnaam },
+        { $set: { images: updatedImages } }
+      );
+    //   console.log('Images added to existing data item:', updatedImages);
+      console.log('Images added to existing data item. File context:', updatedImages);
+    } else {
+      await imagePathsCollection.insertOne({ username: gebruikersnaam, images: fileContext });
+      console.log('New data item created with images. File context:', fileContext);
+    }
+    res.redirect('/portfolio');
+  } catch (err) {
+    console.error('Error uploading files:', err);
+    res.status(500).send('Error uploading files');
+  }
+});
+
+const fs = require('fs');
+
+// Route voor het verwijderen van een afbeelding
+app.delete('/delete-image/:imagePath', async (req, res) => {
+    try {
+        const gebruikersnaam = 'TestUser_newacc';
+        const imagePath = req.params.imagePath;
+        // Verwijder de afbeelding van de webserver
+        fs.unlinkSync(path.join(__dirname, 'uploads', imagePath));
+
+        // Verwijder de afbeelding uit de MongoDB-collectie
+        await imagePathsCollection.updateOne(
+            { username: gebruikersnaam },
+            { $pull: { images: { filename: imagePath } } }
+        );
+
+        res.status(200).send('Afbeelding succesvol verwijderd');
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        res.status(500).send('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+    }
+});
+
+
+
+
+
+
+
+
+
 
 
 // ROUTE FUNCTIES
@@ -346,68 +505,6 @@ And make them accessible through http://localhost:3000/a.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// -------------------------------------------------------------------
-// -------------------------------------------------------------------
-// Niewste al gehele versie 
-// -------------------------------------------------------------------
-// -------------------------------------------------------------------
-
-
-// Defines storage for uploaded files
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Destination folder for uploaded files
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname); // Renames the file to include the timestamp
-  },
-});
-
-// In dit specifieke voorbeeld wordt de cb-functie aangeroepen met null als eerste argument 
-// (wat aangeeft dat er geen fout is opgetreden) en de relatieve map "uploads/" als tweede argument, 
-// wat aangeeft dat de geüploade bestanden moeten worden opgeslagen in de map met de naam "uploads".
-
-// Hier moet nog een dynamisch login systeem komen
-const loginName = 'Ivo'
-
-// Initializes Multer with the storage configuration
-const upload = multer({ storage: storage });
-
-// Serve the "/uploads" directory statically
-app.use('/uploads', express.static('uploads')); 
-
-// app.post('/upload', upload.array('photos', 7), (req, res) => {
-//   // req.files contains the uploaded files details
-//   // req.body contains other form data if any
-
-//   const imagePaths = req.files.map(file => file.filename); // Extract filenames from uploaded files
-
-  
-//   // Assuming you have a MongoDB collection called 'collectionPortfolioUploads'
-//   collectionPortfolioUploads.insertOne({
-//     portfolio: loginName,
-//     images: imagePaths // Save array of image paths in the database
-//   })
-//   .then(() => {
-//     res.status(200).send('Files uploaded successfully');
-//   })
-//   .catch(error => {
-//     console.error('Error uploading files:', error);
-//     res.status(500).send('Error uploading files');
-//   });
-// });
 
 
 
