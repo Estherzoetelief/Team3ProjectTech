@@ -132,8 +132,7 @@ async function showPortfolioPage(req, res) {
       }
   } else {
       res.render('portfolio.ejs', {
-          session: req.session,
-          requests: requestList,
+          session: req.session
       });
   }
 }
