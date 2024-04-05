@@ -286,10 +286,14 @@ figurePortfolio.forEach((figure, index) => {
 // variable voor de match knop
 
 const matchForm = document.getElementById("matchForm");
-const matchOption2Labels = document.querySelectorAll('#matchOption2 label');
-const matchOption2Inputs = document.querySelectorAll('#matchOption2 input');
+const matchOption2Button = document.querySelectorAll('.option2ForMatchButton');
+// const matchOption2Inputs = document.querySelectorAll('#matchOption2 input');
 const matchOption2Section = document.getElementById("matchOption2")
 const backgroundBlurForMatchBtn = document.querySelector('.popUpBlur')
+const matchButtonClick1 = document.querySelectorAll("#matchOption1 > .matchButton")
+const matchButtonClick2 = document.querySelectorAll("#matchOption2 > .matchButton")
+
+
 
 
 const updateBackgroundHeightMatchForm = () => {
@@ -321,37 +325,59 @@ document.getElementById("closeMatchFormButton").addEventListener("click", closeM
 document.querySelector(".popUpBlur").addEventListener("click",closeMatchForm);
 
 
+
+
+
 // functie en aanroeping wat er gebeurt als je op de knop match with job gebeurt
 document.getElementById('matchWithJob').addEventListener('click', () => {
     updateBackgroundHeightMatchForm ();
     matchOption2Section.classList.add("unhiddenMatchOption2");
     matchOption2Section.classList.remove("hiddenMatchOption2");
-    matchOption2Inputs.forEach(inputForMatchOption2 => {
-        inputForMatchOption2.disabled = false;
-        inputForMatchOption2.classList.add("option2ForMatchButton")
-        inputForMatchOption2.classList.add("unhiddenMatchOption2");
+    matchOption2Button.forEach(labelForMatchOption2 => {
+        labelForMatchOption2.disabled = false;
+        labelForMatchOption2.classList.add("option2ForMatchButton")
+        labelForMatchOption2.classList.add("unhiddenMatchOption2");
 console.log("yaya1")
     });
-    matchOption2Labels.forEach(labelForMatchOption2 => {
+    matchOption2Button.forEach(labelForMatchOption2 => {
         labelForMatchOption2.classList.remove("matchOption2-disabled");
         labelForMatchOption2.classList.add("animateShadow");
         labelForMatchOption2.classList.add("unhiddenMatchOption2");
         console.log("yaya2")
     });
+    
 });
 // functie en aanroeping wat er gebeurt als je op de knop match with person gebeurt
 
 document.getElementById('matchWithPerson').addEventListener('click', () => {
     matchOption2Section.classList.add("hiddenMatchOption2");
     matchOption2Section.classList.remove("unhiddenMatchOption2")
-    matchOption2Labels.forEach(labelForMatchOption2 => {
+    matchOption2Button.forEach(labelForMatchOption2 => {
         labelForMatchOption2.classList.add("matchOption2-disabled");
         labelForMatchOption2.classList.remove("animateShadow");
 
-    matchOption2Inputs.forEach(inputForMatchOption2 => {
-            inputForMatchOption2.classList.remove("option2ForMatchButton")
+        matchOption2Button.forEach(labelForMatchOption2 => {
+            labelForMatchOption2.classList.remove("option2ForMatchButton")
         })
         console.log("yaya")
+    });
+});
+
+matchButtonClick1.forEach(button => {
+    button.addEventListener('click', () => {
+        matchButtonClick1.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
+    });
+});
+
+matchButtonClick2.forEach(button => {
+    button.addEventListener('click', () => {
+        matchButtonClick2.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
     });
 });
 var typed = new Typed(".typeWriter", {
