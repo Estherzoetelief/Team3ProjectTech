@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body class="create-request">
+
+<header>
+    <nav class="navbar">
+        <div class="navLeft">
+            <a class="hoverAnimationNav" href="/discover" class="active">Discover</a>
+            <a class="hoverAnimationNav" href="/find-requests">Jobs</a>
+        </div>
+        <div class="navCenter">
+            <a href="#">Spark</a>
+        </div>
+        <div class="navRight">
+            <a href="#" class="heart">
+                <img src="img/heart.png">
+            </a>
+            <a href="#" class="lightning">
+                <img src="img/lightning.png">
+            </a>
+            <% if (session.user) { %>
+              <a href="/portfolio" class="profile">
+                  <img src="upload/<%= profile_picture %>">
+                  <p><%= session.user.username %></p>
+              </a>
+            <% } else { %>
+              <a class="signIn" href="/sign-in">Log in</a>
+            <% } %>
+        </div>
+    </nav>
+</header>
+
+    <div class="background"></div>
+
+    <div class="toggle">
+        <div class="job-switch">
+            <a href="/find-requests">Find</a>
+            <a href="/create-request">Create</a>
+        </div>
+    </div>
+
+<form action="/send-request" method="post" enctype="multipart/form-data">
+
+<div class="progressbar">
+    <div class="progress" id="progress"></div>
+    <div class="progress-step active-progress"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+</div>
+
+<fieldset class="fieldset active">
+<h2>In which category are you looking for a professional?</h2>
+<div class="radio-btns-container">
+<input type="radio" name="category" id="app-design" value="App Design">
+<label for="app-design">App Design</label>
+<input type="radio" name="category" id="brand-style" value="Brand Style">
+<label for="brand-style">Brand Style</label>
+<input type="radio" name="category" id="product-gaming" value="Product & Gaming">
+<label for="product-gaming">Product & Gaming</label>
+<input type="radio" name="category" id="marketing" value="Marketing">
+<label for="marketing">Marketing</label>
+<input type="radio" name="category" id="logo-design" value="Logo Design">
+<label for="logo-design">Logo Design</label>
+<input type="radio" name="category" id="website-to-app" value="Website to App">
+<label for="website-to-app">Website to App</label>
+<input type="radio" name="category" id="product-design" value="Product Design">
+<label for="product-design">Product Design</label>
+<input type="radio" name="category" id="ux-design" value="UX Design">
+<label for="ux-design">UX Design</label>
+<input type="radio" name="category" id="front-dev" value="Front-end Development">
+<label for="front-dev">Front-end Development</label>
+<input type="radio" name="category" id="back-dev" value="Back-end Development">
+<label for="back-dev">Back-end Development</label>
+<input type="radio" name="category" id="motion-design" value="Motion Design">
+<label for="motion-design">Motion Design</label>
+</div>
+<div class="btn-container" >
+    <a href="" class="btn-next"></a>
+</div>
+</fieldset>
+
+<fieldset   >
+    <h2>Provide some context for description
+        of your request</h2>
+<input type="text" name="projectTitle" id="project-title" placeholder="Project Title">
+<input type="text" name="description" id="description-field" placeholder="Description">
+<div class="btn-container"   >
+    <a href="" class="btn btn-prev"></a>
+    <a href="" class="btn-next"></a>
+</div>
+</fieldset>
+<fieldset>
+    <h2>Select filters to search more specifically</h2>
+    <div class="drop-down-input">
+<select name="budget" id="budget-dd">
+    <option value="">Budget</option>
+    <option value="Under €55">Under €55</option>
+    <option value="€55 - €100">€55 - €100 </option>
+    <option value="€100 - €200">€100 - €200</option>
+    <option value="€200 - €300">€200 - €300</option>
+    <option value="€300 - €400">€300 - €400</option>
+    <option value="€400 - €500">€400 - €500</option>
+    <option value="€500+">€500+</option>
+</select>
+<select name="duration" id="duration-dd">
+    <option value="">Duration</option>
+    <option value="1-7 days">1-7 days</option>
+    <option value="2-4 weeks">2-4 weeks</option>
+    <option value="1-2 months">1-2 months </option>
+    <option value="3-4 months">3-4 months </option>
+    <option value="5-6 months">5-6 months </option>
+    <option value="6+ months">6+ months </option>
+</select>
+<input type="date" name="deadline" id="deadline">
+</div>
+<div class="btn-container" > 
+    <a href="" class="btn btn-prev"></a>
+    <a href="" class="btn btn-next"></a>
+</div>
+</fieldset>
+
+<fieldset>
+    <h2>Upload files</h2>
+    <div class="file-input">
+    <input type="file" name="images" accept="image/*" required multiple>
+    </div>
+    <div class="btn-container" >
+        <a href="" class="btn btn-prev"></a>
+        <input type="submit" value="Submit Request">
+    </div>
+</fieldset>
+</form>
+<script src="scripts/script.js"></script>
+</body>
+</html>
+
+

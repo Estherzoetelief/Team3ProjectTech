@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+
 <body class="inloggen">
 
     <div></div>
@@ -11,21 +22,19 @@
         </section>
 
         <section>
-            <form>
-
+            <form action="/log-in" method="post">
                 <label for="email">E-Mail</label>
-        
-                <input type="email" name="emailadres" id="email"  placeholder="youremail@gmail.com">
-               
+                <input type="email" name="email" id="email"  placeholder="youremail@gmail.com" 
+                required>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="********">
-
-                <input type="submit" value="SIGN IN">
+                <input type="password" name="password" id="password" placeholder="********" required>
+                <input type="submit" id="logInButton" value="SIGN IN">
             </form>
         </section>
     </article>
 
-    <script src="./script.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/signin-up.js"></script>
 </body>
 
 </html>

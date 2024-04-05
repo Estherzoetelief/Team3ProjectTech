@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulier</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="requests">
+<header>
+    <%- include('nav.ejs') %>
+</header>
+
+    <main>
+        
+        <div>
+            <h1>Jobs</h1>
+            <div class="job-switch">
+                <a href="/find-requests">Find</a>
+                <a href="/create-request">Create</a>
+            </div>
+        </div>
+
+        <div class="filter-btns">
+            <button class="filter-btn active-btn" data-name="all" class="filter-btn active-btn">All</button>
+            <button class="filter-btn" data-name="Logo Design">Logo Design</button>
+            <button class="filter-btn" data-name="Markteting">Marketing</button>
+            <button class="filter-btn" data-name="Motion Design">Motion Design</button>
+            <button class="filter-btn" data-name="Product Design">Product Design</button>
+            <button class="filter-btn" data-name="graphic-design">Graphic Design</button>
+            <button class="filter-btn" data-name="Back-end Development">Back-end Development</button>
+            <button class="filter-btn" data-name="App Design">App Design</button>
+            <button class="filter-btn" data-name="Brand Style">Brand Style</button>
+            <button class="filter-btn" data-name="UX Design">UX Design</button>
+        </div>
+
+        <hr>
+
+        <div class="dropdown-menus-container">
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Time</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    <li class="filter-dropdown" id="1-hour">1 hour</li>
+                    <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
+                    <li class="filter-dropdown" id="1-day">1 day</li>
+                    <li class="filter-dropdown" id="1-5-days">1/5 days</li>
+                    <li class="filter-dropdown" id="5-days-more">5 days or more</li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Duration</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    <li class="filter-dropdown" id="1-hour">1 hour</li>
+                    <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
+                    <li class="filter-dropdown" id="1-day">1 day</li>
+                    <li class="filter-dropdown" id="1-5-days">1/5 days</li>
+                    <li class="filter-dropdown" id="5-days-more">5 days or more</li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected">Budget</span>
+                    <div class="caret"></div>
+                </div>
+                <ul class="menu">
+                    <li class="filter-dropdown" id="1-hour">1 hour</li>
+                    <li class="filter-dropdown" id="2-5-hours">2/5 hours</li>
+                    <li class="filter-dropdown" id="1-day">1 day</li>
+                    <li class="filter-dropdown" id="1-5-days">1/5 days</li>
+                    <li class="filter-dropdown" id="5-days-more">5 days or more</li>
+                </ul>
+            </div>
+        </div>
+
+        <article class="all-requests">
+            <% requests.forEach(request => { %>
+
+            <section class="filter-item" data-category="<%= request.category %>">
+                <div class="imglayout">
+                    <% if (Array.isArray(request.images)) { %>
+                        <% request.images.forEach(image => { %>
+                            <img src="upload/<%= image %>" alt="">
+                        <% }); %>
+                    <% } else { %>
+                        <img src="upload/<%= request.images %>" alt="">
+                    <% } %>
+                </div>
+                <div>
+                    <h2><%= request.project_title %></h2>
+                    <div class="scroll-text">
+                        <p><%= request.description %></p>
+                    </div>
+
+                    <p><%= request.duration %></p>
+                    <p><%= request.budget %></p>
+                    <p><%= request.deadline %></p>
+                    <p><%= request.creator%></p>
+                    <a href="">Match</a>
+                </div>
+            </section>
+            <% }); %>
+        </article>
+    </main>
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>

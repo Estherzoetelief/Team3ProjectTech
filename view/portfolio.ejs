@@ -5,19 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/portfolio.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>Document</title>
 </head>
 
 
 <body class="portfolioPagina">
+    <header>
+        <%- include('nav.ejs') %>
+    </header>
     <div class="popUpBlur"></div>
     <article>
-        <h1>Micheal Vos</h1>
-        <h2>Designer</h2>
-        <!-- animatie maken waarin je allemaal verschillende kwaliteiten ziet -->
-        <p> 2012 - 2024</p>
-        <hr>
+        <% if (session.user) { %>
+            <h1>
+                <%= session.user.name%>
+            </h1>
+            <% } else { %>
+                <h1>Username</h1>
+                <% } %>
+                    <p>I am a <span class="typeWriter"></span></p>
+                    <!-- animatie maken waarin je allemaal verschillende kwaliteiten ziet -->
+                    <p> 2012 - 2024</p>
+                    <hr>
     </article>
 
 
@@ -65,8 +78,7 @@
 
                 </figure>
             </section>
-
-
+            
             <section class="user-images">
 
                 <% imagePaths.forEach(imagePath => { %>
@@ -186,44 +198,113 @@
 
         </section>
 
-
-
-        <section class="jobs" id="jobsElement">
+        <!-- <section class="jobs" id="jobsElement">
+            <h2>Jobs</h2>
             <section>
-                <h2>Jobs</h2>
+                <button type="button" id="matchButton">
+                    <p>Match</p>
+                </button>
             </section>
-            <button type="button"  id="matchButton">
-                <p>Match</p>
-            </button>
+
             <section id="matchForm" class="inactiveAnimationForm">
-                <h3>Do you want to:</h3>
+                <h3>Do you want to match with the:</h3>
                 <section id="matchOption1">
                     <input type="radio" name="Match" id="matchWithPerson" value="matchWithPerson" required>
-                    <label for="matchWithPerson">Match with Micheal Vos</label><br>
+                    <label for="matchWithPerson">Person</label><br>
                     <input type="radio" name="Match" id="matchWithJob" value="matchWithJob" required>
-                    <label for="matchWithJob">Match with his job</label><br>
+                    <label for="matchWithJob">Job</label><br>
                 </section>
 
                 <section id="matchOption2" class="hiddenMatch0ption2">
                     <input type="radio" name="MatchJobs" value="Matchjobs" id="project1" class="option2ForMatchButton"
                         disabled required>
-                    <label class="option2ForMatchButton" for="project1">Fitness app</label><br>
+                    <label class="option2ForMatchButton" for="project1">Fitness app</label>
                     <input type="radio" name="MatchJobs" value="Matchjobs" id="project2" class="option2ForMatchButton"
                         disabled required>
-                    <label class="option2ForMatchButton" for="project2">Logo design</label><br>
+                    <label class="option2ForMatchButton" for="project2">Logo design</label>
                     <input type="radio" name="MatchJobs" value="" id="project3" class="option2ForMatchButton" disabled
                         required>
-                    <label class="option2ForMatchButton" for="project3">Front end design</label><br>
+                    <label class="option2ForMatchButton" for="project3">Front end design</label>
                 </section>
 
-                <input type="submit" value="Submit" id="submitMatch" />
+                <button id="submitMatch">Submit</button>
                 <button id="closeMatchFormButton">close</button>
- 
+
             </section>
-        </section>
-        </section>
-    </div>
+  -->
+
+  <section class="jobs" id="jobsElement">
+    <h2>Jobs</h2>
+    <section>
+        <button type="button" id="matchButton">
+            <!-- <p>Match</p> --> Match
+        </button>
+    </section>
     
+    
+    
+
+    <section id="matchForm" class="inactiveAnimationForm">
+        <h3>Do you want to match with the:</h3>
+        <section id="matchOption1">
+            <button type="button" id="matchWithPerson" class="matchButton">
+                <p>Work</p></button>
+            <button type="button" id="matchWithJob" class="matchButton">Job</button>
+        </section>
+
+    
+        <section id="matchOption2" class="hiddenMatchOption2">
+            <button type="button" id="project1" class="option2ForMatchButton matchButton" disabled>Fitness app</button>
+            <button type="button" id="project2" class="option2ForMatchButton matchButton" disabled>Logo design</button>
+            <button type="button" id="project3" class="option2ForMatchButton matchButton" disabled>Front end design</button>
+        </section>
+
+        <button id="submitMatch">Submit</button>
+        <button id="closeMatchFormButton">close</button>
+    </section>
+
+<article class="all-requests">
+                <% if (requests.length > 0) { %>
+                    <% requests.forEach(request => { %>
+                        <section class="filter-item" data-category="<%= request.category %>">
+                            <div class="imglayout">
+                                <% if (Array.isArray(request.images)) { %>
+                                    <% request.images.forEach(image => { %>
+                                        <img src="upload/<%= image %>" alt="">
+                                    <% }); %>
+                                <% } else { %>
+                                    <img src="upload/<%= request.images %>" alt="">
+                                <% } %>
+                            </div>
+                            <div>
+                                <h2><%= request.project_title %></h2>
+                                <div class="scroll-text">
+                                    <p><%= request.description %></p>
+                                </div>
+            
+                                <p><%= request.duration %></p>
+                                <p><%= request.budget %></p>
+                                <p><%= request.deadline %></p>
+                                <p><%= request.creator %></p>
+                                <a href="">Match</a>
+                            </div>
+                        </section>
+                    <% }); %>
+                <% } else { %>
+                    <p>No projects found</p>
+                <% } %>
+            </article>
+            </article>
+
+
+</section>
+
+            
+
+        </section>
+        
+    </div>
+
 
     <!-- <div class="upload_container">
         <button>
@@ -262,7 +343,8 @@
         </form>
         </div>
 
-    <script src="../scripts/script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="scripts/portfolio.js"></script>
 </body>
 
 <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
