@@ -30,7 +30,7 @@
                 <img src="img/lightning.png">
             </a>
             <% if (session.user) { %>
-              <a href="#" class="profile">
+              <a href="/portfolio" class="profile">
                   <img src="upload/<%= profile_picture %>">
                   <p><%= session.user.username %></p>
               </a>
@@ -108,7 +108,11 @@
     <option value="">Budget</option>
     <option value="Under €55">Under €55</option>
     <option value="€55 - €100">€55 - €100 </option>
-    <option value="€100 & above">€100 & above</option>
+    <option value="€100 - €200">€100 - €200</option>
+    <option value="€200 - €300">€200 - €300</option>
+    <option value="€300 - €400">€300 - €400</option>
+    <option value="€400 - €500">€400 - €500</option>
+    <option value="€500+">€500+</option>
 </select>
 <select name="duration" id="duration-dd">
     <option value="">Duration</option>

@@ -90,12 +90,13 @@
 
             <section class="filter-item" data-category="<%= request.category %>">
                 <div class="imglayout">
-                    <img src="upload/<%= request.images %>" alt="">
-                    <img src="upload/<%= request.images %>" alt="">
-                    <img src="upload/<%= request.images %>" alt="">
-                    <img src="upload/<%= request.images %>" alt="">
-                    <img src="upload/<%= request.images %>" alt="">
-                    <img src="upload/<%= request.images %>" alt="">
+                    <% if (Array.isArray(request.images)) { %>
+                        <% request.images.forEach(image => { %>
+                            <img src="upload/<%= image %>" alt="">
+                        <% }); %>
+                    <% } else { %>
+                        <img src="upload/<%= request.images %>" alt="">
+                    <% } %>
                 </div>
                 <div>
                     <h2><%= request.project_title %></h2>
@@ -106,8 +107,7 @@
                     <p><%= request.duration %></p>
                     <p><%= request.budget %></p>
                     <p><%= request.deadline %></p>
-                    <p><%= request.user_profile ? request.user_profile.username : 'Unknown' %></p>
-
+                    <p><%= request.creator%></p>
                     <a href="">Match</a>
                 </div>
             </section>
