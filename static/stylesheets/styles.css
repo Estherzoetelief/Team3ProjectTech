@@ -1096,6 +1096,20 @@ Hier start request & create page css
 
 }
 
+@media screen and (max-width: 800px){
+    .requests section div a {
+        margin-left: 50vw;
+    }
+    .requests section div h2{
+        margin-top: 1em;
+    }
+    .imglayout{
+        width: 85vw;
+        margin-top:  1em;
+        padding: 0;
+    }
+}
+
 /* Schermaanpassingen voor scherm groter dan 768px */
 @media screen and (min-width: 768px) {
     .requests section {
@@ -1136,8 +1150,10 @@ Hier start request & create page css
     margin-top: 4em;
 }
 
+
+
 .requests .navbar{
-   justify-content: left;
+    transform: translateX(-5vw);
 }
 
 /* Alle informatie */
@@ -2015,7 +2031,7 @@ li:after {
   
   .navLeft a.active {
     position: relative;
-    margin-right: 2.2em;
+    margin-inline: 2.2em;
   }
   
   .navLeft a.active::after {
@@ -2028,7 +2044,7 @@ li:after {
     background-color: var(--primaryWhite);
   }
   
-  .jobs {
+  .jobsnav {
     font-family: var(--bodyTextFont);
     font-size: var(--bodyTextSize);
     border: none;
@@ -2043,7 +2059,7 @@ li:after {
     position: relative;
   }
   
-  .jobs::before {
+  .jobsnav::before {
     content: '';
     position: absolute;
     bottom: -8px;
@@ -2055,11 +2071,11 @@ li:after {
     z-index: 2;
   }
   
-  .jobs:hover::before {
+  .jobsnav:hover::before {
     width: 80%;
   }
   
-  .jobs:hover {
+  .jobsnav:hover {
     background-position: 0;
     font-size: 1em;
   }

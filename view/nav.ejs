@@ -5,13 +5,17 @@
         <img src="img/hamburger.png">
     </button>
     <div class="mobileMenu">
-        <a href="#" class="mobileProfile">
-        <img src="img/profile.jpg">
-        Name Designer
-        </a>
+        <% if (session.user) { %>
+            <a href="/portfolio" class="profile">
+                <img src="upload/<%= profile_picture %>">
+                <p><%= session.user.username %></p>
+            </a>
+          <% } else { %>
+            <a class="signIn" href="/sign-in">Log in</a>
+          <% } %>
         <div class="mobileLinks">
-            <a href="discover.html"><img src="discover.png">Discover</a>
-            <a href="#"><img src="img/jobs.png">Jobs</a>
+            <a href="/discover"><img src="img/discover.png">Discover</a>
+            <a href="/find-requests"><img src="img/jobs.png">Jobs</a>
             <a href="#"><img src="img/heart.png">Favourites</a>
             <a href="#"><img src="img/bolt.png">Matches</a>
         </div>

@@ -14,31 +14,54 @@
 <body class="create-request">
 
 <header>
-    <nav class="navbar">
-        <div class="navLeft">
-            <a class="hoverAnimationNav" href="/discover" class="active">Discover</a>
-            <a class="hoverAnimationNav" href="/find-requests">Jobs</a>
-        </div>
-        <div class="navCenter">
-            <a href="#">Spark</a>
-        </div>
-        <div class="navRight">
-            <a href="#" class="heart">
-                <img src="img/heart.png">
+    
+<nav class="navbar">
+    <!-- mobile/tablet menu -->
+    <button>
+        <img src="img/hamburger.png">
+    </button>
+    <div class="mobileMenu">
+        <% if (session.user) { %>
+            <a href="/portfolio" class="profile">
+                <img src="upload/<%= profile_picture %>">
+                <p><%= session.user.username %></p>
             </a>
-            <a href="#" class="lightning">
-                <img src="img/lightning.png">
-            </a>
-            <% if (session.user) { %>
-              <a href="/portfolio" class="profile">
-                  <img src="upload/<%= profile_picture %>">
-                  <p><%= session.user.username %></p>
-              </a>
-            <% } else { %>
-              <a class="signIn" href="/sign-in">Log in</a>
-            <% } %>
+          <% } else { %>
+            <a class="signIn" href="/sign-in">Log in</a>
+          <% } %>
+        <div class="mobileLinks">
+            <a href="/discover"><img src="img/discover.png">Discover</a>
+            <a href="/find-requests"><img src="img/jobs.png">Jobs</a>
+            <a href="#"><img src="img/heart.png">Favourites</a>
+            <a href="#"><img src="img/bolt.png">Matches</a>
         </div>
-    </nav>
+    </div>
+    <!-- desktop menu -->
+    <div class="navLeft">
+        <a class="jobsnav" href="/discover" class="active">Discover</a>
+        <a class="active" href="/find-requests">Jobs</a>
+    </div>
+    <div class="navCenter">
+        <a href="/">Spark</a>
+    </div>
+    <div class="navRight">
+        <a href="#" class="heart">
+            <img src="img/heart.png">
+            <span id="wishlistCount">0</span>
+        </a>
+        <a href="#" class="lightning">      
+            <img src="img/bolt.png">
+        </a>
+        <% if (session.user) { %>
+            <a href="/portfolio" class="profile">
+                <img src="upload/<%= profile_picture %>">
+                <p><%= session.user.username %></p>
+            </a>
+          <% } else { %>
+            <a class="signIn" href="/sign-in">Log in</a>
+          <% } %>
+    </div>
+</nav>
 </header>
 
     <div class="background"></div>
