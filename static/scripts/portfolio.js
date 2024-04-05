@@ -390,3 +390,30 @@ var typed = new Typed(".typeWriter", {
     cursorChar: "|",
     loop: true
   });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const imagePath = button.dataset.image;
+            const confirmation = confirm('Weet je zeker dat je deze afbeelding wilt verwijderen?');
+
+            if (confirmation) {
+                try {
+                    const response = await fetch(`/delete-image/${imagePath}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        // Verwijder de afbeelding van de pagina als het verwijderen succesvol is
+                        button.closest('figure').remove();
+                        alert('Afbeelding succesvol verwijderd');
+                    } else {
+                        alert('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+                    }
+                } catch (error) {
+                    console.error('Error deleting image:', error);
+                    alert('Er is een fout opgetreden bij het verwijderen van de afbeelding');
+                }
+            }
+        });
+    });
+});

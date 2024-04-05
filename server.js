@@ -192,6 +192,8 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
 });
 
 const fs = require('fs');
+const path = require('path');
+
 
 // Route voor het verwijderen van een afbeelding
 app.delete('/delete-image/:imagePath', async (req, res) => {
