@@ -144,7 +144,7 @@ ScrollTrigger.create({
     start: "-0.1% top",
     end: "bottom bottom",
     onEnter: () => {
-        gsap.set('.website-content', {position: 'absolute', top: '195%'});
+        gsap.set('.website-content', {position: 'absolute', top: '100%'});
     },
     onLeaveBack: () => {
         gsap.set('.website-content', {position: 'fixed', top: '0%'});
@@ -229,7 +229,7 @@ gsap.to('.word .letters:first-child', {
     scrollTrigger: {
         trigger: '.word',
         start: 'top top',
-        end: `+=200%`,
+        end: `+=100%`,
         scrub: 1
     } 
 });
@@ -241,7 +241,7 @@ gsap.to('.word .letters:last-child', {
     scrollTrigger: {
         trigger: '.word',
         start: 'top top',
-        end: `+=200%`,
+        end: `+=100%`,
         scrub: 1
     } 
 });
@@ -252,7 +252,7 @@ gsap.to('.img-holder', {
     clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
     scrollTrigger: {
         start: 'top top',
-        end: `+=200%`,
+        end: `+=100%`,
         scrub: 1
     }
 });
@@ -264,7 +264,7 @@ gsap.to('.img-holder img',  {
     clipPath: 'polygon (0% 0%, 100% 0%, 100% 100%, 0% 100%)',
     scrollTrigger: {
         start: 'top top',
-        end: `+=200%`,
+        end: `+=100%`,
         scrub: 1
     }
 });
