@@ -29,6 +29,9 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
+
+
+
 // MongoDB connectie maken en server starten
 async function startServer() {
   try {
@@ -54,23 +57,154 @@ app.use(express.static('static'));
 app.set('view engine', 'ejs');
 app.set('views', 'view');
 
-// Route voor het renderen van de portfolio-pagina
-app.get('/portfolio', async (req, res) => {
-    try {
-      const gebruikersnaam = 'TestUser_newacc';
-      const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
-      let imagePaths = [];
-      if (existingDataItem) {
-        // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
-        imagePaths = existingDataItem.images.map(({ filename }) => filename);  
-      }
-      res.render('portfolio', { imagePaths: imagePaths });
-    } catch (error) {
-      console.error('Error fetching user images from database:', error);
-      res.status(500).send('Error fetching user images from database');
-    }
-  });
+
+
+
+
+
+
+// FUNCTIE MIKE 
+
+
+
+
+// // Route voor het renderen van de portfolio-pagina
+// app.get('/portfolio', async (req, res) => {
+//     try {
+//       const gebruikersnaam = 'TestUser_newacc';
+//       const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+//       let imagePaths = [];
+//       if (existingDataItem) {
+//         // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
+//         imagePaths = existingDataItem.images.map(({ filename }) => filename);  
+//       }
+//       res.render('portfolio', { imagePaths: imagePaths });
+//     } catch (error) {
+//       console.error('Error fetching user images from database:', error);
+//       res.status(500).send('Error fetching user images from database');
+//     }
+//   });
   
+
+
+// FUNCTIE NIELS
+
+
+
+//  app.get('/portfolio', async (req, res) => {
+//     if (req.session.user) {
+//         try {
+//             const requestList = await collection2.find({ creator: req.session.user.username }).toArray();
+//             res.render('portfolio.ejs', {
+//                 username: req.session.user.username,
+//                 profile_picture: req.session.user.profile_picture,
+//                 requests: requestList,
+//                 session: req.session
+              
+//             });
+//         } catch (error) {
+//             console.error('Error fetching request list:', error);
+//             res.status(500).send('Internal server error');
+//         }
+//     } else {
+//         res.render('portfolio.ejs', {
+//             session: req.session
+//         });
+//     }
+//   });
+  
+
+
+
+
+
+
+// FUNCTIE SAMEN
+
+
+  app.get('/portfolio', async (req, res) => {
+    if (req.session.user) {
+        try {
+            const gebruikersnaam = 'TestUser_newacc';
+            const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+            let imagePaths = [];
+            if (existingDataItem) {
+                // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
+                imagePaths = existingDataItem.images.map(({ filename }) => filename);
+            }
+            
+            const requestList = await collection2.find({ creator: req.session.user.username }).toArray();
+            
+            res.render('portfolio.ejs', {
+                username: req.session.user.username,
+                profile_picture: req.session.user.profile_picture,
+                imagePaths: imagePaths,
+                requests: requestList,
+                session: req.session
+            });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            res.status(500).send('Internal server error');
+        }
+    } else {
+        res.render('portfolio.ejs', {
+            session: req.session
+        });
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Route voor het renderen van de portfolio-pagina
+
+// async function portfolioPagina (req, res){
+//   try {
+//     const gebruikersnaam = 'TestUser_newacc';
+//     const existingDataItem = await imagePathsCollection.findOne({ username: gebruikersnaam });
+//     let imagePaths = [];
+//     if (existingDataItem) {
+//       // Haal alleen de bestandsnamen op en voeg ze toe aan imagePaths
+//       imagePaths = existingDataItem.images.map(({ filename }) => filename);  
+//     }
+//     res.render('portfolio', { imagePaths: imagePaths });
+//   } catch (error) {
+//     console.error('Error fetching user images from database:', error);
+//     res.status(500).send('Error fetching user images from database');
+//   }
+// };
+
+
+
+
+
+
+
+
+
 
 // Route voor het verwerken van het uploaden van afbeeldingen
 app.post('/profile-upload-multiple', upload.array('profile-files', 12), async function (req, res, next) {
@@ -132,26 +266,13 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
 
 // VANAF HIER NIELS STUKE
 
-const express = require('express')
-const app = express()
 const session = require('express-session')
-
-const multer = require('multer');
 const upload2 = multer({dest: 'static/upload/' });
 
 
 // VERBINDING MET DE DATABASE
 
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const { title } = require('process')
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
-const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-})
 
 client.connect()
   .then(() => {
@@ -180,7 +301,7 @@ app
 app
     .get('/register', showRegisterPage)
     .get('/sign-in', showSignInPage)
-   .get('/portfolio', showPortfolioPage)
+  //  .get('/portfolio', showPortfolioPage)
     .post('/log-in', signIn)
     .post('/create-account', upload2.single('profilePicture'), addUser)
 
@@ -194,7 +315,7 @@ app
 
     .get('/discover', showDiscoverPage)
     .get('/detail', showDetailPage)
-    .listen(8511) 
+    // .listen(8511) 
 
 
 // ROUTE FUNCTIES
@@ -248,27 +369,29 @@ function showDetailPage(req,res){
 }
 }
 
-async function showPortfolioPage(req, res) {
-  if (req.session.user) {
-      try {
-          const requestList = await collection2.find({ creator: req.session.user.username }).toArray();
-          res.render('portfolio.ejs', {
-              username: req.session.user.username,
-              profile_picture: req.session.user.profile_picture,
-              requests: requestList,
-              session: req.session
-          });
-      } catch (error) {
-          console.error('Error fetching request list:', error);
-          res.status(500).send('Internal server error');
-      }
-  } else {
-      res.render('portfolio.ejs', {
-          session: req.session,
-          requests: requestList,
-      });
-  }
-}
+
+
+// async function showPortfolioPage(req, res) {
+//   if (req.session.user) {
+//       try {
+//         portfolioPagina();
+//           const requestList = await collection2.find({ creator: req.session.user.username }).toArray();
+//           res.render('portfolio.ejs', {
+//               username: req.session.user.username,
+//               profile_picture: req.session.user.profile_picture,
+//               requests: requestList,
+//               session: req.session
+//           });
+//       } catch (error) {
+//           console.error('Error fetching request list:', error);
+//           res.status(500).send('Internal server error');
+//       }
+//   } else {
+//       res.render('portfolio.ejs', {
+//           session: req.session
+//       });
+//   }
+// }
 
 
 
@@ -531,14 +654,6 @@ And make them accessible through http://localhost:3000/a.
 
 
 // Defines storage for uploaded files
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Destination folder for uploaded files
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname); // Renames the file to include the timestamp
-  },
-});
 
 // In dit specifieke voorbeeld wordt de cb-functie aangeroepen met null als eerste argument 
 // (wat aangeeft dat er geen fout is opgetreden) en de relatieve map "uploads/" als tweede argument, 
@@ -548,7 +663,6 @@ const storage = multer.diskStorage({
 const loginName = 'Ivo'
 
 // Initializes Multer with the storage configuration
-const upload = multer({ storage: storage });
 
 // Serve the "/uploads" directory statically
 app.use('/uploads', express.static('uploads')); 
@@ -603,23 +717,6 @@ app.post('/upload', upload.array('photos', 7), (req, res) => {
   });
 });
 
-// Assuming you want to retrieve the images from the database and display them on a webpage
-app.get('/portfolio', (req, res) => {
-  // Retrieve the images from the database for the logged-in user (in this case, 'Ivo')
-  collectionPortfolioUploads.findOne({ portfolio: loginName })
-    .then(data => {
-      if (data) {
-        // Assuming you have an HTML template to display the images
-        res.render('portfolio', { images: data.images });
-      } else {
-        res.status(404).send('Portfolio not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error retrieving portfolio:', error);
-      res.status(500).send('Error retrieving portfolio');
-    });
-});
 
 
 

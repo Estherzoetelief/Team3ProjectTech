@@ -198,8 +198,7 @@ function updateProgressbar() {
             progressStep.classList.remove('active-progress');
         }
     });
-
 // function for updating progress bar line through the middle
     const progressActive = document.querySelectorAll('.progress-step.active-progress');
     progress.style.width = (progressActive.length - 1) / (progressSteps.length - 1) * 100 + '%';
-}
+}})
