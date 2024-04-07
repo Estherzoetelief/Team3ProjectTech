@@ -3216,7 +3216,7 @@ top: 2px;
     padding-left: 4em;
 }
 
-input {
+.landing-page input {
     background: none;
     outline: none;
     border: none;
@@ -3233,7 +3233,7 @@ input {
     margin: 2em 0 !important;
 }
 
-textarea#message{
+.landing-page textarea#message{
     width: 100%;
     border: none;
     border-bottom: 1px solid #747474;

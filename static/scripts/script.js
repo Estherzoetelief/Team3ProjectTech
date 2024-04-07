@@ -274,7 +274,7 @@ gsap.to('.img-holder img',  {
  
  
 // FILTERING FOR CATEGORIES LANDING PAGE
-const jsonFile = "../data.json";
+const jsonFile = "../../data.json";
 const requestsContainer = document.querySelector('.category-items')
  
 fetch(jsonFile).then(respone=>{
@@ -319,7 +319,7 @@ allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
 
 document.addEventListener("DOMContentLoaded", function() {
     const preloader = document.querySelector(".preLoader");
-    
+
     setTimeout(function() {
         preloader.style.display = "none"; 
     }, 5000);
