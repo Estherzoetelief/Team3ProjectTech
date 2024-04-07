@@ -2933,7 +2933,7 @@ li:after {
      
     /* derde sectie */
      
-    .landing-page section:nth-of-type(2){
+    .landing-page div section:nth-of-type(2){
         background-color: var(--primaryBlack);
         /* height: 50em; */
         z-index: 1;
@@ -3012,3 +3012,73 @@ li:after {
     .hide {
         display: none;
     }
+
+
+    /* NAV BAR LANDING PAGE */
+
+    .landing-page header{
+        width: 100vw;
+        height: 2em;
+        display: flex;
+        justify-content: center;
+        margin-top: 1em;
+        position: fixed;
+        z-index: 900;
+        font-family: "Montserrat";
+        font-size: 0.8em;
+    }
+
+    .landing-page nav {
+       width: 28em;
+       height: 3.5em;
+       background-color: black;
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       border-radius: 1em;
+    }
+
+    .landing-page nav a{
+        text-decoration: none;
+        color: var(--primaryWhite);
+    }
+
+    .landing-page nav section{
+        height: 100%;
+        width: 50%;
+    }
+
+    .landing-page nav section:first-of-type{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .landing-page nav section:nth-of-type(2){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+    }
+
+    .landing-page nav section:nth-of-type(2) a:last-of-type{
+        background-color: var(--primaryWhite);
+        color: var(--primaryBlack);
+        height: 70%;
+        width: 45%;
+        border-radius: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .landing-page nav section:nth-of-type(2) a:first-of-type{
+        border: 1px solid rgb(98, 98, 98);
+        height: 70%;
+        width: 45%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.8em;
+    }
+    
