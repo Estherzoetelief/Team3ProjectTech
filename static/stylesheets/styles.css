@@ -3436,7 +3436,6 @@ font-size: 310%;
   .ladingPageFaqs_faq__question-toggle.minus::before {
     content: '-';
     transform: translate(-50%, -50%);
-    rotate: 180deg;
   }
   
   

@@ -54,8 +54,6 @@
     z-index: 2;
   }
 
-.create
-
   .navbar a {
     color: var(--primaryWhite);
     text-decoration: none;
