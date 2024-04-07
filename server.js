@@ -7,6 +7,8 @@ const session = require('express-session')
 const multer = require('multer')
 const upload2 = multer({ dest: 'static/upload/' })
 
+// const gebruikersnaam = 'TestUser_newacc'
+
 // VERBINDING MET DE DATABASE
 
 const { MongoClient, ServerApiVersion } = require('mongodb')
@@ -150,6 +152,22 @@ app.post('/profile-upload-multiple', upload.array('profile-files', 12), async fu
   }
 })
 
+// In de context van softwareontwikkeling staat "fs" voor "File System". 
+// Het is een ingebouwde module in Node.js die functionaliteit biedt om met het 
+// bestandssysteem van het besturingssysteem te werken. Met behulp van de "fs" 
+// module kun je bestanden lezen, schrijven, bewerken, verplaatsen, hernoemen, 
+// verwijderen en meer.
+
+// enkele veelgebruikte functies van de "fs" module:
+// fs.readFile(): Leest een bestand asynchroon.
+// fs.readFileSync(): Leest een bestand synchronisch.
+// fs.writeFile(): Schrijft gegevens naar een bestand asynchroon.
+// fs.writeFileSync(): Schrijft gegevens naar een bestand synchronisch.
+// fs.readdir(): Leest de inhoud van een map asynchroon.
+// fs.readdirSync(): Leest de inhoud van een map synchronisch.
+// fs.stat(): Geeft informatie over een bestand of map asynchroon.
+// fs.existsSync(): Controleert of een bestand of map bestaat.
+
 const fs = require('fs')
 const path = require('path')
 
@@ -160,6 +178,10 @@ app.delete('/delete-image/:imagePath', async (req, res) => {
     const imagePath = req.params.imagePath
     // Verwijder de afbeelding van de webserver
     fs.unlinkSync(path.join(__dirname, 'uploads', imagePath))
+    // fs.unlinkSync: Dit is een methode van de fs module die wordt gebruikt 
+    // om een bestand te verwijderen. Het woord "Sync" betekent dat deze bewerking 
+    // synchroon wordt uitgevoerd, wat betekent dat de uitvoering van de code wordt 
+    // geblokkeerd totdat het bestand is verwijderd.
 
     // Verwijder de afbeelding uit de MongoDB-collectie
     await imagePathsCollection.updateOne(
