@@ -324,3 +324,31 @@ document.addEventListener("DOMContentLoaded", function() {
         preloader.style.display = "none"; 
     }, 5000);
 });
+
+
+// FAQ
+
+document.addEventListener("DOMContentLoaded", function () {
+    var faqQuestions = document.querySelectorAll(".ladingPageFaqs_faq__question");
+    var faqToggles = document.querySelectorAll(".ladingPageFaqs_faq__question-toggle");
+    var faqAnswers = document.querySelectorAll(".ladingPageFaqs_faq__answer");
+  
+    // Toggle functie
+    function toggleAnswer(index) {
+      faqToggles[index].classList.toggle("minus");
+      faqAnswers[index].classList.toggle("visible");
+    }
+  
+    // Click eventlistener toevoegen aan toggles en vragen
+    faqQuestions.forEach(function (question, index) {
+      question.addEventListener("click", function () {
+        toggleAnswer(index);
+      });
+  
+      faqToggles[index].addEventListener("click", function (event) {
+        event.stopPropagation();
+        toggleAnswer(index);
+      });
+    });
+  });
+  
