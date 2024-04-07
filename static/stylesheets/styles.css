@@ -2545,6 +2545,8 @@ li:after {
         box-sizing: border-box;
         overscroll-behavior: none;
         height: 100%;
+        color: var(--primaryWhite);
+    font-family: var(--hFont);
     }
      
      
@@ -2940,6 +2942,7 @@ li:after {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 5em ;
     }
      
     .landing-page .why-spark-items {
@@ -3081,4 +3084,255 @@ li:after {
         align-items: center;
         border-radius: 0.8em;
     }
-    
+
+
+
+
+
+    /* FORMULIER LANDING PAGE */
+
+
+.top-nav {
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    font-size: 12px;
+    text-align: center;
+    padding: 1em;
+    font-weight: 300;
+}
+
+.nav {
+    width: 100%;
+    height: 60px;
+    padding: 0 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fff;
+
+}
+
+.containerFormLandingPage{
+    margin-top: 10em;
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+.nav .sitename {
+   
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+.container{
+    overflow-x: hidden !important;
+}
+.menu-icon{
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+.menu-icon ion-icon{
+position: relative;
+top: 2px;
+}
+
+.loopFormLandingPage {
+    width: 1000%;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-top: 1.2em;
+    margin-top: 5em;
+}
+
+.loopFormLandingPage span {
+    font-family: var(--hFont);
+    font-weight: 700;
+    color:  #bcb1fdc8;
+    font-size: 8em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding-left: -10%;
+    animation: marquee-animation 80s linear infinite;
+}
+
+@keyframes marquee-animation {
+    0% {
+        transform: translate(0,0);
+    }
+    100% {
+        transform: translate(-100%,0);
+    }
+}
+.item > span {
+    font-family: var(--bodyTextFont);
+}
+.col {
+    width: 50%;
+    padding: 1em 3em;
+}
+
+.containerFormLandingPage > div:nth-of-type(2) h3 {
+    text-transform: uppercase;
+    color: #747474;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.content-section span{
+    text-transform: uppercase;
+}
+
+.containerFormLandingPage > div:nth-of-type(2) > div:nth-of-type(1) p {
+    font-size: 310%;
+    line-height: 1em;
+    padding-top: 0.8em;
+    font-family: var(--bodyTextFont);
+    /* border: 1em solid red ; */
+    font-weight: 600;
+}
+
+
+.item{
+    padding: 4em 0 0 0;
+}
+
+.containerFormLandingPage > div:nth-of-type(2) > div:nth-of-type(3){
+    display: flex;
+    background-color: blue;
+}
+
+.address {
+    padding-left: 4em;
+}
+
+input {
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #747474;
+    font-size: 24px;
+    padding: 0.4em;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 2em;
+}
+
+.row {
+    display: flex;
+    margin: 2em 0 !important;
+}
+
+textarea#message{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #747474;
+    outline: none;
+    background: none;
+    padding: 0.4em;
+    color: #fff;
+    font-size: 24px;
+    font-family: var(--bodyTextFont);
+}
+
+.submit {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    align-content: center;
+
+}
+
+.submit a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+ .fa-arrow-right { 
+    font-size: 5em;
+    color: rgb(255, 255, 255);
+    margin-left: 1em;
+
+}
+
+#closeMatchFormButton {
+    position: relative;
+font-family: var(--bodyTextFont);
+font-size: var(--bodyTextSize);
+border: none;
+background: linear-gradient(45deg, #fff 50%, #bcb1fdc8 50%);
+
+color: var(--primaryWhite);
+text-decoration: underline none;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+display: inline-block;
+cursor: pointer;
+-webkit-appearance: none;
+appearance: none;
+font-size: 300%;
+z-index: 2;
+
+
+/* color: var(--primaryWhite); */
+
+}
+
+#closeMatchFormButton::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color:#BCB1FD;
+    transition: width 0.3s ease-in-out;
+    z-index: 2;
+}
+
+
+
+#closeMatchFormButton {
+background-size: 350%;
+background-position: 100%;
+transition: 0.55s ease-out, font-size 0.2s;
+}
+
+#closeMatchFormButton:hover::before {
+    width: 100%;
+}
+
+
+#closeMatchFormButton:hover {
+    background-position: 0;
+font-size: 310%;
+}
+
+@media(min-width: 900px){
+    html, body{
+        height: 100%;
+    }
+    .containerFormLandingPage > div:nth-of-type(2){
+        width: 100%;
+        display: flex;
+    }
+}
+
+@media(max-width: 900px){
+    .cor{
+        width: 100%;
+    }
+}
