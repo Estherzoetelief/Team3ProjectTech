@@ -1,72 +1,131 @@
 [
  
   {
-    "image": "../static/img/requestimg13.jpeg",
-    "title": "Looking for a developer",
+    "image": "img/requestimg17.jpeg",
     "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-    "max_amount": 300,
-    "date": "2024/0318",
+    "budget": "€300",
     "person": "David Johnson",
-    "categorie": "all"
+    "categorie": "logo-design"
   },
- 
-    {
-      "image": "../static/img/requestimg18.jpeg",
-      "title": "Looking for a developer",
-      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-      "max_amount": 300,
-      "date": "2024/0318",
-      "person": "David Johnson",
-      "categorie": "illustration"
-    },
- 
-    {
-      "image": "../static/img/requestimg19.jpeg",
-      "title": "Looking for a developer",
-      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-      "max_amount": 300,
-      "date": "2024/0318",
-      "person": "David Johnson",
-      "categorie": "website-development"
-    },
- 
-    {
-      "image": "../static/img/requestimg21.jpeg",
-      "title": "Looking for a developer",
-      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-      "max_amount": 300,
-      "date": "2024/0318",
-      "person": "David Johnson",
-      "categorie": "social-media-marketing"
-    },
- 
-    {
-      "image": "../static/img/requestimg12.jpeg",
-      "title": "Looking for a developer",
-      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-      "max_amount": 300,
-      "date": "2024/0318",
-      "person": "David Johnson",
-      "categorie": "social-media-marketing"
-    },
- 
-    {
-      "image": "../static/img/requestimg21.jpeg",
-      "title": "Looking for a developer",
-      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-      "max_amount": 300,
-      "date": "2024/0318",
-      "person": "David Johnson",
-      "categorie": "social-media-marketing"
-    },
- 
-    {
-      "image": "../static/img/requestimg17.jpeg",
-      "title": "Looking for a developer",
-      "description": "Our company is in its early stages, and we believe a distinctive and visually appealing logo is crucial for establishing a strong brand identity. We are looking for someone who can bring a fresh perspective to our vision and translate it into a unique and memorable logo that reflects the essence of our startup. Looking forward to hearing from you and exploring the possibility of working together.",
-      "max_amount": 300,
-      "date": "2024/0318",
-      "person": "David Johnson",
-      "categorie": "logo-design"
-    }
+
+  {
+    "image": "img/requestimg18.jpeg",
+    "description": "We sketch tirelessly, blending lines and colors to capture the essence of our client's tech startup  a fusion of innovation and simplicity. With each stroke, we breathe life into our creation, knowing it will pave the way for a new beginning.",
+    "budget": "€240",
+    "person": "Pieter van der Meer",
+    "categorie": "logo-design"
+  },
+
+  {
+    "image": "img/requestimg19.jpeg",
+    "description": "Armed with market research and a passion for baking, we dive into the task of designing our bakery's logo.",
+    "budget": "€45.80",
+    "person": "Lotte van Dijk",
+    "categorie": "logo-design"
+  },
+
+  {
+    "image": "img/requestimg20.jpeg",
+    "description": "We're on the hunt for a logo expert who can transform our vision into a captivating visual identity. Someone skilled in crafting logos that resonate with our brand's essence and leave a lasting impression.",
+    "budget": "€500",
+    "person": "Eva Hendriks",
+    "categorie": "logo-design"
+  },
+
+  {
+    "image": "img/requestimg21.jpeg",
+    "description": "We're currently crafting logos, seeking to encapsulate the essence of each brand with creativity and precision.",
+    "budget": "€25",
+    "person": "Lars van den Berg",
+    "categorie": "logo-design"
+  },
+
+  {
+    "image": "img/requestimg11.jpeg",
+    "description": "Dreaming of a stunning website? Our low-cost web design packages make it a reality! Don't compromise on quality, even on a tight budget.",
+    "budget": "€400",
+    "person": "Thijs van Leeuwen",
+    "categorie": "website-development"
+  },
+
+  {
+    "image": "img/requestimg12.jpeg",
+    "description": "Revamp your online identity with our wallet-friendly web design solutions! Get premium quality without the premium price tag.",
+    "budget": "€550.75",
+    "person": "Suzanne Molenaar",
+    "categorie": "website-development"
+  },
+
+  {
+    "image": "img/requestimg13.jpeg",
+    "description": "Unlock your digital potential with our budget-friendly web design services! Elevate your online presence without breaking the bank.",
+    "budget": "€1200",
+    "person": "Marijke de Wit",
+    "categorie": "website-development"
+  },
+
+  {
+    "image": "img/requestimg14.jpeg",
+    "description": "Ready to launch your website? Our affordable web design services make it possible for every budget! Stand out online without draining your resources.",
+    "budget": "€749.99",
+    "person": "Bas van den Bosch",
+    "categorie": "website-development"
+  },
+
+  {
+    "image": "img/requestimg1.jpg",
+    "description": "Supercharge your online presence with our expert social media marketing services! Reach your target audience and elevate your brand's visibility.",
+    "budget": "€90",
+    "person": "Jasper van Dijk",
+    "categorie": "social-media-marketing"
+  },
+
+  {
+    "image": "img/requestimg2.jpg",
+    "description": "Ready to level up your social media game? Our tailored marketing strategies are designed to boost engagement and drive results.",
+    "budget": "€55.99",
+    "person": "Maaike Janssen",
+    "categorie": "social-media-marketing"
+  },
+
+  {
+    "image": "img/requestimg3.jpeg",
+    "description": "Unlock the full potential of social media for your business with our comprehensive marketing solutions!",
+    "budget": "€34.99",
+    "person": "Ruben van der Wal",
+    "categorie": "social-media-marketing"
+  },
+
+  {
+    "image": "img/requestimg4.jpeg",
+    "description": "Harness the power of social media with our affordable marketing packages! From content creation to targeted ads, we've got your brand covered. ",
+    "budget": "€100",
+    "person": "Laura Kuijpers",
+    "categorie": "social-media-marketing"
+  },
+
+  {
+    "image": "img/requestimg5.jpeg",
+    "description": "Maximize your online impact with our dynamic social media marketing services! Elevate your brand's voice and connect with your audience like never before. ",
+    "budget": "€150.50",
+    "person": "Bram van Houten",
+    "categorie": "social-media-marketing"
+  },
+
+  {
+    "image": "img/requestimg24.jpeg",
+    "description": "Ignite your imagination with our captivating illustrations! Transform your ideas into vibrant visuals that tell your story.",
+    "budget": "€160",
+    "person": "Lisa Hardenberg",
+    "categorie": "illustration"
+  },
+
+  {
+    "image": "img/requestimg23.jpeg",
+    "description": "Bring your brand to life with our custom illustrations! From concept sketches to polished artwork, we create visuals that leave a lasting impression. ",
+    "budget": "€99.99",
+    "person": "Max Schoten",
+    "categorie": "illustration"
+  }
+   
 ]

@@ -281,13 +281,13 @@ fetch(jsonFile).then(respone=>{
     return respone.json();
 }).then(data =>{
     data.map(requestCard => {
-        const {image, title, description, max_amount, date, person, categorie} = requestCard;
+        const {image, description, budget, person, categorie} = requestCard;
         requestsContainer.innerHTML += `
             <div class="category-item"  data-name="${categorie}" >
                 <img src="${image}" alt="">
-                <a href="">Zaar Brouwer</a>
-                <p>${title}</p>
-                <p>${title}</p>
+                <a href="">${person}</a>
+                <p>${description}</p>
+                <p>${budget}</p>
             </div>`
     })
 const allFilterCategories = document.querySelectorAll('.category-item');
