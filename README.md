@@ -71,6 +71,6 @@ Dit project is gelicentieerd onder de MIT License. Zie de [LICENSE](https://gith
 
 ## Contact
 
-Heb je vragen, suggesties of feedback? Neem gerust contact met ons op of open een [issue](link-naar-issues) in onze GitHub-repository.
+Heb je vragen, suggesties of feedback? Neem gerust contact met ons op of open een [issue](https://github.com/Estherzoetelief/Team3ProjectTech/issues) in onze GitHub-repository.
 
 Bedankt voor het gebruik van ons project!
