@@ -1,4 +1,3 @@
-
 // // js for navbar
 
 // const discover_text = document.getElementById("discover_p");
@@ -10,14 +9,12 @@
 //     document.getElementById("underline_nav").style.marginLeft = "1.45em";
 // });
 
-
 // jobs_text.addEventListener("mouseover", () => {
 //     console.log('jobs is ontdekt')
 //     document.getElementById("underline_nav").style.opacity = "1";
 //     document.getElementById("underline_nav").style.marginLeft = "9em";
-    
-// });
 
+// });
 
 // document.addEventListener('DOMContentLoaded', function() {
 //     const sparkleElement = document.getElementById('sparkle-element');
@@ -37,179 +34,169 @@
 //     }, 1000);
 // }
 
-
-const allFilterItems = document.querySelectorAll('.filter-item');
-const allFilterBtns = document.querySelectorAll('.filter-btn');
+const allFilterItems = document.querySelectorAll('.filter-item')
+const allFilterBtns = document.querySelectorAll('.filter-btn')
 
 const filterItems = e => {
-    document.querySelector('.active-btn').classList.remove('active-btn');
-    e.target.classList.add('active-btn');
-  
-    const category = e.target.dataset.name;
-  
-    allFilterItems.forEach( item => {
-        item.classList.add('hide');
-  
-        if(category === 'all' || item.dataset.category === category){
-            item.classList.remove('hide');
-        }
-    });
-};
+  document.querySelector('.active-btn').classList.remove('active-btn')
+  e.target.classList.add('active-btn')
 
-allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
+  const category = e.target.dataset.name
 
+  allFilterItems.forEach(item => {
+    item.classList.add('hide')
 
-const prevBtns = document.querySelectorAll('.btn-prev');
-const nextBtns = document.querySelectorAll('.btn-next');
-const progress = document.getElementById('progress');
-const formSteps = document.querySelectorAll('fieldset');
-const progressSteps = document.querySelectorAll('.progress-step');
+    if (category === 'all' || item.dataset.category === category) {
+      item.classList.remove('hide')
+    }
+  })
+}
+
+allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems))
+
+const prevBtns = document.querySelectorAll('.btn-prev')
+const nextBtns = document.querySelectorAll('.btn-next')
+const progress = document.getElementById('progress')
+const formSteps = document.querySelectorAll('fieldset')
+const progressSteps = document.querySelectorAll('.progress-step')
 
 // current form step
-let formStepsNum = 0;
+let formStepsNum = 0
 
 // Next btn function
 nextBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        event.preventDefault();
-        formStepsNum++;
-        updateFormSteps();
-        updateProgressbar();
-        console.log(formStepsNum)
-    });
-});
+  btn.addEventListener('click', () => {
+    event.preventDefault()
+    formStepsNum++
+    updateFormSteps()
+    updateProgressbar()
+    console.log(formStepsNum)
+  })
+})
 
 // Previous btn function
 prevBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        event.preventDefault();
-        formStepsNum--;
-        updateFormSteps();
-        updateProgressbar();
-        console.log(formStepsNum)
-    });
-});
+  btn.addEventListener('click', () => {
+    event.preventDefault()
+    formStepsNum--
+    updateFormSteps()
+    updateProgressbar()
+    console.log(formStepsNum)
+  })
+})
 
 // Progress buttons function
 progressSteps.forEach((step, idx) => {
-    step.addEventListener('click', () => {
-        formStepsNum = idx;
-        updateFormSteps();
-        updateProgressbar();
-        console.log(formStepsNum)
-    });
-});
+  step.addEventListener('click', () => {
+    formStepsNum = idx
+    updateFormSteps()
+    updateProgressbar()
+    console.log(formStepsNum)
+  })
+})
 
 // Updating the form steps
-function updateFormSteps() {
-    formSteps.forEach(formStep => {
-        formStep.classList.contains('active') && formStep.classList.remove('active');
-    });
-    formSteps[formStepsNum].classList.add('active');
+function updateFormSteps () {
+  formSteps.forEach(formStep => {
+    formStep.classList.contains('active') && formStep.classList.remove('active')
+  })
+  formSteps[formStepsNum].classList.add('active')
 }
 
 // function for updating progress bar
-function updateProgressbar() {
-    progressSteps.forEach((progressStep, idx) => {
-        if (idx < formStepsNum + 1) {
-            progressStep.classList.add('active-progress');
-        } else {
-            progressStep.classList.remove('active-progress');
-        }
-    });
+function updateProgressbar () {
+  progressSteps.forEach((progressStep, idx) => {
+    if (idx < formStepsNum + 1) {
+      progressStep.classList.add('active-progress')
+    } else {
+      progressStep.classList.remove('active-progress')
+    }
+  })
 
-// function for updating progress bar line through the middle
-    const progressActive = document.querySelectorAll('.progress-step.active-progress');
-    progress.style.width = (progressActive.length - 1) / (progressSteps.length - 1) * 100 + '%';
+  // function for updating progress bar line through the middle
+  const progressActive = document.querySelectorAll('.progress-step.active-progress')
+  progress.style.width = (progressActive.length - 1) / (progressSteps.length - 1) * 100 + '%'
 }
 
-
 // function for starter animation on landing page using GSAP
-gsap.registerPlugin(ScrollTrigger);
- 
+gsap.registerPlugin(ScrollTrigger)
+
 console.log(ScrollTrigger)
- 
- 
-    document.addEventListener("DOMContentLoaded",function(){
-    const contentHolderHeight = document.querySelector('.content-holder').offsetHeight;
-    const imgHolderHeight = window.innerHeight;
-    const additionalScrollHeight = window.innerHeight;
- 
-    const totalBodyHeight = contentHolderHeight + imgHolderHeight + additionalScrollHeight;
-    document.body.style.height = `${totalBodyHeight}px`;
- 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const contentHolderHeight = document.querySelector('.content-holder').offsetHeight
+  const imgHolderHeight = window.innerHeight
+  const additionalScrollHeight = window.innerHeight
+
+  const totalBodyHeight = contentHolderHeight + imgHolderHeight + additionalScrollHeight
+  document.body.style.height = `${totalBodyHeight}px`
 })
- 
+
 ScrollTrigger.create({
-    trigger: ".website-content",
-    start: "-0.1% top",
-    end: "bottom bottom",
-    onEnter: () => {
-        gsap.set('.website-content', {position: 'absolute', top: '100%'});
-    },
-    onLeaveBack: () => {
-        gsap.set('.website-content', {position: 'fixed', top: '0%'});
+  trigger: '.website-content',
+  start: '-0.1% top',
+  end: 'bottom bottom',
+  onEnter: () => {
+    gsap.set('.website-content', { position: 'absolute', top: '100%' })
+  },
+  onLeaveBack: () => {
+    gsap.set('.website-content', { position: 'fixed', top: '0%' })
+  }
+})
+
+$('.headTextLandingPage').lettering()
+document.addEventListener('DOMContentLoaded', () => {
+  startLoader()
+})
+
+const startLoader = () => {
+  const counterElement = document.querySelector('.preLoader h2')
+  let currentValue = 0
+
+  const updateCounter = () => {
+    if (currentValue === 100) {
+      return
     }
-});
- 
- 
-$(".headTextLandingPage").lettering();
-document.addEventListener("DOMContentLoaded", () => {
-   
-    startLoader();
-  });
-  
-  const startLoader = () => {
-    const counterElement = document.querySelector(".preLoader h2");
-    let currentValue = 0;
-  
-    const updateCounter = () => {
-      if (currentValue === 100) {
-        return;
-      }
-      console.log("test");
-  
-      currentValue += Math.floor(Math.random() * 10) + 1;
-      if (currentValue > 100) {
-        currentValue = 100;
-        console.log("test2");
-      }
-      counterElement.textContent = currentValue;
-  
-      const delay = Math.floor(Math.random() * 200) + 50;
-      setTimeout(updateCounter, delay);
-    };
-  
-    updateCounter();
-  };
- 
- 
-    // GSAP animations
-    gsap.to(".preLoader h2", {
-        delay: 3.5,
-        opacity: 0,
-        duration: .25
-    });
- 
-    gsap.to(".bar", {
-        delay: 3.5,
-        height: 0,
-        stagger: 0.1,
-        ease: "power4.inout",
-        duration: .5
-    });
- 
-    gsap.from(".letters div", {
-        delay: 3.7,
-        y: 200,
-        opacity: 0,
-        stagger: 0.1,
-        ease: "power4.inout",
-        duration: 1
-    });
- 
- 
- 
+    console.log('test')
+
+    currentValue += Math.floor(Math.random() * 10) + 1
+    if (currentValue > 100) {
+      currentValue = 100
+      console.log('test2')
+    }
+    counterElement.textContent = currentValue
+
+    const delay = Math.floor(Math.random() * 200) + 50
+    setTimeout(updateCounter, delay)
+  }
+
+  updateCounter()
+}
+
+// GSAP animations
+gsap.to('.preLoader h2', {
+  delay: 3.5,
+  opacity: 0,
+  duration: 0.25
+})
+
+gsap.to('.bar', {
+  delay: 3.5,
+  height: 0,
+  stagger: 0.1,
+  ease: 'power4.inout',
+  duration: 0.5
+})
+
+gsap.from('.letters div', {
+  delay: 3.7,
+  y: 200,
+  opacity: 0,
+  stagger: 0.1,
+  ease: 'power4.inout',
+  duration: 1
+})
+
 // var typed = new Typed(".typeWriter", {
 //     strings: ["Web developer.", "graphic designer.", "Photographer.", "UX-Designer." , "UI-Designer."],
 //     typeSpeed: 130,
@@ -220,107 +207,98 @@ document.addEventListener("DOMContentLoaded", () => {
 //     cursorChar: "|",
 //     loop: true
 //   });
- 
- 
- 
+
 gsap.to('.word .letters:first-child', {
-    x: () => -window.innerWidth * 3,
-    scale: 10,
-    ease: 'power2.inOut',
-    scrollTrigger: {
-        trigger: '.word',
-        start: 'top top',
-        end: `+=100%`,
-        scrub: 1
-    }
-});
- 
+  x: () => -window.innerWidth * 3,
+  scale: 10,
+  ease: 'power2.inOut',
+  scrollTrigger: {
+    trigger: '.word',
+    start: 'top top',
+    end: '+=100%',
+    scrub: 1
+  }
+})
+
 gsap.to('.word .letters:last-child', {
-    x: () => window.innerWidth * 3,
-    scale: 10,
-    ease: 'power2.inOut',
-    scrollTrigger: {
-        trigger: '.word',
-        start: 'top top',
-        end: `+=100%`,
-        scrub: 1
-    },
-    
-});
- 
+  x: () => window.innerWidth * 3,
+  scale: 10,
+  ease: 'power2.inOut',
+  scrollTrigger: {
+    trigger: '.word',
+    start: 'top top',
+    end: '+=100%',
+    scrub: 1
+  }
+
+})
+
 gsap.to('.img-holder', {
-    rotation: 0,
-    ease: 'power2.inOut',
-    clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-    scrollTrigger: {
-        start: 'top top',
-        end: `+=100%`,
-        scrub: 1
-    }
-});
- 
- 
-gsap.to('.img-holder img',  {
-    scale: 1,
-    ease: 'power2.inOut',
-    clipPath: 'polygon (0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-    scrollTrigger: {
-        start: 'top top',
-        end: `+=100%`,
-        scrub: 1
-    }
-});
- 
- 
- 
+  rotation: 0,
+  ease: 'power2.inOut',
+  clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+  scrollTrigger: {
+    start: 'top top',
+    end: '+=100%',
+    scrub: 1
+  }
+})
+
+gsap.to('.img-holder img', {
+  scale: 1,
+  ease: 'power2.inOut',
+  clipPath: 'polygon (0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+  scrollTrigger: {
+    start: 'top top',
+    end: '+=100%',
+    scrub: 1
+  }
+})
+
 // FILTERING FOR CATEGORIES LANDING PAGE
-const jsonFile = "../../data.json";
+const jsonFile = '../../data.json'
 const requestsContainer = document.querySelector('.category-items')
- 
-fetch(jsonFile).then(respone=>{
-    return respone.json();
-}).then(data =>{
-    data.map(requestCard => {
-        const {image, description, budget, person, categorie} = requestCard;
-        requestsContainer.innerHTML += `
+
+fetch(jsonFile).then(respone => {
+  return respone.json()
+}).then(data => {
+  data.map(requestCard => {
+    const { image, description, budget, person, categorie } = requestCard
+    requestsContainer.innerHTML += `
             <div class="category-item"  data-name="${categorie}" >
                 <img src="${image}" alt="">
                 <a href="">${person}</a>
                 <p>${description}</p>
                 <p>${budget}</p>
             </div>`
+  })
+  const allFilterCategories = document.querySelectorAll('.category-item')
+  const allFilterBtns = document.querySelectorAll('.filter-btn')
+
+  console.log(allFilterBtns, allFilterCategories)
+
+  const filterItems = e => {
+    document.querySelector('.active-btn-categories').classList.remove('active-btn-categories')
+    e.target.classList.add('active-btn-categories')
+    console.log(e.target)
+
+    allFilterCategories.forEach(item => {
+      item.classList.add('hide')
+      console.log(item)
+
+      if (item.dataset.name === e.target.dataset.name || e.target.dataset.name === 'all') {
+        item.classList.remove('hide')
+      }
     })
-const allFilterCategories = document.querySelectorAll('.category-item');
-const allFilterBtns = document.querySelectorAll('.filter-btn');
- 
-console.log(allFilterBtns, allFilterCategories);
- 
-const filterItems = e => {
-    document.querySelector('.active-btn-categories').classList.remove('active-btn-categories');
-    e.target.classList.add('active-btn-categories');
-    console.log(e.target);
- 
- 
-    allFilterCategories.forEach( item => {
-        item.classList.add('hide');
-        console.log(item);
- 
- 
-        if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === 'all'){
-            item.classList.remove('hide');
-        }
- 
- 
-    });
-};
- 
-allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
+  }
+
+  allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems))
 })
 
-document.addEventListener("DOMContentLoaded", function() {
-    const preloader = document.querySelector(".preLoader");
+document.addEventListener('DOMContentLoaded', function () {
+  const preloader = document.querySelector('.preLoader')
 
-    setTimeout(function() {
-        preloader.style.display = "none"; 
-    }, 5000);
-});
+  setTimeout(function () {
+    preloader.style.display = 'none'
+  }, 5000)
+})
