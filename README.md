@@ -37,7 +37,7 @@ Om dit project lokaal te draaien, volg deze stappen:
 Na de installatie kun je het project starten met het volgende commando:
 
    ```
-   npm install
+   node server.js
    ```
 Open vervolgens je browser en ga naar [http://localhost:8511](http://localhost:8511) om het project te bekijken.
 
