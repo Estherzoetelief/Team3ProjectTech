@@ -124,7 +124,7 @@ function updateProgressbar() {
 }
 
 
-
+// function for starter animation on landing page using GSAP
 gsap.registerPlugin(ScrollTrigger);
  
 console.log(ScrollTrigger)
@@ -287,7 +287,7 @@ fetch(jsonFile).then(respone=>{
                 <img src="${image}" alt="">
                 <a href="">Zaar Brouwer</a>
                 <p>${title}</p>
-                <p>From €45</p>
+                <p>${title}</p>
             </div>`
     })
 const allFilterCategories = document.querySelectorAll('.category-item');
