@@ -243,7 +243,8 @@ gsap.to('.word .letters:last-child', {
         start: 'top top',
         end: `+=100%`,
         scrub: 1
-    } 
+    },
+    
 });
 
 gsap.to('.img-holder', {
@@ -268,5 +269,51 @@ gsap.to('.img-holder img',  {
         scrub: 1
     }
 });
+
+
+
+// FILTERING FOR CATEGORIES LANDING PAGE
+const jsonFile = "../data.json";
+const requestsContainer = document.querySelector('.category-items')
+
+fetch(jsonFile).then(respone=>{
+    return respone.json();
+}).then(data =>{
+    data.map(requestCard => {
+        const {image, title, description, max_amount, date, person, categorie} = requestCard;
+        requestsContainer.innerHTML += `
+            <div class="category-item"  data-name="${categorie}" >
+                <img src="${image}" alt="">
+                <a href="">Zaar Brouwer</a>
+                <p>${title}</p>
+                <p>From €45</p>
+            </div>`
+    })
+const allFilterCategories = document.querySelectorAll('.category-item');
+const allFilterBtns = document.querySelectorAll('.filter-btn');
+
+console.log(allFilterBtns, allFilterCategories);
+
+const filterItems = e => {
+    document.querySelector('.active-btn-categories').classList.remove('active-btn-categories');
+    e.target.classList.add('active-btn-categories');
+    console.log(e.target);
+
+
+    allFilterCategories.forEach( item => {
+        item.classList.add('hide');
+        console.log(item);
+
+
+        if(item.dataset.name === e.target.dataset.name || e.target.dataset.name === 'all'){
+            item.classList.remove('hide');
+        }
+
+
+    });
+};
+
+allFilterBtns.forEach(btn => btn.addEventListener('click', filterItems));
+})
 
 
